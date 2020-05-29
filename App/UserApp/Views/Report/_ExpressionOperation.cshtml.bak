@@ -1,0 +1,22 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference
+@model ReportConditionItemDef
+@if (Model != null)
+{
+    if (Model.Operation == ExpressionOperation.And)
+    {
+        <text>И</text>
+    }
+    else if (Model.Operation == ExpressionOperation.AndNot)
+    {
+        <text>И НЕ</text>
+    }
+    else if (Model.Operation == ExpressionOperation.Or)
+    {
+        <text>ИЛИ</text>
+    }
+    else if (Model.Operation == ExpressionOperation.OrNot)
+    {
+        <text>ИЛИ НЕ</text>
+    }
+}
+

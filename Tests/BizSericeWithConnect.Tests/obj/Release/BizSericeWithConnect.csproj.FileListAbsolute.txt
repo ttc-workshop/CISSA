@@ -1,0 +1,6 @@
+C:\Users\Ruslan\Desktop\Cissa2\trunk\Project\Tests\BizSericeWithConnect.Tests\bin\Release\TestProject1.dll.config
+C:\Users\Ruslan\Desktop\Cissa2\trunk\Project\Tests\BizSericeWithConnect.Tests\bin\Release\TestProject1.dll
+C:\Users\Ruslan\Desktop\Cissa2\trunk\Project\Tests\BizSericeWithConnect.Tests\bin\Release\TestProject1.pdb
+C:\Users\Ruslan\Desktop\Cissa2\trunk\Project\Tests\BizSericeWithConnect.Tests\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Ruslan\Desktop\Cissa2\trunk\Project\Tests\BizSericeWithConnect.Tests\obj\Release\TestProject1.dll
+C:\Users\Ruslan\Desktop\Cissa2\trunk\Project\Tests\BizSericeWithConnect.Tests\obj\Release\TestProject1.pdb

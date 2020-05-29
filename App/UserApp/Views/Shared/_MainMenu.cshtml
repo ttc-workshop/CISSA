@@ -1,0 +1,28 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model List<BizMenu>
+
+@(Html.Telerik().TreeView()
+    .Name("MainMenu")
+    .BindTo(Model, menus =>
+    {
+        menus.For<BizMenu>(binding => binding
+                .ItemDataBound((item, menu) =>
+                {
+                    item.Text = menu.Caption ?? "---";
+                    if (menu.ProcessId != null)
+                    {
+                        item.Url = Url.Action("Run", "Process", new { id = menu.ProcessId });
+                    } else
+                    if (menu.FormId != null && menu.DocStateId != null)
+                    {
+                        item.Url = Url.Action("ShowFilterList", "Form", new { id = menu.FormId, docStateId = menu.DocStateId });
+                    } else
+                    if (menu.FormId != null)
+                    {
+                        item.Url = Url.Action("ShowList", "Form", new { id = menu.FormId });
+                    }
+                    item.Expanded = true;
+                })
+                .Children(child => child.Children));
+    })
+)

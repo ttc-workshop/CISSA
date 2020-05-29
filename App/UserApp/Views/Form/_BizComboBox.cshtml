@@ -1,0 +1,111 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizComboBox
+
+@{
+    bool tableGrid = (bool?) ViewData["ParentIsGrid"] ?? false;
+    bool detailGrid = (bool?) ViewData["DetailGrid"] ?? false;
+    bool editMode = (bool?) ViewData["EditMode"] ?? false;
+    Guid formId = (Guid?) ViewData["FormId"] ?? Guid.Empty;
+}
+@if (!tableGrid && !detailGrid)
+{
+    @*@Html.LabelForModel(Model.Caption ?? "")*@
+    <span>@(Model.Caption ?? "")</span>
+}
+@*@if (Model.Items != null)
+{*@
+    @if (detailGrid && !tableGrid)
+    {
+        @Html.Partial("__BeginDetailCellRow", String.IsNullOrEmpty(Model.Caption) ? "" : Model.Caption)
+    }
+    @if (!editMode || /*tableGrid ||*/ Model.ReadOnly)
+    {
+        var selectValue = Model.Items != null ?
+            (from i in Model.Items
+                where i.Id == Model.Value
+                select i.Value).FirstOrDefault() : Model.DetailText;
+        
+        <span class="t-input">@(selectValue ?? "")</span>
+    }
+    else
+    {
+        if (Model.IsRadio)
+        {
+            foreach (var item in Model.Items)
+            {
+                @Html.RadioButton(Model.Id.ToString(), item.Id, item.Id == Model.Value, new { @class = "t-input " + Model.Style })
+                <text>@item.Value</text>
+            }
+        }
+        else if (Model.Rows > 1)
+        {
+            var selectList =
+                from i in Model.Items
+                select new SelectListItem
+                {
+                    Selected = (i.Id == Model.Value),
+                    Text = i.Value,
+                    Value = i.Id.ToString()
+                };
+            @Html.ListBox(Model.Id.ToString(), selectList, new {@class = "t-input " + Model.Style, size = Model.Rows})
+        }
+        else
+        {
+            var maxLen = 0;
+            var selectList = new List<DropDownItem>();
+            if (Model.Items != null)
+            {
+                foreach (var item in Model.Items)
+                {
+                    selectList.Add(
+                        new DropDownItem
+                        {
+                            Selected = (item.Id == Model.Value),
+                            Text = item.Value,
+                            Value = item.Id.ToString()
+                        });
+                    if (maxLen < (item.Value != null ? item.Value.Length : 0))
+                    {
+                        maxLen = item.Value != null ? item.Value.Length : 0;
+                    }
+                }
+            }
+            @*@Html.DropDownList(Model.Id.ToString(), selectList, new { @class = Model.Style, size = Model.Rows }) *@
+            var isMaster = Model.Dependents != null && Model.Dependents.Count > 0;
+            if (Model.Items == null)
+            {
+                var cb = Html.Telerik().ComboBox()
+                      .Name(Model.Id.ToString())
+                      /*.HtmlAttributes(new {style = "width: " + (maxLen > 40 ? 300 : Math.Max(50, maxLen * 8) + 17) + "px"})*/
+                      .Items(item => item.Add().Text(Model.DetailText ?? "-").Value(Model.Value != null ? Model.Value.ToString() : "").Selected(true))
+                      /*.BindTo(selectList)*/
+                      .DataBinding(dataBinding => dataBinding
+                          .Ajax().Select("DropDownBinding", "Form", new {id = Model.Id, formId}));
+                if (isMaster)
+                {
+                    cb.ClientEvents(events => events.OnChange("onChangeMasterComboBox"));
+                }
+                @(cb)
+            }
+            else
+            {
+                var cb = Html.Telerik().ComboBox()
+                    .Name(Model.Id.ToString())
+                    /*.HtmlAttributes(new {style = "width: " + (maxLen > 40 ? 300 : Math.Max(50, maxLen * 8) + 17) + "px"})*/
+                    .BindTo(selectList);
+                if (isMaster)
+                {
+                    cb.ClientEvents(events => events.OnChange("onChangeMasterComboBox"));
+                }
+                @(cb)
+            }
+        }
+        <span class="field-validation-error" name="@Model.Id.ToString()">
+            @Html.ValidationMessage(Model.Id.ToString())
+        </span>
+    }
+@if (detailGrid && !tableGrid)
+{
+    @Html.Partial("__EndDetailRow", Model)
+}
+@*}*@

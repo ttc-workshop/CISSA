@@ -1,0 +1,17 @@
+C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\App\ProcessExecutor\bin\Debug\ProcessExecutor.exe.config
+C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\App\ProcessExecutor\bin\Debug\ProcessExecutor.exe
+C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\App\ProcessExecutor\bin\Debug\ProcessExecutor.pdb
+C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\App\ProcessExecutor\obj\Debug\ProcessExecutor.exe
+C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\App\ProcessExecutor\obj\Debug\ProcessExecutor.pdb
+F:\RUSLAN\Dev\Vs-2013\cissa-4\trunk\App\ProcessExecutor\bin\Debug\ProcessExecutor.exe.config
+F:\RUSLAN\Dev\Vs-2013\cissa-4\trunk\App\ProcessExecutor\bin\Debug\ProcessExecutor.exe
+F:\RUSLAN\Dev\Vs-2013\cissa-4\trunk\App\ProcessExecutor\bin\Debug\ProcessExecutor.pdb
+F:\RUSLAN\Dev\Vs-2013\cissa-4\trunk\App\ProcessExecutor\obj\Debug\ProcessExecutor.csproj.CoreCompileInputs.cache
+F:\RUSLAN\Dev\Vs-2013\cissa-4\trunk\App\ProcessExecutor\obj\Debug\ProcessExecutor.exe
+F:\RUSLAN\Dev\Vs-2013\cissa-4\trunk\App\ProcessExecutor\obj\Debug\ProcessExecutor.pdb
+C:\Development\Vs-2013\cissa-4\App\ProcessExecutor\bin\Debug\ProcessExecutor.exe.config
+C:\Development\Vs-2013\cissa-4\App\ProcessExecutor\bin\Debug\ProcessExecutor.exe
+C:\Development\Vs-2013\cissa-4\App\ProcessExecutor\bin\Debug\ProcessExecutor.pdb
+C:\Development\Vs-2013\cissa-4\App\ProcessExecutor\obj\Debug\ProcessExecutor.csprojAssemblyReference.cache
+C:\Development\Vs-2013\cissa-4\App\ProcessExecutor\obj\Debug\ProcessExecutor.exe
+C:\Development\Vs-2013\cissa-4\App\ProcessExecutor\obj\Debug\ProcessExecutor.pdb

@@ -1,0 +1,8 @@
+C:\Users\RemoteAdmin\Documents\Dev\Vs-2013\Old\cissa-3\trunk\Project\Tests\MiscTests\bin\Release\MiscTests.dll
+C:\Users\RemoteAdmin\Documents\Dev\Vs-2013\Old\cissa-3\trunk\Project\Tests\MiscTests\bin\Release\MiscTests.pdb
+C:\Users\RemoteAdmin\Documents\Dev\Vs-2013\Old\cissa-3\trunk\Project\Tests\MiscTests\bin\Release\DocX.dll
+C:\Users\RemoteAdmin\Documents\Dev\Vs-2013\Old\cissa-3\trunk\Project\Tests\MiscTests\bin\Release\Excel.4.5.dll
+C:\Users\RemoteAdmin\Documents\Dev\Vs-2013\Old\cissa-3\trunk\Project\Tests\MiscTests\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\RemoteAdmin\Documents\Dev\Vs-2013\Old\cissa-3\trunk\Project\Tests\MiscTests\obj\Release\MiscTests.csprojResolveAssemblyReference.cache
+C:\Users\RemoteAdmin\Documents\Dev\Vs-2013\Old\cissa-3\trunk\Project\Tests\MiscTests\obj\Release\MiscTests.dll
+C:\Users\RemoteAdmin\Documents\Dev\Vs-2013\Old\cissa-3\trunk\Project\Tests\MiscTests\obj\Release\MiscTests.pdb

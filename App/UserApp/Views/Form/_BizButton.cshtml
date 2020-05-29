@@ -1,0 +1,64 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizButton
+@{
+    bool editMode = ViewData["EditMode"] != null ? (bool)ViewData["EditMode"] : false;
+    bool inProcess = ViewData["InProcess"] != null ? (bool)ViewData["InProcess"] : false;
+    int nesting = ViewData["Nesting"] != null ? (int)ViewData["Nesting"] : 0;
+    Guid? docId = ViewData["DocumentId"] != null ? (Guid)ViewData["DocumentId"] : (Guid?)null;
+    
+    if (!editMode)
+    {
+        switch (Model.ButtonType)
+        {
+            case BizButtonType.Button:
+                if (Model.ProcessId != null)
+                {
+                    if (docId == null)
+                    {
+                        @*Ajax.ActionLink(Model.Caption, "Run", "Process", new { id = (Guid)Model.ProcessId }, new AjaxOptions { UpdateTargetId = "content-body" }, new { @class = "t-button" })*@
+                        <button type="button" class="@(Model.Style ?? "t-button")" title="@Model.Title" onclick="parent.location='@Url.Action("Run", "Process", new { id = (Guid)Model.ProcessId })'" >
+                            @Model.Caption</button>
+                    }
+                    else
+                    {
+                        @*Ajax.ActionLink(Model.Caption, "Run", "Process", new { id = (Guid)Model.ProcessId, docId = docId }, new AjaxOptions { UpdateTargetId = "content-body" }, new { @class = "t-button" })*@
+                        <button type="button" class="@(Model.Style ?? "t-button")" title="@Model.Title" onclick="parent.location='@Url.Action("Run", "Process", new { id = (Guid)Model.ProcessId, docId = docId })'" >
+                            @Model.Caption</button>
+                    }
+                }
+                else
+                {
+                    if (inProcess && nesting < 2)
+                    {
+                        @*Ajax.ActionLink(Model.Caption, "UserAction", "Form", new { id = Model.UserActionId ?? Guid.Empty }, new AjaxOptions { UpdateTargetId = "content-body" }, new { @class = "t-button" })*@
+                        <button type="button" class="@(Model.Style ?? "t-button")" title="@Model.Title" onclick="parent.location='@Url.Action("UserAction", "Form", new { id = Model.UserActionId ?? Guid.Empty })'" >@Model.Caption</button>
+                    }
+                }
+                break;
+            case BizButtonType.Reset:
+                <button type="reset" class="@(Model.Style ?? "t-button")" title="@Model.Title" >@Model.Caption</button>
+                break;
+            case BizButtonType.Submit:
+                <button type="submit" class="@(Model.Style ?? "t-button")" title="@Model.Title">@Model.Caption</button>
+                break;
+            case BizButtonType.Link:
+                if (Model.ProcessId != null)
+                {
+                    @Ajax.ActionLink(Model.Caption, "Run", "Process", new { id = (Guid)Model.ProcessId }, 
+                        new AjaxOptions { UpdateTargetId = "content-body" }, new { @class = "t-button" })
+                }
+                else
+                {
+                    if (inProcess && nesting < 2)
+                    {
+                        @Ajax.ActionLink(Model.Caption, "UserAction", "Form", new { id = Model.UserActionId ?? Guid.Empty }, 
+                            new AjaxOptions { UpdateTargetId = "content-body" }, new { @class = "t-button" })
+                    }
+                }
+                break;
+            default:
+                <h3>@Resources.Form.ButtonTypeError</h3>
+                break;
+        }
+    }
+}

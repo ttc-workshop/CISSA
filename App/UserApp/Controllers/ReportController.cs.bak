@@ -1,0 +1,476 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web.Mvc;
+using Intersoft.CISSA.UserApp.Models;
+using Intersoft.CISSA.UserApp.Models.Application.ContextStates;
+
+namespace Intersoft.CISSA.UserApp.Controllers
+{
+    [Authorize]
+    public class ReportController : BaseController
+    {
+        //
+        // GET: /Report/
+
+        public ActionResult Template()
+        {
+            try
+            {
+                var state = Check<GenerateTemplate>();
+
+                Set(state.Previous);
+
+                var ext = Path.GetExtension(state.FileName);
+                var fileName = Path.GetFileName(state.FileName);
+                var rm = GetReportProxy();
+                {
+                    var buffer = rm.Proxy.GenerateFromTemplate(state.Document, state.ProcessContext, state.FileName);
+
+                    return File(buffer, "application/" + ext, fileName);
+                }
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult File()
+        {
+            try
+            {
+                var state = Check<SendFile>();
+
+                Set(state.Previous);
+
+                var rm = GetReportProxy();
+                var ext = Path.GetExtension(state.FileName);
+                var fileName = Path.GetFileName(state.FileName);
+                var buffer = rm.Proxy.GetFile(state.FileName);
+
+                return File(buffer, "application/" + ext, fileName);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult Create()
+        {
+            StartOperation();
+            try
+            {
+                return RedirectTo(new CreateTableReport(this));
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult Select()
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<CreateTableReport>();
+
+                return View(state.Sources);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult SelectSource(Guid id)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<CreateTableReport>();
+
+                if (state.Sources != null)
+                {
+                    var source = state.Sources.FirstOrDefault(s => s.Id == id);
+
+                    if (source != null)
+                    {
+                        return RedirectTo(new ConfigTableReport(this, state.Previous, id));
+                    }
+                }
+                return View(state.Sources);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult Config()
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+
+                return View(state);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult AddSource(Guid id)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+
+                var sourceDef = state.Context.Def.Sources.FirstOrDefault(s => s.Id == id);
+                if (sourceDef == null)
+                    return ThrowException(Resources.Report.SourceNotFound);
+
+                state.SourceId = sourceDef.Id;
+
+                return View(state);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult JoinSource(Guid id, Guid docDefId, Guid attrId)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+
+                if (id == Guid.Empty)
+                    return ThrowException(Resources.Report.SourceNotFound);
+
+                state.JoinSource(this, id, docDefId, attrId);
+
+                return RedirectTo(state);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult SelectColumn(Guid id)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+                state.SourceId = id;
+                return View(state);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        /*public ActionResult AddColumn(Guid sourceId, Guid attrId)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+
+                state.AddColumn(this, sourceId, attrId);
+                return RedirectTo(state);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }*/
+        public ActionResult AddColumns(FormCollection fields)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+
+                var sourceId = Guid.Parse(fields.Get("SourceId"));
+                var attrs = new List<Guid>();
+                foreach (string fldName in fields)
+                {
+                    Guid attrId;
+                    if (!Guid.TryParse(fldName, out attrId)) continue;
+
+                    var value = fields[fldName];
+
+                    if (String.IsNullOrEmpty(value)) continue;
+                    bool result;
+                    if (value == "true,false")
+                    {
+                        string temp = value;
+                        value = temp.Substring(0, 4);
+                    }
+
+                    if (bool.TryParse(value, out result) && result)
+                        attrs.Add(attrId);
+                }
+                if (attrs.Count > 0)
+                    state.AddColumns(this, sourceId, attrs);
+
+                return RedirectTo(state);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            } 
+        }
+
+        public ActionResult EditColumn(Guid id)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+
+                return View(state);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult RemoveColumn(Guid id)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+                state.RemoveColumn(this, id);
+                return RedirectTo(state);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult MoveColumn(Guid id, bool up)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+                state.MoveColumn(this, id, up);
+                return RedirectTo(state);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult AddRootExpCondition()
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+                state.AddRootExpCondition(this);
+                return RedirectTo(state);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult SelectCondition(Guid id)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+                state.SourceId = id;
+                return View(state);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult AddCondition(Guid sourceId, Guid attrId)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+                state.AddCondition(this, sourceId, attrId);
+                return RedirectTo(state);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult RemoveCondition(Guid id)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+                state.RemoveCondition(this, id);
+                return RedirectTo(state);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult Execute()
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+                var xlsReportFile = state.Execute(this);
+                return File(xlsReportFile, "application/xls", "UserReport.xls");
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult UpdateColumnSortType(Guid id, string value)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+                state.SetColumnSortType(id, value);
+                return Json(new { }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult UpdateColumnGrouping(string id, string value)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+                if (!String.IsNullOrEmpty(id))
+                {
+                    var sid = id.Length == 37 ? id.Substring(1) : id;
+                    Guid guid;
+                    if (Guid.TryParse(sid, out guid))
+                        state.SetColumnGrouping(guid, value);
+                }
+                return Json(new {}, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult UpdateConditionExpression(Guid id, string value)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+                state.SetConditionExpression(id, value);
+                return Json(new { }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult UpdateConditionOperation(string id, string value)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+                if (!String.IsNullOrEmpty(id))
+                {
+                    var sid = id.Length == 37 ? id.Substring(1) : id;
+                    Guid guid;
+                    if (Guid.TryParse(sid, out guid))
+                        state.SetConditionOperation(guid, value);
+                }
+                return Json(new { }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult SetReportCaption(string value)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+                state.Context.Def.Caption = value;
+                return Json(new { caption = value }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult SetReportConditionParam(Guid id, string caption, string value)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+                return state.SetConditionParamCaptionValue(id, caption, value)
+                    ? Json(new {conditions = new[] {new {id, caption, value}}}, JsonRequestBehavior.AllowGet)
+                    : Json(new {is_alert = true});
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+
+        public ActionResult SetReportColumnCaption(Guid id, string value)
+        {
+            StartOperation();
+            try
+            {
+                var state = Check<ConfigTableReport>();
+                return state.SetColumnCaption(id, value)
+                    ? Json(new {columns = new[] {new {id, caption = value}}}, JsonRequestBehavior.AllowGet)
+                    : Json(new {columns = new[] {new {id}}}, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return ThrowException(e);
+            }
+        }
+    }
+}

@@ -1,0 +1,150 @@
+﻿@using Intersoft.CISSA.UserApp.Models;
+@using Intersoft.CISSA.UserApp.ServiceReference;
+
+@model ManagedTableForm
+@{
+    Layout = null;
+
+    ViewData["ParentIsGrid"] = true;
+    ViewData["DetailGrid"] = false;
+    ViewData["Nesting"] = 1;
+}
+<div id="grid-@Model.Id.ToString()" class="t-widget t-grid">
+    <table cellpadding="2" cellspacing="0" border="1">
+        <thead class="t-grid-header">
+            <tr class="t-grid-header-wrap">
+                @if (Model.FormId != null)
+                {
+                    <th class="t-header" rowspan="@Model.HeaderRowCount">@Resources.Form.ActionColumn</th>
+                }
+                @if (Model.Columns != null)
+                {
+                    foreach (var column in Model.Columns)
+                    {    
+                        <th class="t-header" @column.GetHeaderAttributes()>@(column.Control.Caption ?? "-")</th>
+                            @*Html.ActionLink(column.Control.Caption, "Sort", "Form", new { id = column.Control.Id })*@
+                    }
+                }
+            </tr>
+            @for (int i = 1; Model.HeaderRowCount >= i; i++) 
+            {
+                <tr class="t-grid-header-wrap">
+                    @foreach(var column in Model.GetColumnForRow(i))
+                    {
+                        <th class="t-header" @column.GetHeaderAttributes()>@(column.Control.Caption ?? "-")</th>
+                    }
+                </tr>
+            }
+        </thead>
+        <tbody class="t-grid-content">
+            @{ int no = 0; }
+            @if (Model.RowForms != null @*&& Model.RowForms.Count > 0*@)
+            {
+                foreach (var row in Model.RowForms)
+                {
+                    @*Model.SetDoc(docId);*@
+                    Model.SetRowForm(row);
+                    Guid docId = ((BizForm)row).DocumentId ?? Guid.Empty;
+                    ViewData["DocumentId"] = docId;
+        
+                    <tr class="@(no % 2 == 1 ? "t-alt" : "")">
+                        @if (Model.FormId != null)
+                        {
+                            <td>
+                                @*Ajax.ActionLink("Открыть", "ShowDoc", "Form", new { formId = Model.FormId, docId = docId }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "content-body" }, new { @class = "t-button  t-grid-select" })*@
+                                @Html.ActionLink(@Resources.Form.Open, "ShowDoc", "Form", 
+                                    new { formId = Model.FormId, docId }, new { @class = "t-button  t-grid-select" })
+                            </td>
+                        }
+                        @foreach (var column in Model.Columns)
+                        {
+                            if (column.Control != null && (column.Children == null || column.Children.Count == 0))
+                            {
+                                <td>@Html.Partial("_" + column.Control.GetType().Name, column.Control)</td>
+                            }                            
+                            if (column.Children != null && column.Children.Count > 0)
+                            {
+                                @Html.Partial("__ColumnData", column);
+                            }
+                        }
+                        @* @{ Html.RenderAction("DrawGridRow", "Form", new { formId = Model.Id, row }); } *@
+                    </tr>
+                        no++;
+                }
+            }
+            else
+            {
+                foreach (var docId in Model.RowDocs)
+                {
+                    ViewData["DocumentId"] = docId;
+        
+                <tr class="@(no % 2 == 1 ? "t-alt" : "")">
+                    @if (Model.FormId != null)
+                    {
+                        <td>
+                            @*Ajax.ActionLink("Открыть", "ShowDoc", "Form", new { formId = Model.FormId, docId = docId }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "content-body" }, new { @class = "t-button  t-grid-select" })*@
+                            @Html.ActionLink(@Resources.Form.Open, "ShowDoc", "Form", 
+                                new { formId = Model.FormId, docId }, new { @class = "t-button  t-grid-select" })
+                        </td>
+                    }
+                    @{ Html.RenderAction("DrawGridRow", "Form", new { formId = Model.Id, docId }); }
+                </tr>
+                       no++;
+                }
+            }
+        </tbody>
+    </table>
+    <div class="t-grid-pager t-grid-bottom">
+        <div class="t-status">
+            @Ajax.ActionLink(@Resources.Form.Requery, "DrawGrid", "Form", 
+                new { gridId = Model.Id, docId = Model.DocId, pageNo = Model.PageNo, pageSize = Model.PageSize }, 
+                new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "grid-" + Model.Id.ToString() }, 
+                new { @class = "t-icon t-refresh" })
+            @*Html.ActionLink("Обновить", "DrawGrid", "Form", new { gridId = Model.Id, docId = Model.DocId, pageNo = Model.PageNo, pageSize = Model.PageSize }, new { @class = "t-icon t-refresh" })*@
+        </div>
+        <div class="t-status">
+            @Html.ActionLink(Resources.Form.ToExcel, "ListToExcel", "Form", new { id = Model.Owner.Id, docId = Model.DocId }, new { @class = "t-icon t-excel" })
+        </div>
+    @if (Model.Form.PageCount > 1)
+    {
+        var i1 = 1;
+        var i2 = Model.Form.PageCount;
+        if (Model.Form.PageNo - i1 > 5) { i1 = Model.Form.PageNo - 5; }
+        if (i2 - Model.Form.PageNo > 5) { i2 = Model.Form.PageNo + 5; }
+        <div class="t-pager t-reset">
+        <div class="t-numeric">
+        @if (i1 > 1)
+        {
+            @Ajax.ActionLink("1", "DrawGrid", "Form", new { gridId = Model.Id, docId = Model.DocId, pageNo = 0, pageSize = Model.PageSize }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "grid-" + Model.Id.ToString() }, new { @class = "t-link" })
+            @*Html.ActionLink("1", "DrawGrid", "Form", new { gridId = Model.Id, docId = Model.DocId, pageNo = 0, pageSize = Model.PageSize }, new { @class = "t-link" })*@
+            <span> - </span>
+        }
+        @for (int i = i1; i <= i2; i++)
+        {
+            if (i == (Model.Form.PageNo + 1))
+            {
+                <span class="t-state-active">@i</span>
+            }
+            else
+            {
+                @Ajax.ActionLink(i.ToString(), "DrawGrid", "Form", 
+                    new { gridId = Model.Id, docId = Model.DocId, pageNo = i - 1, pageSize = Model.PageSize }, 
+                    new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "grid-" + Model.Id.ToString() }, 
+                    new { @class = "t-link" })
+                @*Html.ActionLink(i.ToString(), "DrawGrid", "Form", new { gridId = Model.Id, docId = Model.DocId, pageNo = i - 1, pageSize = Model.PageSize }, new { @class = "t-link" })*@
+            }
+        }
+        @if (i2 < Model.Form.PageCount)
+        {
+            <span> - </span>
+            @Ajax.ActionLink(Model.Form.PageCount.ToString(), "DrawGrid", "Form", 
+                new { gridId = Model.Id, docId = Model.DocId, pageNo = Model.Form.PageCount - 1, pageSize = Model.PageSize }, 
+                new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "grid-" + Model.Id.ToString() }, new { @class = "t-link" })
+            @*Html.ActionLink(Model.Form.PageCount.ToString(), "DrawGrid", "Form", new { gridId = Model.Id, docId = Model.DocId, pageNo = Model.Form.PageCount - 1, pageSize = Model.PageSize }, new { @class = "t-link" })*@
+        }
+        </div>
+        </div>
+    }
+        <div class="t-status-text">@Resources.Form.RowCount: @Model.RowCount</div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = Resources.Report.DownloadFile;
+}
+<div class="detail-form frame">
+    <div class="frame-content">
+        <h2><span id="downloadMessage">@Resources.Report.DownloadFileMessage</span></h2>
+        <script src="@Url.Content("~/Scripts/jquery.fileDownload.js")"></script>
+        <script>
+            window.onload = function() {
+                //window.location.href = cissa.homeUrl + "Report/Download/";
+                $.fileDownload("@Url.Content("~/Report/Download/")")
+                    .done(function () {
+                        $("#downloadMessage").text("@Resources.Report.DownloadCompleteMessage");
+                        location.href = "@Url.Action("DownloadComplete")";
+                    })
+                    .fail(function() { alert("@Resources.Report.DownloadFailMessage"); });
+            }
+        </script>
+    </div>
+</div>

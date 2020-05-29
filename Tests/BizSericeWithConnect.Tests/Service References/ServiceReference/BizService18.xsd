@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Enums" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Enums" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/AsistService/BizService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="EnumDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EnumItems" nillable="true" type="tns:ArrayOfEnumValue" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EnumDef" nillable="true" type="tns:EnumDef" />
+  <xs:complexType name="ArrayOfEnumValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EnumValue" nillable="true" type="tns:EnumValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEnumValue" nillable="true" type="tns:ArrayOfEnumValue" />
+  <xs:complexType name="EnumValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefaultValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EnumValue" nillable="true" type="tns:EnumValue" />
+</xs:schema>

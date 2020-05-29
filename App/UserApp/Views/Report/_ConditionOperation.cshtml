@@ -1,0 +1,90 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference
+@using Resources
+@model ReportConditionDef
+@if (Model != null)
+{
+    var selectList = new List<DropDownItem>(
+        new[]
+        {
+            new DropDownItem
+            {
+                Selected = (Model.Condition == CompareOperation.Equal),
+                Text = Report.CompareEqual,
+                Value = CompareOperation.Equal.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (Model.Condition == CompareOperation.Less),
+                Text = Report.CompareLess,
+                Value = CompareOperation.Less.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (Model.Condition == CompareOperation.LessEqual),
+                Text = Report.CompareLessEqual,
+                Value = CompareOperation.LessEqual.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (Model.Condition == CompareOperation.Great),
+                Text = Report.CompareGreat,
+                Value = CompareOperation.Great.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (Model.Condition == CompareOperation.GreatEqual),
+                Text = Report.CompareGreatEqual,
+                Value = CompareOperation.GreatEqual.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (Model.Condition == CompareOperation.NotEqual),
+                Text = Report.CompareNotEqual,
+                Value = CompareOperation.NotEqual.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (Model.Condition == CompareOperation.Like),
+                Text = Report.CompareLike,
+                Value = CompareOperation.Like.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (Model.Condition == CompareOperation.NotLike),
+                Text = Report.CompareNotLike,
+                Value = CompareOperation.NotLike.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (Model.Condition == CompareOperation.StartWith),
+                Text = Report.CompareStartWith,
+                Value = CompareOperation.StartWith.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (Model.Condition == CompareOperation.EndWith),
+                Text = Report.CompareEndWith,
+                Value = CompareOperation.EndWith.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (Model.Condition == CompareOperation.Levenstein),
+                Text = Report.CompareLevenstein,
+                Value = CompareOperation.Levenstein.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (Model.Condition == CompareOperation.IsNull),
+                Text = Report.CompareIsNull,
+                Value = CompareOperation.IsNull.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (Model.Condition == CompareOperation.IsNotNull),
+                Text = Report.CompareIsNotNull,
+                Value = CompareOperation.IsNotNull.ToString()
+            }
+        });
+    @Html.Telerik().DropDownList().Name("c" + Model.Id).BindTo(selectList).ClientEvents(events => events.OnChange("onChangeConditionOperation"));
+}
+

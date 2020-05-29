@@ -1,0 +1,31 @@
+#left {
+	width: 190px;
+	background: #e9f2f7;
+	position: relative;
+	padding: 5px;
+	float: left;
+	}
+.header {
+	padding: 8px;
+	cursor: pointer;
+	background: #e9f2f7;
+	text-align: left;
+	font-size: 100%;
+	background-image: url(../img/line-h.gif);
+	background-position: bottom;
+	background-repeat: repeat-x;
+	font-weight: bold;
+	}
+.header:hover {
+	background: #c1cfd6;
+	color: #fff;
+	}
+.link {
+	overflow: hidden;
+	}
+.text {
+	border-top: none;
+	padding: 15px;
+	text-align: left;
+	background: #f2f4f7;
+	}

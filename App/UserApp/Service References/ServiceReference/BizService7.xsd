@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:1296/BizService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:1296/BizService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Security" />
+  <xs:import schemaLocation="http://localhost:1296/BizService.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Enums" />
+  <xs:import schemaLocation="http://localhost:1296/BizService.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="DocDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AncestorId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="Attributes" nillable="true" type="tns:ArrayOfAttrDef" />
+      <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatePermissionId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="DeletePermissionId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsInline" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPublic" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Security" minOccurs="0" name="Permissions" nillable="true" type="q1:PermissionSet" />
+      <xs:element minOccurs="0" name="SelectPermissionId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="UpdatePermissionId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="WithHistory" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocDef" nillable="true" type="tns:DocDef" />
+  <xs:complexType name="ArrayOfAttrDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AttrDef" nillable="true" type="tns:AttrDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAttrDef" nillable="true" type="tns:ArrayOfAttrDef" />
+  <xs:complexType name="AttrDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BlobInfo" nillable="true" type="tns:BlobInfo" />
+      <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefaultValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocDefType" nillable="true" type="tns:DocDef" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Enums" minOccurs="0" name="EnumDefType" nillable="true" type="q2:EnumDef" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsNotNull" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsUnique" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MaxLength" type="xs:int" />
+      <xs:element minOccurs="0" name="MaxValue" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MinValue" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrgTypeId" nillable="true" type="ser:guid" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Security" minOccurs="0" name="Permissions" nillable="true" type="q3:PermissionSet" />
+      <xs:element minOccurs="0" name="Script" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="tns:TypeDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AttrDef" nillable="true" type="tns:AttrDef" />
+  <xs:complexType name="BlobInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsImage" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MaxHeight" type="xs:int" />
+      <xs:element minOccurs="0" name="MaxSizeBytes" type="xs:int" />
+      <xs:element minOccurs="0" name="MaxWidth" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BlobInfo" nillable="true" type="tns:BlobInfo" />
+  <xs:complexType name="TypeDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:short" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TypeDef" nillable="true" type="tns:TypeDef" />
+  <xs:complexType name="BoolAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BoolAttribute" nillable="true" type="tns:BoolAttribute" />
+  <xs:complexType name="AttributeBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttrDef" nillable="true" type="tns:AttrDef" />
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AttributeBase" nillable="true" type="tns:AttributeBase" />
+  <xs:complexType name="CurrencyAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CurrencyAttribute" nillable="true" type="tns:CurrencyAttribute" />
+  <xs:complexType name="DocAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Document" nillable="true" type="tns:Doc" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocAttribute" nillable="true" type="tns:DocAttribute" />
+  <xs:complexType name="Doc">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Attributes" nillable="true" type="tns:ArrayOfAttributeBase" />
+      <xs:element minOccurs="0" name="CreationTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DataContextName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocDef" nillable="true" type="tns:DocDef" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsNew" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ModifiedTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OrganizationId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="PositionId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="tns:DocState" />
+      <xs:element minOccurs="0" name="UserId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Doc" nillable="true" type="tns:Doc" />
+  <xs:complexType name="ArrayOfAttributeBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AttributeBase" nillable="true" type="tns:AttributeBase" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAttributeBase" nillable="true" type="tns:ArrayOfAttributeBase" />
+  <xs:complexType name="DocState">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Created" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="tns:DocStateType" />
+      <xs:element minOccurs="0" name="WorkerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="WorkerName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocState" nillable="true" type="tns:DocState" />
+  <xs:complexType name="DocStateType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocStateType" nillable="true" type="tns:DocStateType" />
+  <xs:complexType name="DocListAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeBase">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AddedDocIds" nillable="true" type="q4:ArrayOfguid" />
+          <xs:element minOccurs="0" name="AddedDocs" nillable="true" type="tns:ArrayOfDoc" />
+          <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ItemsDocId" nillable="true" type="q5:ArrayOfguid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocListAttribute" nillable="true" type="tns:DocListAttribute" />
+  <xs:complexType name="ArrayOfDoc">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Doc" nillable="true" type="tns:Doc" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDoc" nillable="true" type="tns:ArrayOfDoc" />
+  <xs:complexType name="EnumAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EnumAttribute" nillable="true" type="tns:EnumAttribute" />
+  <xs:complexType name="FloatAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FloatAttribute" nillable="true" type="tns:FloatAttribute" />
+  <xs:complexType name="IntAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MaxValue" type="xs:int" />
+          <xs:element minOccurs="0" name="MinValue" type="xs:int" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IntAttribute" nillable="true" type="tns:IntAttribute" />
+  <xs:complexType name="TextAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Cols" type="xs:unsignedShort" />
+          <xs:element minOccurs="0" name="Rows" type="xs:unsignedShort" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TextAttribute" nillable="true" type="tns:TextAttribute" />
+  <xs:complexType name="DateTimeAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DateTimeAttribute" nillable="true" type="tns:DateTimeAttribute" />
+  <xs:complexType name="OrganizationAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OrganizationAttribute" nillable="true" type="tns:OrganizationAttribute" />
+  <xs:complexType name="DocumentStateAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocumentStateAttribute" nillable="true" type="tns:DocumentStateAttribute" />
+  <xs:complexType name="MetaInfoAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:anyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MetaInfoAttribute" nillable="true" type="tns:MetaInfoAttribute" />
+  <xs:complexType name="ObjectDefAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ObjectDefAttribute" nillable="true" type="tns:ObjectDefAttribute" />
+  <xs:complexType name="BlobAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AttributeBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FileExtention" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="HasValue" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BlobAttribute" nillable="true" type="tns:BlobAttribute" />
+  <xs:complexType name="ArrayOfBlobData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BlobData" nillable="true" type="tns:BlobData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBlobData" nillable="true" type="tns:ArrayOfBlobData" />
+  <xs:complexType name="BlobData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttributeDefId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Data" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="DocumentId" type="ser:guid" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BlobData" nillable="true" type="tns:BlobData" />
+  <xs:complexType name="ArrayOfFileData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FileData" nillable="true" type="tns:FileData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFileData" nillable="true" type="tns:ArrayOfFileData" />
+  <xs:complexType name="FileData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Data" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileData" nillable="true" type="tns:FileData" />
+  <xs:complexType name="ArrayOfDocState">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DocState" nillable="true" type="tns:DocState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDocState" nillable="true" type="tns:ArrayOfDocState" />
+</xs:schema>

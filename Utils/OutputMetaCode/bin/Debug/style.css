@@ -1,0 +1,17 @@
+html, body {
+	background-color: #eceff6; 
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, helvetica, sans-serif;
+	font-size: small;
+}
+table {
+	background-color: white; 
+	border: solid 2px #c3c9d7;
+	border-collapse: collapse;
+	font-size: small;
+}
+th, td {
+	padding: 2px;
+}
+thead {
+	background-color: #d4dae8;
+}

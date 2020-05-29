@@ -1,0 +1,10 @@
+<Modules>
+  <Module PersistentId="E461834A-4AE1-460F-A312-0C6B8D9528AB" ModuleId="UserApp" />
+  <Module PersistentId="EF47519D-F2B2-4492-BC22-6037ED1F2E38" ModuleId="DataAccessLayer" />
+  <Module PersistentId="49EA667C-EE80-42B3-94EF-1068ACDDB65A" ModuleId="BizService" />
+  <Module PersistentId="6D1EA375-A0D7-4D5B-96C0-080475C9A7F7" ModuleId="PdfFiller" />
+  <Module PersistentId="242F58DA-D2B5-4BDF-8325-D7293D66CED3" ModuleId="Cissa.Report" />
+  <Module PersistentId="itextsharp, Version=4.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca" ModuleId="itextsharp" />
+  <Module PersistentId="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="mscorlib" />
+  <Module PersistentId="itextsharp, Version=5.1.1.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca" ModuleId="itextsharp_1" />
+</Modules>

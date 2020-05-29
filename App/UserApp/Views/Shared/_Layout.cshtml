@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+@using Intersoft.CISSA.UserApp.Utils;
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/general.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("~/Content/left.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("~/Content/content.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" type="text/css"/>
+    <script src="@Url.Content("~/Scripts/jquery-1.4.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/cissa.validation.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jscript.menu.js")" type="text/javascript"></script>
+
+    @*
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    *@
+@(Html.Telerik().StyleSheetRegistrar().DefaultGroup(group => group.Add("telerik.common.css").Add("telerik.windows7.css").Compress(true)))</head>
+
+<body onload="slider('left',0)">
+   <div id="main">
+        <div id="head">
+		    <div id="logo"><img  alt ="Корпоративная информационная система социальных пособий" src="@Url.Content("~/Content/img/logo.png")" /></div>
+            	<div id="top">
+		            <div class="top-panel"><a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/Content/img/task.png")" /><br />Отчеты</a></div>
+		            <div class="top-panel"><a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/Content/img/search.png")" /><br />Поиск</a></div>
+		            <div class="top-panel"><a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/Content/img/printer.png")" /><br />Печать</a></div>
+			        <div class="top-panel"><a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/Content/img/personal.png")" /><br />Сотрудники</a></div>
+			        <div class="top-panel"><a href="@Url.Action("About", "Home")"><img src="@Url.Content("~/Content/img/mail.png")" /><br />О нас</a></div>
+                </div>
+		    <div id="user">
+                @Html.Partial("_LogOnPartial")
+                @(UserManager.IsAuthorized ? UserManager.Info.OrgUnitName : String.Empty)
+            </div>
+        </div>
+        <div id="body">
+		<div id="head-line">&nbsp;</div>
+		<div id="left">
+			<div id="back">&larr; <a href="#">Вернуться</a></div>
+			<div class="header" id="1-header">Государственные пособия</div>
+			<div class="link" id="1-link">
+				<div class="text">
+					<p><a href="#">ЕПМС</a></p>
+					<p><a href="#">ЕСП</a></p>
+					<p><a href="#">Пособие по беременности и родам</a></p>
+					<p><a href="#">Пособие на погребение</a></p>
+				</div>
+			</div>
+			<div class="header" id="2-header">Денежные компенсанции</div>
+			<div class="link" id="2-link">
+				<div class="text">
+					Пример раскрывающегося блока.
+				</div>
+			</div>
+			<div class="header" id="3-header">Единовременные денежные выплаты</div>
+			<div class="link" id="3-link">
+				<div class="text">
+					Пример раскрывающегося блока.
+				</div>
+			</div>
+		</div>
+            <div id="content">
+                @RenderBody()
+            </div>
+           </div>
+	    <div id="footer">
+            <p class="copyright">Программное обеспечение разработанно специально для Министерства Социальной Защиты КР
+            <br/>Copyright &copy; 2011 InterSoft Ltd. All rights reserved.</p>
+        </div>
+  </div>  
+<!--
+    <div class = "tittle">
+        <h2>Корпоративная Информационная Система Социальной Помощи</h2>
+    </div>
+
+    <div class="page">
+    
+        <div id="header">
+            <div id="title">
+                <h1>@(UserManager.IsAuthorized ? UserManager.Info.OrgUnitName : String.Empty)</h1>
+            </div>
+
+            
+
+            <div id="menucontainer">
+
+                <ul id="menu">
+                    <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+                    <li>@Html.ActionLink("О нас", "About", "Home")</li>
+                </ul>
+
+            </div>
+        </div>
+
+    </div> -->
+@(Html.Telerik().ScriptRegistrar().Globalization(true).DefaultGroup(group => group.Combined(true).Compress(true)))</body>
+</html>

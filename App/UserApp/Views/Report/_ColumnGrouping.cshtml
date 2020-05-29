@@ -1,0 +1,60 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference
+@model ReportAttributeColumnDef
+@if (Model != null)
+{
+    var selectList = new List<DropDownItem>(
+        new[] 
+        {
+            new DropDownItem
+            {
+                Selected = (ReportColumnGroupingType.None == Model.Grouping),
+                Text = "-",
+                Value = ReportColumnGroupingType.None.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (ReportColumnGroupingType.Count == Model.Grouping),
+                Text = "Количество",
+                Value = ReportColumnGroupingType.Count.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (ReportColumnGroupingType.Sum == Model.Grouping),
+                Text = "Сумма",
+                Value = ReportColumnGroupingType.Sum.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (ReportColumnGroupingType.Avg == Model.Grouping),
+                Text = "Среднее значение",
+                Value = ReportColumnGroupingType.Avg.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (ReportColumnGroupingType.Max == Model.Grouping),
+                Text = "Максимум",
+                Value = ReportColumnGroupingType.Max.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (ReportColumnGroupingType.Min == Model.Grouping),
+                Text = "Минимум",
+                Value = ReportColumnGroupingType.Min.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (ReportColumnGroupingType.Group == Model.Grouping),
+                Text = "Группировка",
+                Value = ReportColumnGroupingType.Group.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (ReportColumnGroupingType.CrossGroup == Model.Grouping),
+                Text = "Кросс-группировка",
+                Value = ReportColumnGroupingType.CrossGroup.ToString()
+            }
+        });
+
+    @Html.Telerik().DropDownList().Name("g" + Model.Id).BindTo(selectList).ClientEvents(events => events.OnChange("onChangeColumnGroupType"));
+}
+

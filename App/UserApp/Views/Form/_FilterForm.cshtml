@@ -1,0 +1,53 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizForm
+
+@if (Model != null)
+{
+    bool tableGrid = (bool?)ViewData["ParentIsGrid"] ?? false;
+    var nesting = ViewData["Nesting"];
+    var detailGrid = ViewData["DetailGrid"];
+    var editMode = ViewData["EditMode"];
+    var filterForm = ViewData["FilterForm"];
+    var formId = ViewData["FormId"];
+
+    ViewData["ParentIsGrid"] = false;
+    ViewData["Nesting"] = (int)nesting + 1;
+    ViewData["EditMode"] = true;
+    ViewData["DetailGrid"] = true;
+    ViewData["FilterForm"] = true;
+    ViewData["FormId"] = Model.Id;
+    <div class="detail-form frame">
+        <h1><a class="hideBtn" href="javascript://" onclick="$('#filter').slideToggle('normal');return false;">
+        @Resources.Form.FilterCriteries</a></h1>
+    <div class="frame-content" id="filter">
+    <form id="FilterPanel" action="@Url.Action("Filter", "Form")" method="post">
+    @*using (Ajax.BeginForm("Filter", "Form", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "content-body" }))
+    {*@
+    <table class="detail-grid" @*width="100%"*@>
+        @foreach (BizControl child in Model.Children)
+        {
+            if (!child.Invisible && !child.Options.HasFlag(BizControlOptionFlags.Hidden))
+            {
+                @Html.Partial("_" + child.GetType().Name, child)
+            }
+        }
+        
+        <tr class="detail-row">
+            <td class="detail-cell-caption"></td>
+            <td class="detail-cell-value">
+                <button type="submit" class="t-button">@Resources.Form.Apply</button>
+                <!-- <button type="reset" class="t-button">Очистить</button> -->
+            </td>
+        </tr>
+    </table>
+    @*}*@
+    </form>
+    </div>
+    </div>
+    ViewData["Nesting"] = nesting;
+    ViewData["ParentIsGrid"] = tableGrid;
+    ViewData["DetailGrid"] = detailGrid;
+    ViewData["EditMode"] = editMode;
+    ViewData["FilterForm"] = filterForm;
+    ViewData["FormId"] = formId;
+}

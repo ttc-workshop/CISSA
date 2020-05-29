@@ -1,0 +1,53 @@
+﻿@using Intersoft.CISSA.UserApp.Models.Application;
+@using Intersoft.CISSA.UserApp.Models.Application.ContextStates;
+
+@model ContextState
+
+@{
+    Layout = null;
+}
+
+@if (Model != null)
+{
+    var value = ViewData["InProcess"];
+    var inProcess = value is Boolean && (bool)value;
+    
+@*    <ul class="art-menu">*@
+        if (!(Model is MainForm))
+        { 
+            @*<li>*@
+                <a href="@Url.Action("BackToMain", "Home")" class="menu-tab" @*data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#content-body"*@> 
+                   <span class="l"></span><span class="r"></span><span class="t">@Resources.Home.ToolBar_Main</span>
+                </a>
+            @*</li>*@
+        }
+            @*<li>*@
+                <a href="@Url.Action("Current", "Home")" class="menu-tab" @*data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#content-body"*@>
+                    <span class="l"></span><span class="r"></span><span class="t">@Resources.Home.ToolBar_Refresh</span>
+                </a>
+            @*</li>*@
+        if (!(Model is MainForm) && !(Model.Previous is RunProcess))
+        { 
+            @*<li>*@
+                <a href="@Url.Action("Return", "Form")" class="menu-tab" @*data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#content-body"*@>
+                    <span class="l"></span><span class="r"></span><span class="t">@Resources.Home.ToolBar_Back</span>
+                </a>
+            @*</li>*@
+        }
+        if (!(Model is MainForm) && inProcess)
+        { 
+            @*<li>*@
+                <a href="@Url.Action("Cancel", "Process")" class="menu-tab" @*data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#content-body"*@>
+                    <span class="l"></span><span class="r"></span><span class="t">@Resources.Home.ToolBar_TerminateProcess</span>
+                </a>
+            @*</li>*@
+        }
+        @*<li>*@
+            <a href="@Url.Action("ShowAbout", "Home")" class="menu-tab" @*data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#content-body"*@>
+                <span class="l"></span><span class="r"></span><span class="t">@Resources.Account.About</span></a>
+        @*</li>*@
+        @*<li>*@
+            <a href="@Url.Action("LogOff", "Account")" class="menu-tab-spec"><span class="l"></span><span class="r"></span><span class="t">@Resources.Home.LogOut</span></a>
+        @*</li>
+    </ul>*@
+}

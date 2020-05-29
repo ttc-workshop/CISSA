@@ -1,0 +1,161 @@
+﻿@using Intersoft.CISSA.UserApp.Models
+@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizPanel
+@{
+    bool tableGrid = (bool?)ViewData["ParentIsGrid"] ?? false;
+    bool detailGrid = (bool?)ViewData["DetailGrid"] ?? false;
+    var nesting = ViewData["Nesting"];
+    bool editMode = (bool?)ViewData["EditMode"] ?? false;
+    var buttons = new List<BizButton>();
+
+    ViewData["ParentIsGrid"] = false;
+    ViewData["Nesting"] = (int)nesting + 1;
+    if (Model.ReadOnly) { ViewData["EditMode"] = false; }
+
+    if (!tableGrid && !detailGrid && !String.IsNullOrWhiteSpace(Model.Caption))
+    {
+        <div class="panel-header">@Model.Caption</div>
+    }
+}
+@if (Model.LayoutId <= 1 && !detailGrid)
+{
+    ViewData["DetailGrid"] = true;
+   
+    <table class="detail-grid @Model.Style">
+    @if (Model.Children != null)
+    {
+        foreach (var control in Model.Children)
+        {
+            if (control.Invisible || control.Options.HasFlag(BizControlOptionFlags.Hidden)) { continue; }
+
+            if (control is BizButton)
+            {
+                if (!editMode) { buttons.Add((BizButton)control); }
+            }
+            else
+            {
+                if (buttons.Count > 0)
+                {
+                    if (!editMode)
+                    {
+                       @Html.Partial("__Buttons", buttons)
+                    }
+                    buttons.Clear();
+                }
+                @Html.Partial("_" + control.GetType().Name, control) 
+            }
+        }
+        if (buttons.Count > 0)
+        {
+            @Html.Partial("__Buttons", buttons)
+            buttons.Clear();
+        }
+    }
+    </table>
+}
+else if (Model.LayoutId <= 1 && detailGrid)
+{
+    if (!String.IsNullOrWhiteSpace(Model.Caption))
+    {
+        <tr class="detail-row">
+            <td class="detail-category" colspan="2">@(Model.Caption ?? "")</td>
+        </tr>
+    }
+    foreach (var control in Model.Children)
+    {
+        if (!control.Invisible || control.Options.HasFlag(BizControlOptionFlags.Hidden))
+        {
+            if (control is BizButton)
+            {
+                if (!editMode) { buttons.Add((BizButton)control); }
+            }
+            else
+            {
+                if (buttons.Count > 0)
+                {
+                    if (!editMode)
+                    {
+                        @Html.Partial("__Buttons", buttons)
+                    }
+                    buttons.Clear();
+                }
+                @Html.Partial("_" + control.GetType().Name, control)
+            }
+        }
+    }
+    if (buttons.Count > 0)
+    { 
+        @Html.Partial("__Buttons", buttons)
+        buttons.Clear();
+    }
+}
+else
+{
+    if (detailGrid)
+    {
+        @Html.Partial("__BeginDetailPanelRow", Model.Caption ?? "")
+    }
+    /*ViewData["DetailGrid"] = false;*/
+    if (Model.LayoutId == 2)
+    {
+        ViewData["ParentIsGrid"] = true;
+        @* Горизональное расположение *@
+        <table class="panel @Model.Style">
+            <tr>
+        @foreach (var control in Model.Children)
+        {
+            if (!control.Invisible || control.Options.HasFlag(BizControlOptionFlags.Hidden))
+            {
+                if (control is BizDocumentControl || control is BizDocumentListForm || control is BizPanel)
+                {
+                    <td class="detail-cell-value">
+                        <table>@Html.Partial("_" + control.GetType().Name, control)</table>
+                    </td>
+                }
+                else if (!(control is BizButton && editMode))
+                {
+                    if (!(control is BizButton))
+                    {
+                        <td class="detail-cell-caption">@control.Caption</td>
+                    }
+                    <td class="detail-cell-value"> @Html.Partial("_" + control.GetType().Name, control)</td>
+                }
+            }
+        }
+            </tr>
+        </table>
+    }
+    else
+    {
+        @* Вертикальное расположение *@
+        if (Model.LayoutId == 3)
+        {
+            foreach (var control in Model.Children)
+            {
+                if (!control.Invisible || control.Options.HasFlag(BizControlOptionFlags.Hidden))
+                {
+                    if (!(control is BizButton && editMode))
+                    {
+                        <div>@Html.Partial("_" + control.GetType().Name, control)</div>
+                    }
+                }
+            }
+        }
+        else
+        {
+            var table = new ManagedTableForm(Model);
+
+            <div>@Html.Partial("_ManagedTableForm", table)</div>
+        }
+    }
+    if (detailGrid)
+    {
+        @Html.Partial("__EndDetailRow")
+    }
+}
+@{
+    ViewData["Nesting"] = nesting;
+    ViewData["ParentIsGrid"] = tableGrid;
+    ViewData["DetailGrid"] = detailGrid;
+    ViewData["EditMode"] = editMode;
+}

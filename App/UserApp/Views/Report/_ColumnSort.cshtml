@@ -1,0 +1,30 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference
+@model ReportAttributeColumnDef
+@if (Model != null)
+{
+    var selectList = new List<DropDownItem>(
+        new[] 
+        {
+            new DropDownItem
+            {
+                Selected = (SortType.None == Model.SortType),
+                Text = "-",
+                Value = SortType.None.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (SortType.Ascending == Model.SortType),
+                Text = "По возрастанию",
+                Value = SortType.Ascending.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (SortType.Descending == Model.SortType),
+                Text = "По убыванию",
+                Value = SortType.Descending.ToString()
+            }
+        });
+
+    @Html.Telerik().DropDownList().Name(Model.Id.ToString()).BindTo(selectList).ClientEvents(events => events.OnChange("onChangeColumnSortType"));
+}
+

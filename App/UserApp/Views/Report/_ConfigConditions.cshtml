@@ -1,0 +1,187 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference
+@model Intersoft.CISSA.UserApp.Models.Application.ContextStates.ConfigTableReport
+
+@*<div class="h-panel">
+    @Html.ActionLink(Resources.Report.AddExpCondition, "AddRootExpCondition", new {@class="t-button"})
+</div>*@
+<div class="t-widget t-grid">
+    <table cellpadding="2" cellspacing="0" border="1">
+        <thead class="t-grid-header">
+        <tr class="t-grid-header-wrap">
+            <th class="t-header">@Resources.Report.ExpressionOperationColumn</th>
+            <th class="t-header">@Resources.Report.SourceColumn</th>
+            <th class="t-header">@Resources.Report.ColumnColumn</th>
+            <th class="t-header">@Resources.Report.ConditionOperationColumn</th>
+            <th class="t-header">@Resources.Report.SourceColumn/@Resources.Report.CaptionColumn</th>
+            <th class="t-header">@Resources.Report.ColumnColumn/@Resources.Report.ValueColumn</th>
+            <th class="t-header">@Resources.Form.ActionColumn</th>
+        </tr>
+        </thead>
+        <tbody class="t-grid-content">
+        @if (Model.Context.Def != null && Model.Context.Def.Columns != null)
+        {
+            var i = 0;
+            var conditionType = 0;
+            foreach (var conditionDef in Model.Context.Def.Conditions)
+            {
+                i++;
+                <tr class="@(i%2 == 1 ? "t-alt" : "")">
+                    <td>@Html.Partial("_ExpressionOperation", conditionDef)</td>
+                    @{
+                        var exp = conditionDef as ReportExpConditionDef;
+                        if (exp != null)
+                        {
+                            conditionType = 0;
+                            <td colspan="5">Выражение</td>
+                        }
+                        else
+                        {
+                            var condition = conditionDef as ReportConditionDef; // ? ((ReportConditionDef) conditionDef) : null;
+
+                            var leftAttribute = condition != null ? condition.LeftAttribute : null;
+                            if (leftAttribute != null)
+                            {
+                                var sourceDef = Model.Context.Def.Sources.FirstOrDefault(sd => sd.Id == leftAttribute.SourceId);
+                                var attrDef = sourceDef != null ? sourceDef.DocDef.Attributes.FirstOrDefault(a => a.Id == leftAttribute.AttributeId) : null;
+                                if (attrDef != null)
+                                {
+                                    <td>@sourceDef.DocDef.Caption</td>
+                                    <td>@attrDef.Caption</td>
+                                }
+                                else
+                                {
+                                    var sysAttr = sourceDef != null ? sourceDef.Attributes.FirstOrDefault(a => a.Id == leftAttribute.AttributeId) : null;
+                                    if (sysAttr != null)
+                                    {
+                                        <td>@sourceDef.DocDef.Caption</td>
+                                        <td>@sysAttr.Caption</td>
+                                    }
+                                    else
+                                    {
+                                        <td>???</td>
+                                        <td>???</td>
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                <td>???</td>
+                                <td>???</td>
+                            }
+                            <td>@Html.Partial("_ConditionOperation", condition)</td>
+                            var rightAttribute = condition != null && condition.RightPart is ReportConditionRightAttributeDef ? ((ReportConditionRightAttributeDef) condition.RightPart).Attribute : null;
+                            if (rightAttribute != null)
+                            {
+                                conditionType = 1;
+                                var sourceDef = Model.Context.Def.Sources.FirstOrDefault(sd => sd.Id == rightAttribute.SourceId);
+                                var sourceList = Model.Context.Def.Sources.Select(s => new DropDownItem {Selected = s.Id == rightAttribute.SourceId, Text = s.DocDef.Caption, Value = s.Id.ToString()});
+                                var attrList = sourceDef != null ? sourceDef.DocDef.Attributes.Select(a => new DropDownItem {Selected = a.Id == rightAttribute.AttributeId, Text = a.Caption, Value = a.Id.ToString()}) : new List<DropDownItem>();
+                                <td>@Html.Telerik().DropDownList().Name("rs-" + condition.Id).BindTo(sourceList).ClientEvents(events => events.OnChange("onChangeConditionRightSource"))</td>
+                                <td>@Html.Telerik().DropDownList().Name("ra-" + condition.Id).BindTo(attrList).ClientEvents(events => events.OnChange("onChangeConditionRightAttribute"))</td>
+                                @*var attrDef = sourceDef != null ? sourceDef.DocDef.Attributes.FirstOrDefault(a => a.Id == rightAttribute.AttributeId) : null;
+                                if (attrDef != null)
+                                {
+                                    <td>@sourceDef.DocDef.Caption</td>
+                                    <td>@attrDef.Caption</td>
+                                }
+                                else
+                                {
+                                    <td>???</td>
+                                    <td>???</td>
+                                }*@
+                            }
+                            else
+                            {
+                                var rightParamDef = condition != null && condition.RightPart is ReportConditionRightParamDef ? (ReportConditionRightParamDef) condition.RightPart : null;
+                                if (rightParamDef != null)
+                                {
+                                    <td><span id="paramCaption-@conditionDef.Id.ToString()">@rightParamDef.Caption</span></td>
+                                    if (rightParamDef.Values != null)
+                                    {
+                                        conditionType = 2;
+                                        var maxLen = 0;
+                                        var selectList = new List<DropDownItem>
+                                        {
+                                            new DropDownItem
+                                            {
+                                                Selected = (null == rightParamDef.Value),
+                                                Text = "-",
+                                                Value = ""
+                                            }
+                                        };
+                                        var valueId = Guid.Empty;
+                                        var hasValue = false;
+                                        if (rightParamDef.Value != null)
+                                        {
+                                            hasValue = Guid.TryParse(rightParamDef.Value.ToString(), out valueId);
+                                        }
+                                        foreach (var item in rightParamDef.Values)
+                                        {
+                                            selectList.Add(
+                                                new DropDownItem
+                                                {
+                                                    Selected = hasValue && valueId == item.Id,
+                                                    Text = item.Value,
+                                                    Value = item.Id.ToString()
+                                                });
+                                            if (maxLen < (item.Value != null ? item.Value.Length : 0))
+                                            {
+                                                maxLen = item.Value != null ? item.Value.Length : 0;
+                                            }
+                                        }
+                                        <td>@Html.Telerik().DropDownList().Name("cb-" + conditionDef.Id).BindTo(selectList).ClientEvents(events => events.OnChange("onChangeConditionRightParamEnumValue"))</td>
+                                    }
+                                    else
+                                    {
+                                        conditionType = 3;
+                                        if (rightParamDef.Value != null)
+                                        {
+                                            <td><span id="paramValue-@conditionDef.Id.ToString()">@rightParamDef.Value.ToString()</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td><span id="paramValue-@conditionDef.Id.ToString()"></span></td>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    <td></td>
+                                    <td></td>
+                                }
+                            }
+                        }
+                    }
+                    <td>
+                        @if (conditionType == 3)
+                        {
+                            <button class="t-button" onclick="openParamDialog('@conditionDef.Id.ToString()') ">@Resources.Form.Edit</button>
+                        }
+                        @*@Html.ActionLink(@Resources.Form.Edit, "EditCondition", new {id = conditionDef.Id}, new {@class = "t-button"})*@
+                        @Html.ActionLink(@Resources.Form.Delete, "RemoveCondition", new {id = conditionDef.Id}, new {@class = "t-button"})
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>
+<div id="conditionDialog" title="Данные параметра">
+    <div class="v-panel">
+        <input id="paramId" type="hidden" />
+        <div class="detail-row">
+            <span class="detail-cell-caption">Наименование параметра</span><span class="detail-cell-value"><input id="paramCaption" class="control" type="text" /></span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-cell-caption">Значение параметра</span><span class="detail-cell-value"><input id="paramValue" class="control" type="text" /></span>
+        </div>
+        <div></div>
+        <hr/>
+        <button class="t-button" onclick="saveParamDialog() ">@Resources.Form.Submit</button>
+    </div>
+</div>
+<script>
+    $("#conditionDialog").dialog({
+        autoOpen: false
+    });
+</script>

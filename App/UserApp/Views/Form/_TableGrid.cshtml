@@ -1,0 +1,22 @@
+﻿@model Intersoft.CISSA.UserApp.Controls.TableGrid
+       <br/>
+       <br/>
+           
+<table border="2">
+    <tr>
+ @foreach (var column in Model.Columns)
+ {
+      <th>@column.Caption</th>
+ }
+    </tr>
+@foreach (var rowdata in Model.DataRows)
+{
+    <tr>
+    @foreach (var column in Model.Columns)
+    {
+        column.GetData(rowdata);
+        <td>@Html.Partial(column.GetView(), column)</td>
+    }
+    </tr>
+}
+</table>           

@@ -1,0 +1,47 @@
+﻿@model ManagedTableForm
+@*@{
+    ViewBag.Title = "TableShow";
+    Layout = "~/Views/Shared/_Layout5.cshtml";
+}*@
+@using Intersoft.CISSA.UserApp.Models;
+@using System.Linq;
+<h2>
+    Табличная форма: @Model.Caption</h2>
+<div class="div-actions">
+    Действия:
+    @Html.ActionLink("Новый", "Edit", "Form", new { formId = Model.FormId }, null)
+    @Html.ActionLink("Искать", "ShowSearch", "Form", new { formId = Model.FormId }, null)
+</div>
+<table>
+    <tr>
+        <th>
+            Действие
+        </th>
+        @foreach (var column in Model.Columns)
+        {    
+            <th>
+                @column.Control.Caption
+            </th>        
+        }
+    </tr>
+    @foreach (var row in Model.Rows)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Открыть", "Show", "Form", new { formId = Model.FormId, docId = row.DocId }, null)
+            </td>
+            @foreach (var column in Model.Columns)
+            {
+                <td>
+                    @{
+                        var control = row.Cells.Where(c => c.ColumnId == column.Id).Select(c => c.Value).ToList().FirstOrDefault();
+                        if (control != null)
+                        {
+                            @Html.Partial("ControlPreviewData", control);
+                        }
+                    }
+                </td>
+            }
+        </tr>
+    }
+</table>

@@ -1,0 +1,52 @@
+﻿@model Intersoft.CISSA.UserApp.Models.Application.ContextStates.ConfigTableReport
+
+@{
+    ViewBag.Title = Resources.Report.AddSource;
+}
+<div class="detail-form frame">
+    <h1>@Resources.Report.AddSource</h1>
+    <div class="frame-content">
+        <div class="h-panel">@Html.ActionLink(Resources.Home.ToolBar_Back, "Config", null, new { @class = "t-button" })</div>
+        <div class="t-widget t-grid">
+            <table cellpadding="2" cellspacing="0" border="1">
+                <thead class="t-grid-header">
+                <tr class="t-grid-header-wrap">
+                    <th class="t-header">@Resources.Report.SourceColumn</th>
+                    <th class="t-header">@Resources.Report.AttributeColumn</th>
+                    <th class="t-header">@Resources.Form.ActionColumn</th>
+                </tr>
+                </thead>
+                <tbody class="t-grid-content">
+                @if (Model != null && Model.Context != null && Model.Context.SourceRelations != null)
+                {
+                    var sourceRelation = Model.Context.SourceRelations.FirstOrDefault(sr => sr.SourceId == Model.SourceId);
+                    if (sourceRelation != null)
+                    {
+                        var i = 0;
+                        var sourceDocDefId = Model.Context.Def.Sources != null ? Model.Context.Def.Sources.Where(sd => sd.Id == Model.SourceId).Select(sd => sd.DocDef.Id).FirstOrDefault() : Guid.Empty;
+                        foreach (var relation in sourceRelation.Relations)
+                        {
+                            i++;
+                            <tr class="@(i%2 == 1 ? "t-alt" : "")">
+                                @if (relation.DocDefId == sourceDocDefId)
+                                {
+                                    <td>@relation.RefDocumentCaption</td>
+                                    <td>@relation.AttributeCaption</td>
+                                    <td>@Html.ActionLink(Resources.Report.AddSource, "JoinSource", new { id = Model.SourceId, docDefId = relation.RefDocDefId, attrId = relation.AttributeId }, new { @class = "t-button" })</td>
+                                }
+                                else
+                                {
+                                    <td>@relation.DocumentCaption</td>
+                                    <td>@relation.AttributeCaption</td>
+                                    <td>@Html.ActionLink(Resources.Report.AddSource, "JoinSource", new { id = Model.SourceId, docDefId = relation.DocDefId, attrId = relation.AttributeId }, new { @class = "t-button" })</td>
+                                }
+                            </tr>
+                        }
+                    }
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,252 @@
+﻿using System;
+using System.Web.Mvc;
+using System.Web.Routing;
+using System.Web.Security;
+using Intersoft.CISSA.UserApp.Models;
+using Intersoft.CISSA.UserApp.Models.Application.ContextStates;
+using Intersoft.CISSA.UserApp.Utils;
+using System.IO;
+
+namespace Intersoft.CISSA.UserApp.Controllers
+{
+    /// <summary>
+    /// Базовый контроллер, с общими методами
+    /// </summary>
+    public class AccountController : BaseController
+    {
+
+        public IFormsAuthenticationService FormsService { get; set; }
+        public IMembershipService MembershipService { get; set; }
+
+        protected override void Initialize(RequestContext requestContext)
+        {
+            if (FormsService == null) { FormsService = new FormsAuthenticationService(); }
+            if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
+
+            base.Initialize(requestContext);
+        }
+
+        // **************************************
+        // URL: /Account/LogOn
+        // **************************************
+
+        /// <summary>
+        /// Форма входа в систему
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult LogOn()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Авторизация в системе
+        /// </summary>
+        /// <param name="userName">Имя пользователя</param>
+        /// <param name="password">Пароль</param>
+        /// <returns>Истина при успешной авторизации, Ложь - при ошибке</returns>
+        public bool TryLogOn(string userName, string password)
+        {
+            try
+            {
+                if (Connection != null) LogOut();
+
+                var conn = new BizConnection(userName, password);
+
+                if (conn.Connect())
+                {
+                    Connection = conn;
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    using (var writer = new StreamWriter("c:\\distr\\cissa\\userapp.log", true))
+                    {
+                        writer.WriteLine("{0}: Log error for username: \"{1}\"; message: \"{2}\"", DateTime.Now, userName, e.Message);
+                        if (e.InnerException != null)
+                            writer.WriteLine("  - inner exception: \"{0}\"", e.InnerException.Message);
+                    }
+                }
+                catch
+                {
+                    ;
+                }
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Выход из системы
+        /// </summary>
+        public void LogOut()
+        {
+            Connection = null;
+            Session.Clear();
+        }
+
+        /// <summary>
+        /// Вход в систему, вызывается при нажатии на кнопку "Вход"
+        /// </summary>
+        /// <param name="model">Данные авторизации</param>
+        /// <param name="returnUrl">Ссылка на страницу, на которую нужно перейти после успешной авторизации</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult LogOn(LogOnModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                var error = String.Empty;
+
+                if (/*MembershipService.ValidateUser*/TryLogOn(model.UserName, model.Password))
+                {
+                    FormsService.SignIn(model.UserName, model.RememberMe);
+
+                    try
+                    {
+//                        var um = GetUserProxy();
+//                        try
+                        {
+                            new MainForm(this, Connection.Info);
+                        }
+/*
+                        finally
+                        {
+                            try
+                            {
+                                um.Close();
+                            }
+                            catch (Exception)
+                            {
+                                um.Abort();
+                            }
+                        }
+*/
+                    }
+                    catch (Exception e)
+                    {
+                        error = e.Message;
+                    }
+
+                    if (Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError(error, Resources.Account.LoginErrorMessage
+                    /*"Логин или пароль пользователя введены неверно. Повторите ввод еще раз."*/);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        // **************************************
+        // URL: /Account/LogOff
+        // **************************************
+
+        public ActionResult LogOff()
+        {
+            FormsService.SignOut();
+            LogOut();
+
+            Set(null);
+
+            return RedirectToAction("LogOn");
+        }
+
+        public ActionResult SetLanguage(string lang)
+        {
+            Session["culture"] = lang;
+            return RedirectToAction("LogOn");
+        }
+
+        public ActionResult UserInfo()
+        {
+            try
+            {
+                var info = GetUserInfo();
+
+                return View(info);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // **************************************
+        // URL: /Account/Register
+        // **************************************
+
+        public ActionResult Register()
+        {
+            ViewBag.PasswordLength = MembershipService.MinPasswordLength;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Attempt to register the user
+                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
+
+                if (createStatus == MembershipCreateStatus.Success)
+                {
+                    FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
+            }
+
+            // If we got this far, something failed, redisplay form
+            ViewBag.PasswordLength = MembershipService.MinPasswordLength;
+            return View(model);
+        }
+
+        // **************************************
+        // URL: /Account/ChangePassword
+        // **************************************
+
+        [Authorize]
+        public ActionResult ChangePassword()
+        {
+            ViewBag.PasswordLength = MembershipService.MinPasswordLength;
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePasswordModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (MembershipService.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword))
+                {
+                    return RedirectToAction("ChangePasswordSuccess");
+                }
+                ModelState.AddModelError("", Resources.Account.ChangePasswordError);
+            }
+
+            // If we got this far, something failed, redisplay form
+            ViewBag.PasswordLength = MembershipService.MinPasswordLength;
+            return View(model);
+        }
+
+        // **************************************
+        // URL: /Account/ChangePasswordSuccess
+        // **************************************
+
+        public ActionResult ChangePasswordSuccess()
+        {
+            return View();
+        }
+    }
+}

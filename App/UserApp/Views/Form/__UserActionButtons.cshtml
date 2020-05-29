@@ -1,0 +1,20 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+
+@if (ViewData["UserActions"] != null)
+{
+    var actions = (IList<UserAction>)ViewData["UserActions"];
+    bool detailGrid = (bool?)ViewData["DetailGrid"] ?? false;
+    bool tableGrid = (bool?)ViewData["ParentIsGrid"] ?? false;
+    if (detailGrid && !tableGrid)
+    { @Html.Partial("__BeginDetailCellRow", "") }
+                                                 
+    foreach (var action in actions)
+    {
+        <button type="button" class="t-button" onclick="parent.location='@Url.Action("UserAction", "Form", new { id = action.Id })'" >@action.Name</button>
+        @*Ajax.ActionLink(action.Name, "UserAction", "Form", new { id = action.Id ?? Guid.Empty }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "content-body" },
+            new { @class = "t-button" })*@
+        <span class="button-space"></span>
+    }
+    if (detailGrid && !tableGrid)
+    { @Html.Partial("__EndDetailRow") }
+}

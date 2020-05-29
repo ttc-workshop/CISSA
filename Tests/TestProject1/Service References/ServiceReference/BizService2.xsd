@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.BizService.Contract" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.BizService.Contract" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:5096/BizService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:5096/BizService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Drawing" />
+  <xs:complexType name="UserInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrgUnitName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserInfo" nillable="true" type="tns:UserInfo" />
+  <xs:complexType name="BizResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" type="tns:BizResult.BizResultType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BizResult" nillable="true" type="tns:BizResult" />
+  <xs:simpleType name="BizResult.BizResultType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Error" />
+      <xs:enumeration value="Warning" />
+      <xs:enumeration value="Message" />
+      <xs:enumeration value="User" />
+      <xs:enumeration value="Form" />
+      <xs:enumeration value="Report" />
+      <xs:enumeration value="Query" />
+      <xs:enumeration value="Action" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BizResult.BizResultType" nillable="true" type="tns:BizResult.BizResultType" />
+  <xs:complexType name="BizObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Children" nillable="true" type="tns:ArrayOfBizObject" />
+      <xs:element minOccurs="0" name="DefId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="ParentId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Type" type="tns:BizObjectType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BizObject" nillable="true" type="tns:BizObject" />
+  <xs:complexType name="ArrayOfBizObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BizObject" nillable="true" type="tns:BizObject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBizObject" nillable="true" type="tns:ArrayOfBizObject" />
+  <xs:simpleType name="BizObjectType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Form" />
+      <xs:enumeration value="Report" />
+      <xs:enumeration value="Query" />
+      <xs:enumeration value="Action" />
+      <xs:enumeration value="Document" />
+      <xs:enumeration value="DocumentDef" />
+      <xs:enumeration value="ReportDef" />
+      <xs:enumeration value="QueryDef" />
+      <xs:enumeration value="Panel" />
+      <xs:enumeration value="Text" />
+      <xs:enumeration value="Image" />
+      <xs:enumeration value="Bar" />
+      <xs:enumeration value="Button" />
+      <xs:enumeration value="Edit" />
+      <xs:enumeration value="ComboBox" />
+      <xs:enumeration value="List" />
+      <xs:enumeration value="Memo" />
+      <xs:enumeration value="RadioGroup" />
+      <xs:enumeration value="RadioItem" />
+      <xs:enumeration value="CheckBox" />
+      <xs:enumeration value="TableGrid" />
+      <xs:enumeration value="DetailGrid" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BizObjectType" nillable="true" type="tns:BizObjectType" />
+  <xs:complexType name="BizControlData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttributeDefId" type="ser:guid" />
+      <xs:element minOccurs="0" name="DocumentDefId" type="ser:guid" />
+      <xs:element minOccurs="0" name="EnumDefId" type="ser:guid" />
+      <xs:element minOccurs="0" name="EnumId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="Image" nillable="true" type="q1:Image" />
+      <xs:element minOccurs="0" name="ProcessDefId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BizControlData" nillable="true" type="tns:BizControlData" />
+</xs:schema>

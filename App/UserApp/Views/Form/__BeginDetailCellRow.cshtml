@@ -1,0 +1,11 @@
+﻿@model String
+<tr class="detail-row">
+    @if (!String.IsNullOrWhiteSpace(Model))
+    {
+        <td class="detail-cell-caption">@Model</td>
+    }
+    else
+    {
+        <td class="detail-cell-caption"></td>
+    }
+    <td class="detail-cell-value">

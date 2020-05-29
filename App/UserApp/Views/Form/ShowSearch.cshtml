@@ -1,0 +1,36 @@
+﻿@using Intersoft.CISSA.UserApp.Models;
+@using Intersoft.CISSA.UserApp.ServiceReference;
+
+@model BizForm
+
+@{
+    ViewBag.Title = "ShowSearch";
+}
+
+
+@if (Model != null)
+{
+    <h2>Поиск: @Model.Caption</h2>
+    
+    @Html.ValidationSummary()
+    
+    Html.BeginForm("Search", "Form", FormMethod.Post);
+
+    foreach (BizControl subControl in Model.Children)
+    {
+        @Html.Partial("_" + subControl.GetType().Name, subControl);
+    }
+        
+    <button type="submit">Искать</button>
+
+    Html.EndForm();
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            SetFormValidation("DocForm");
+        });
+    </script>
+
+}
+
+

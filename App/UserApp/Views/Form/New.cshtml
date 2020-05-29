@@ -1,0 +1,45 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+
+@model BizDetailForm
+
+@{
+    var caption = ViewData["FormCaption"];
+    ViewBag.Title = caption != null ? caption.ToString() : @Resources.Form.NewDocument;
+}
+
+@if (Model != null)
+{
+    @*<h2 class="art-postheader">@Model.Caption</h2>*@
+    @*using(Ajax.BeginForm("Save", "Form", new { id = "DocForm" }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "content-body" }))*@
+    using(Html.BeginForm("Save", "Form", FormMethod.Post, new { id = "DocForm" }))                               
+    {
+        ViewData["DetailGrid"] = true;
+        <div class="detail-form frame">
+           <h1>@(caption != null ? caption.ToString() : "")</h1>
+        <div class="frame-content">
+        <table class="detail-grid">
+            @Html.Partial("__BeginDetailPanelRow", Model.Caption)
+            @Html.ValidationSummary()
+            @Html.Partial("__EndDetailRow")
+            @Html.Partial("_" + Model.GetType().Name, Model)
+            <tr class="detail-row">
+                <td></td>
+                <td class="detail-cell-value">
+                    @*Html.Partial("WorkflowButtons", Model.BizForm.ActivityLinks)*@
+                    <button class="t-button" type="submit">@Resources.Form.Submit</button>
+                    <span class="button-space"></span>
+                    <button class="t-button" type="button" onclick="parent.location='@Url.Action("Return", "Process")'">@Resources.Form.Cancel</button>
+                    @*Ajax.ActionLink("Отменить", "Return", "Process", null, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "Content-Body" },
+                        new { @class="t-button" })*@
+                </td>
+            </tr>
+        </table>
+        </div>
+        </div>
+    }
+    @*<script type="text/javascript">
+        $(document).ready(function () {
+            SetFormValidation("DocForm");
+        });
+    </script>*@
+}

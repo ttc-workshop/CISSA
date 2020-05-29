@@ -1,0 +1,17 @@
+﻿@using Intersoft.CISSA.UserApp.Models;
+@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizForm
+
+@if (Model != null)
+{
+    <h2>
+        Форма: @Model.Caption</h2>
+    <div class="div-actions">
+        Действия:
+        @Html.ActionLink("Редакитровать", "Show", "Form", new { formId = @Model.Id, docId = @Model.DocumentId }, null)
+    </div>   
+    foreach (BizControl control in Model.Children)
+    {
+        @Html.Partial("_" + control.GetType().Name, control);
+    }
+}

@@ -1,0 +1,154 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizDetailForm
+@if (Model != null)
+{
+    var startTime = DateTime.Now;
+    int nesting = (int?)ViewData["Nesting"] ?? 0;
+    bool isGrid = (bool?)ViewData["ParentIsGrid"] ?? false;
+    bool detailGrid = (bool?)ViewData["DetailGrid"] ?? false;
+    bool editMode = (bool?)ViewData["EditMode"] ?? false;
+    var documentId = ViewData["DocumentId"];
+    bool filterForm = (bool?)ViewData["FilterForm"] ?? false;
+    var formId = ViewData["FormId"];
+
+    ViewData["ParentIsGrid"] = false;
+    ViewData["Nesting"] = nesting + 1;
+    ViewData["FormId"] = Model.Id;
+    if (nesting >= 1 && !filterForm)
+    {
+        ViewData["EditMode"] = false;
+    }
+    ViewData["DocumentId"] = Model.DocumentId;
+
+    if (Model.LayoutId <= 1 && !detailGrid)
+    {
+        var buttons = new List<BizButton>();
+        ViewData["DetailGrid"] = true;
+        
+        <div class="detail-form frame @("level" + nesting)">
+        @if (!String.IsNullOrWhiteSpace(Model.Caption))
+        {
+            <h1>@Model.Caption</h1>
+        }
+        <div class="frame-content">
+        <table class="detail-grid @Model.Style">
+
+        @foreach (var child in Model.Children)
+        {
+            if (child.Invisible || child.Options.HasFlag(BizControlOptionFlags.Hidden)) { continue; }
+            
+            if (child is BizButton)
+            {
+                if (!editMode) { buttons.Add((BizButton)child); }
+            }
+            else
+            {
+                if (buttons.Count > 0)
+                { 
+                    @Html.Partial("__Buttons", buttons)
+                    buttons.Clear();
+                }
+                @Html.Partial("_" + child.GetType().Name, child)
+            }
+        }
+        @if (buttons.Count > 0)
+        { 
+            @Html.Partial("__Buttons", buttons)
+            buttons.Clear();
+        }
+        @if (nesting == 0) { @Html.Partial("__UserActionButtons") }
+        </table>
+        </div>
+        </div>
+    }
+    else if (Model.LayoutId <= 1 && detailGrid)
+    {
+        var buttons = new List<BizButton>();
+        ViewData["DetailGrid"] = true;
+
+        foreach (var child in Model.Children)
+        {
+            if (child.Invisible || child.Options.HasFlag(BizControlOptionFlags.Hidden)) { continue; }
+
+            if (child is BizButton)
+            {
+                if (!editMode) { buttons.Add((BizButton)child); }
+            }
+            else
+            {
+                if (buttons.Count > 0)
+                { 
+                    if (!editMode)
+                    {
+                        @Html.Partial("__Buttons", buttons)
+                    }
+                    buttons.Clear();
+                }
+                @Html.Partial("_" + child.GetType().Name, child)
+            }
+        }
+        
+        if (buttons.Count > 0)
+        { 
+            @Html.Partial("__Buttons", buttons)
+            buttons.Clear();
+        }
+        if (nesting == 0)
+        { @Html.Partial("__UserActionButtons") }
+    }
+    else
+    {
+        if (detailGrid)
+        {
+            @Html.Partial("__BeginDetailPanelRow", Model.Caption)
+        }
+
+        ViewData["DetailGrid"] = false;
+
+        if (Model.LayoutId == 2)
+        {
+            foreach (BizControl child in Model.Children)
+            {
+                if (child.Invisible || child.Options.HasFlag(BizControlOptionFlags.Hidden)) { continue; }
+            
+                @Html.Partial("_" + child.GetType().Name, child)
+            }
+        }
+        else
+        {
+            <div class="detail-form frame @("level" + nesting)">
+            <div class="frame-content">
+            <table class="detail-grid">
+            @foreach (var child in Model.Children)
+            {
+                if (child.Invisible || child.Options.HasFlag(BizControlOptionFlags.Hidden)) { continue; }
+            
+               <tr class="form-row"><td class="form-cell">
+                @Html.Partial("_" + child.GetType().Name, child)
+                </td></tr>
+            }
+            </table>
+            </div>
+            </div>
+        }
+        if (detailGrid)
+        {
+            @Html.Partial("__EndDetailRow")
+        }
+        if (nesting == 0) { @Html.Partial("__UserActionButtons") }
+    }
+
+    ViewData["EditMode"] = editMode;
+    ViewData["Nesting"] = nesting;
+    ViewData["ParentIsGrid"] = isGrid;
+    ViewData["DetailGrid"] = detailGrid;
+    ViewData["DocumentId"] = documentId;
+    ViewData["FormId"] = formId;
+    @*var d = DateTime.Now - startTime;
+    <div>Время формирования: @d.TotalMilliseconds.ToString() ms</div>*@
+
+    if (Request.IsAjaxRequest())
+    {
+        @Html.Telerik().ScriptRegistrar()
+    }
+}

@@ -1,0 +1,34 @@
+﻿@using Resources
+@model Intersoft.CISSA.UserApp.Models.Application.ContextStates.ConfigTableReport
+
+@{
+    ViewBag.Title = Report.Config;
+}
+<div class="detail-form frame">
+    <h1>@Report.Config</h1>
+    <div class="frame-content">
+        <div class="v-panel">
+            @if (Model != null && Model.Context != null)
+            {
+                <div class="detail-form frame">
+                    <h1>@Report.SourcePanel</h1>
+                    <div class="frame-content">
+                        @Html.Partial("_ConfigSources", Model)
+                    </div>
+                </div>
+                <div class="detail-form frame">
+                    <h1>@Report.ColumnPanel</h1>
+                    <div class="frame-content">
+                        @Html.Partial("_ConfigColumns", Model)
+                    </div>
+                </div>
+                <div class="detail-form frame">
+                    <h1>@Report.ConditionPanel</h1>
+                    <div class="frame-content">
+                        @Html.Partial("_ConfigConditions", Model)
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

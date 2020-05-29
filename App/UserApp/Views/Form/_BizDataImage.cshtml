@@ -1,0 +1,44 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizDataImage
+@{
+    bool tableGrid = (bool?) ViewData["ParentIsGrid"] ?? false;
+    bool detailGrid = (bool?) ViewData["DetailGrid"] ?? false;
+    bool editMode = !Model.ReadOnly && ViewData["EditMode"] != null && (bool) ViewData["EditMode"];
+    Guid documentId = Model.DocumentId;
+    var height = Model.Height;
+    var width = Model.Width;
+    if (documentId == Guid.Empty && ViewData["DocumentId"] != null)
+    {
+        documentId = (Guid) ViewData["DocumentId"];
+    }
+    if (!tableGrid && !detailGrid)
+    {
+        @*@Html.LabelForModel(Model.Caption ?? "")*@
+        <span>@(Model.Caption ?? "")</span>
+    }
+    if (tableGrid)
+    {
+        if (height <= 0) { height = 150; }
+        if (width <= 0) { width = 200; }
+    }
+    if (detailGrid && !tableGrid)
+    {
+        if (height <= 0) { height = 250; }
+        if (width <= 0) { width = 350; }
+        @Html.Partial("__BeginDetailCellRow", Model.Caption ?? "")
+    }
+    <a href="@Url.Action("DocImage", "Form", new { docId = documentId, attrId = Model.AttributeDefId })" target="_blank">
+        <img class="t-input @Model.Style" src="@Url.Action("DocImage", "Form", new {docId = documentId, attrId = Model.AttributeDefId, height, width})" alt="@Model.Title" @* height="@Model.Height" width="@Model.Width"*@ />
+    </a>
+    if (editMode && /*!tableGrid &&*/ !Model.ReadOnly)
+    {
+        @(Html.Telerik().Upload().Name(Model.Id.ToString())
+        .Async(async => async.Save("SaveImage", "Form", new {id = documentId, attrId = Model.AttributeDefId})
+                .Remove("RemoveImage", "Form", new { id = Model.DocumentId, attrId = Model.AttributeDefId }).SaveField("files")))
+        <span name="@Model.Id.ToString()" class="field-validation-error">@Html.ValidationMessage(Model.Id.ToString())</span>
+    }
+    if (detailGrid && !tableGrid)
+    {
+        @Html.Partial("__EndDetailRow")
+    }
+}

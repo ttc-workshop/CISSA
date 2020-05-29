@@ -1,0 +1,9 @@
+﻿@model String
+@if (!String.IsNullOrWhiteSpace(Model))
+{    
+    <tr class="detail-row">
+        <td class="detail-category" colspan="2">@Model</td>
+    </tr>
+}
+<tr class="detail-row">
+    <td class="detail-row-value" colspan="2">

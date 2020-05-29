@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = Resources.Form.AskTitle;
+}
+<div class="detail-form frame">
+        <h1>@Resources.Form.ChoseAction</h1>
+    <div class="frame-content">
+        <p>@ViewData["Message"]</p>
+        <hr />
+        <div class="button-panel">
+            @*Ajax.ActionLink("Да", "AskResult", "Form", new { id = 1 }, new AjaxOptions { UpdateTargetId = "content-body" }, new { @class = "t-button" })*@
+            <button class="t-button" type="button" onclick="parent.location='@Url.Action("AskResult", "Form", new { id = 1 })'">@Resources.Form.Yes</button>
+            <span class="button-space">&nbsp;</span>
+            @*Ajax.ActionLink("Нет", "AskResult", "Form", new { id = 0 }, new AjaxOptions { UpdateTargetId = "content-body" }, new { @class = "t-button" })*@
+            <button class="t-button" type="button" onclick="parent.location='@Url.Action("AskResult", "Form", new { id = 0 })'">@Resources.Form.No</button>
+        </div>
+    </div>
+    <div class="cleared"></div>
+</div>

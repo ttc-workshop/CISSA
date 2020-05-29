@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{242F58DA-D2B5-4BDF-8325-D7293D66CED3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Intersoft.Cissa.Report</RootNamespace>
+    <AssemblyName>Intersoft.Cissa.Report</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\Intersoft.Cissa.Report.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DocX, Version=1.0.0.15, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\DocX.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\..\Libs\NPOI 1.2.3\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Builders\SqlQueryFromReportDefBuilder.cs" />
+    <Compile Include="Builders\MsWordDocBuilder.cs" />
+    <Compile Include="Builders\XlsDefFromReportDefBuilder.cs" />
+    <Compile Include="Common\DataTableDataSet.cs" />
+    <Compile Include="Common\StringParamDataSet.cs" />
+    <Compile Include="Context\TableReportContext.cs" />
+    <Compile Include="DataColumn.cs" />
+    <Compile Include="Builders\IDocBuilder.cs" />
+    <Compile Include="Defs\ReportAttributeColumnDef.cs" />
+    <Compile Include="Defs\ReportAttributeColumnDefHelper.cs" />
+    <Compile Include="Defs\ReportColumnGroupingType.cs" />
+    <Compile Include="Defs\ReportConditionDef.cs" />
+    <Compile Include="Defs\ReportAttributeDef.cs" />
+    <Compile Include="Defs\ReportColumnDef.cs" />
+    <Compile Include="Defs\ReportConditionItemDef.cs" />
+    <Compile Include="Defs\ReportConditionRightAttributeDef.cs" />
+    <Compile Include="Defs\ReportConditionRightParamDef.cs" />
+    <Compile Include="Defs\ReportConditionRightPartDef.cs" />
+    <Compile Include="Defs\ReportConditionRightVariableDef.cs" />
+    <Compile Include="Defs\ReportDef.cs" />
+    <Compile Include="Defs\ReportDefHelper.cs" />
+    <Compile Include="Defs\ReportExpConditionDef.cs" />
+    <Compile Include="Defs\ReportFieldDef.cs" />
+    <Compile Include="Defs\ReportItemDef.cs" />
+    <Compile Include="Defs\ReportRowNoColumnDef.cs" />
+    <Compile Include="Defs\ReportSourceDef.cs" />
+    <Compile Include="Defs\ReportSourceJoinDef.cs" />
+    <Compile Include="Defs\ReportSourceSystemAttributeDef.cs" />
+    <Compile Include="ExcelDocListReport.cs" />
+    <Compile Include="ExcelReport.cs" />
+    <Compile Include="Builders\IStyleBuilder.cs" />
+    <Compile Include="Utils\CrossDataTable.cs" />
+    <Compile Include="WordDoc\PageBreak.cs" />
+    <Compile Include="WordDoc\WordContentItemDef.cs" />
+    <Compile Include="WordDoc\WordDataField.cs" />
+    <Compile Include="WordDoc\WordDocBuilder.cs" />
+    <Compile Include="WordDoc\WordDocDef.cs" />
+    <Compile Include="WordDoc\WordDocItemDef.cs" />
+    <Compile Include="WordDoc\WordGroupDef.cs" />
+    <Compile Include="WordDoc\WordParagraphDef.cs" />
+    <Compile Include="WordDoc\WordParagraphTextDef.cs" />
+    <Compile Include="WordDoc\WordRepeatSectionDef.cs" />
+    <Compile Include="WordDoc\WordSectionDef.cs" />
+    <Compile Include="WordDoc\WordTableCellDef.cs" />
+    <Compile Include="WordDoc\WordTableDef.cs" />
+    <Compile Include="WordDoc\WordTableRepeatSectionDef.cs" />
+    <Compile Include="WordDoc\WordTableRowDef.cs" />
+    <Compile Include="WordDoc\WordTableSectionDef.cs" />
+    <Compile Include="WordDoc\XlsDefToWordDefConverter.cs" />
+    <Compile Include="WordDoc\XmlWordDocDefBuilder.cs" />
+    <Compile Include="Xls\Adjuster\XlsColumnItemAdjustInfo.cs" />
+    <Compile Include="Xls\Adjuster\XlsCrossDataColumnAdjustInfo.cs" />
+    <Compile Include="Xls\Adjuster\XlsCrossDataTableAdjustInfo.cs" />
+    <Compile Include="Xls\Adjuster\XlsFormAdjustInfo.cs" />
+    <Compile Include="Xls\Adjuster\XlsGridReportSectionTableAdjustInfo.cs" />
+    <Compile Include="Xls\Adjuster\XlsReportDefAdjustInfo.cs" />
+    <Compile Include="Xls\Adjuster\XlsTableFormControlAdjustInfo.cs" />
+    <Compile Include="Xls\Adjuster\XlsFormControlSizeInfo.cs" />
+    <Compile Include="Xls\Adjuster\XlsGridReportSectionTextAdjustInfo.cs" />
+    <Compile Include="Xls\Adjuster\XlsTableFormAdjustInfo.cs" />
+    <Compile Include="Xls\Adjuster\XlsTableReportColumnAdjustInfo.cs" />
+    <Compile Include="Xls\XlsArea.cs" />
+    <Compile Include="Xls\XlsBool.cs" />
+    <Compile Include="Xls\XlsBuilder.cs" />
+    <Compile Include="Xls\XlsCell.cs" />
+    <Compile Include="Xls\XlsCellNode.cs" />
+    <Compile Include="Xls\XlsColumn.cs" />
+    <Compile Include="Xls\XlsCrossDataTableBuilder.cs" />
+    <Compile Include="Xls\XlsDataField.cs" />
+    <Compile Include="Common\DataSet.cs" />
+    <Compile Include="Xls\XlsDateTime.cs" />
+    <Compile Include="Xls\XlsDef.cs" />
+    <Compile Include="Xls\XlsFormDefBuilder.cs" />
+    <Compile Include="Xls\XlsGridReportDefBuilder.cs" />
+    <Compile Include="Xls\XlsGridDefBuilder.cs" />
+    <Compile Include="Common\DocDataSet.cs" />
+    <Compile Include="Common\DocFormDataSet.cs" />
+    <Compile Include="Xls\XlsEmptyCell.cs" />
+    <Compile Include="Xls\XlsFloat.cs" />
+    <Compile Include="Xls\XlsGrid.cs" />
+    <Compile Include="Xls\XlsGroup.cs" />
+    <Compile Include="Xls\XlsInt.cs" />
+    <Compile Include="Xls\XlsItem.cs" />
+    <Compile Include="Xls\XlsNode.cs" />
+    <Compile Include="Xls\XlsReportDefBuilder.cs" />
+    <Compile Include="Xls\XlsRow.cs" />
+    <Compile Include="Common\SqlQueryDataSet.cs" />
+    <Compile Include="Styles\ContentStyle.cs" />
+    <Compile Include="Xls\Adjuster\XlsFormColumnAdjuster.cs" />
+    <Compile Include="Xls\XlsText.cs" />
+    <Compile Include="Xls\XlsTextNode.cs" />
+    <Compile Include="Xls\XlsWriter.cs" />
+    <Compile Include="IExcelArea.cs" />
+    <Compile Include="IExcelable.cs" />
+    <Compile Include="IExcelReport.cs" />
+    <Compile Include="Position.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Styles.cs" />
+    <Compile Include="ExcelTableReport.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{ef47519d-f2b2-4492-bc22-6037ed1f2e38}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DocX.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

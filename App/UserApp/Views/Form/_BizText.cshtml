@@ -1,0 +1,15 @@
+﻿@model Intersoft.CISSA.UserApp.ServiceReference.BizText
+
+@{
+    bool detailGrid = (bool?)ViewData["DetailGrid"] ?? false;
+}
+
+@if (detailGrid)
+{
+    @Html.Partial("__BeginDetailCellRow", Model.Caption ?? "")
+}
+<span title="@Model.Title" class="@Model.Style">@Model.Caption</span>
+@if (detailGrid)
+{
+    @Html.Partial("__EndDetailRow")
+}

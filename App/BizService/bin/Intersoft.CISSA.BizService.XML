@@ -1,0 +1,1028 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Intersoft.CISSA.BizService</name>
+    </assembly>
+    <members>
+        <member name="T:Intersoft.CISSA.BizService.CustomSecurityUserNameValidator">
+            <summary>
+            Класс проверки данных клиета подключенного к сервису безопасности Security
+            </summary>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.CustomSecurityUserNameValidator.Validate(System.String,System.String)">
+            <summary>
+            Проверяет данные подлючающегося клиента
+            </summary>
+            <param name="userName">Логин клиента</param>
+            <param name="password">Пароль клиента</param>
+        </member>
+        <member name="T:Intersoft.CISSA.BizService.BizService">
+            <summary>
+            Основной класс сервиса бизнес-логики КИССП
+            </summary>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.DocumentLoad(System.Guid)">
+            <summary>
+            Загружает документ по идентификатору
+            </summary>
+            <param name="documentId">Идентификатор загружаемого документа</param>
+            <returns>Загруженный документ</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.DocumentNew(System.Guid)">
+            <summary>
+            Созадает новый документ по идентификатору типа документа
+            </summary>
+            <param name="docDefId">Идентификатор типа документа</param>
+            <returns>Новый не инициализированный документ</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.DocumentSave(Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc)">
+            <summary>
+            Сохраняет документ
+            </summary>
+            <param name="doc">Сохраняемый документ</param>
+            <returns>Сохраненный документ</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.DocumentDelete(System.Guid)">
+            <summary>
+            Удаляет документ
+            </summary>
+            <param name="documentId">Идентификатор удаляемого документа</param>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.DocumentStateList(System.Guid)">
+            <summary>
+            Возвращает историю состояний документа
+            </summary>
+            <param name="docId">Идентификатор документа</param>
+            <returns>Список состояний документа</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetEnumList(System.Guid)">
+            <summary>
+            Загружает справочник
+            </summary>
+            <param name="enumId">Идентификатор справочника</param>
+            <returns>Список значений справочника</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.DocumentList(System.Int32@,System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Загружает список документов определенного класса
+            </summary>
+            <param name="docDefId">Класс документа</param>
+            <param name="pageSize">Кол-во элементов на странице</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="pageCount">Кол-во страниц</param>
+            <returns>Список документов</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.DocumentFilterList(System.Int32@,System.Guid,System.Int32,System.Int32,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,System.Nullable{System.Guid})">
+            <summary>
+            Загружает список документов определенного класса
+            </summary>
+            <param name="count">Кол-во записей</param>
+            <param name="docDefId">Класс документа</param>
+            <param name="pageSize">Кол-во элементов на странице</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="sortAttr">Атрибут сортировки</param>
+            <param name="filter">Фильтр</param>
+            <returns>Список документов</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.DocumentStateFilterList(System.Int32@,System.Guid,System.Guid,System.Int32,System.Int32,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,System.Nullable{System.Guid})">
+            <summary>
+            Загружает список документов определенного класса
+            </summary>
+            <param name="count">Кол-во записей</param>
+            <param name="docDefId">Класс документа</param>
+            <param name="docStateId">Статус документа</param>
+            <param name="pageSize">Кол-во элементов на странице</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="sortAttr">Атрибут сортировки</param>
+            <param name="filter">Фильтр</param>
+            <returns>Список документов</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.DocAttrList(System.Int32@,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,System.Guid,System.Int32,System.Int32,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,System.Nullable{System.Guid})">
+            <summary>
+            Загружает список документов из атрибута
+            </summary>
+            <param name="count">Кол-во записей</param>
+            <param name="document">Документ</param>
+            <param name="attrDefId">Класс атрибута</param>
+            <param name="pageSize">Кол-во элементов на странице</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="filter">Фильтр</param>
+            <param name="sortAttr">Атрибут сортировки</param>
+            <returns>Список документов</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.DocAttrListById(System.Int32@,System.Guid,System.Guid,System.Int32,System.Int32,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,System.Nullable{System.Guid})">
+            <summary>
+            Загружает список документов из атрибута
+            </summary>
+            <param name="count">Кол-во записей</param>
+            <param name="docId">ID Документа</param>
+            <param name="attrDefId">Класс атрибута</param>
+            <param name="pageSize">Кол-во элементов на странице</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="filter">Фильтр</param>
+            <param name="sortAttr">Атрибут сортировки</param>
+            <returns>Список документов</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetNestingDocument(Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,Intersoft.CISSA.DataAccessLayer.Model.Documents.DocAttribute)">
+            <summary>
+            Возвращает вложенный документ
+            </summary>
+            <param name="document">Текущий документ</param>
+            <param name="docAttr">Атрибут ссылающийся на вложенный документ</param>
+            <returns>Вложенный документ</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.DocIsStored(Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc)">
+            <summary>
+            Проверяет сохранен ли документ в БД
+            </summary>
+            <param name="document">Документ</param>
+            <returns>Истина - сохранен</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.ExistsInDocList(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Проверяет содержится ли документ в списке
+            </summary>
+            <param name="docId">Идентификатор документа, который нужно проверить на вхождение в список</param>
+            <param name="attrDocId">Идентификатор документа которому принадлежит список</param>
+            <param name="attrDefId">Идентификатор атрибута-списка</param>
+            <returns>Истина - имеется в списке</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.AddDocToList(System.Guid,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,System.Guid)">
+            <summary>
+            Добавить документ в список
+            </summary>
+            <param name="docId">Идентификатор документа, который необходимо добавить в список</param>
+            <param name="document">Документ содержащий список</param>
+            <param name="attrDefId">Идентификатор списка</param>
+            <returns>Текущий документ</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetAnyForm(System.Guid,System.Int32)">
+            <summary>
+            Загружает любую форму по идентификатору
+            </summary>
+            <param name="formId">Идентификатор формы</param>
+            <param name="languageId">Язык</param>
+            <returns>Загруженная форма</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetDetailForm(System.Guid,System.Int32)">
+            <summary>
+            Загружает детальную форму по идентификатору
+            </summary>
+            <param name="formId">Идентификатор формы</param>
+            <param name="languageId">Язык</param>
+            <returns>Загруженная форма</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetGridForm(System.Guid,System.Int32)">
+            <summary>
+            Загружает табличную форму по идентификатору формы
+            </summary>
+            <param name="formId">Идентификатор формы</param>
+            <param name="languageId">Язык</param>
+            <returns>Загруженная табличная форма</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.SetFormDoc(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc)">
+            <summary>
+            Записывает значения атрибутов документа в форму
+            </summary>
+            <param name="form">Форма</param>
+            <param name="document">Документ</param>
+            <returns>Форма с данными</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetFormDoc(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc)">
+            <summary>
+            Записывает значения из формы в документ
+            </summary>
+            <param name="form">Форма</param>
+            <param name="document">Документ</param>
+            <returns>Измененный документ</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetMainForm">
+            <summary>
+            Загружает главную форму
+            </summary>
+            <returns>Главная форма</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetMenus(System.Int32)">
+            <summary>
+            Возвращает дерево меню для пользователя
+            </summary>
+            <param name="languageId">Код языка</param>
+            <returns>Список меню</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetLanguages">
+            <summary>
+            Возвращает список языков
+            </summary>
+            <returns>Список меню</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.TranslateForm(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Int32)">
+            <summary>
+            Переводит форму на указанный язык
+            </summary>
+            <param name="form">Форма</param>
+            <param name="languageId">Язык</param>
+            <returns>Форма</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.TranslateMenus(System.Collections.Generic.List{Intersoft.CISSA.DataAccessLayer.Model.Controls.BizMenu},System.Int32)">
+            <summary>
+            Переводит список меню на заданный язык
+            </summary>
+            <param name="menus">Список меню</param>
+            <param name="languageId">Язык</param>
+            <returns>Список меню</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.TranslateUserActions(System.Collections.Generic.List{Intersoft.CISSA.DataAccessLayer.Model.Workflow.UserAction},System.Int32)">
+            <summary>
+            Переводит список пользовательских действий на заданный язык
+            </summary>
+            <param name="userActions">Список пользовательских действий</param>
+            <param name="languageId">Язык</param>
+            <returns>Список пользовательских действий</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetTableFormRows(System.Int32@,Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Nullable{System.Guid},Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Collections.Generic.IEnumerable{Intersoft.CISSA.DataAccessLayer.Model.Query.AttributeSort},System.Int32,System.Int32)">
+            <summary>
+            Возвращает список строк с данными табличной формы с учетом критерием фильтра
+            </summary>
+            <param name="count">Возвращает количество строк данных в БД</param>
+            <param name="form">Табличная форма, для которой нужны строки данных</param>
+            <param name="docStateId">Статус документов, отображаемые в табличной форме</param>
+            <param name="filter">Форма фильтра с данными</param>
+            <param name="sortAttrs">Список атрибутов с условиями сортировки</param>
+            <param name="pageNo">Номер отображаемой страницы</param>
+            <param name="pageSize">Количество отображаемых строк в таблице</param>
+            <returns>Список строк - визуальных элментов с данными</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetTableFormRowsFromQuery(System.Int32@,Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,Intersoft.CISSA.DataAccessLayer.Model.Query.Def.QueryDef,System.Collections.Generic.IEnumerable{Intersoft.CISSA.DataAccessLayer.Model.Query.AttributeSort},System.Int32,System.Int32)">
+            <summary>
+            Возвращает список строк табличной формы с данными, получаемыми из запроса выборки
+            </summary>
+            <param name="count">Количество строк попадаемых в выборку</param>
+            <param name="form">Табличная форма</param>
+            <param name="def">Запрос выборки</param>
+            <param name="sortAttrs">Список атрибутов сотрировки</param>
+            <param name="pageNo">Номер отображаемой страницы в табличной форме</param>
+            <param name="pageSize">Количество отображаемых строк в форме</param>
+            <returns>Список строк - визуальных элментов с данными</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetTableFormRowsFromList(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Collections.Generic.IEnumerable{System.Guid},System.Collections.Generic.IEnumerable{Intersoft.CISSA.DataAccessLayer.Model.Query.AttributeSort},System.Int32,System.Int32)">
+            <summary>
+            Возвращает список строк табличной формы с данными, формируемые из списка документов
+            </summary>
+            <param name="form">Табличная форма</param>
+            <param name="docIds">Список идентификаторов документов, которые необходимо высветить в таблице</param>
+            <param name="sortAttrs">Список атрибутов сортировки строк</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="pageSize">Количество строк в странице</param>
+            <returns>Список строк - визуальных элментов с данными</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetDocListTableFormRows(System.Int32@,Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Guid,System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Возвращает список строк табличной формы с данными, формируемые из списочного атрибута документа
+            </summary>
+            <param name="count">Количество документов хранящихся в списочном атрибуте</param>
+            <param name="form">Таличная форма</param>
+            <param name="docId">Идентификатор документа, содержащего списочный атрибут</param>
+            <param name="attrDefId">Идентификатор списочного атрибута</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="pageSize">Количество отображаемых строк в таблице</param>
+            <returns>Список строк - визуальных элментов с данными</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetRefListTableFormRows(System.Int32@,Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Guid,System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Возвращает список строк табличной формы с данными, формируемые из списка документов ссылающихся на указанный документ
+            </summary>
+            <param name="count">Количество документов попадающих под запрос</param>
+            <param name="form">Табличная форма</param>
+            <param name="docId">Идентификатор документа</param>
+            <param name="attrDefId">Идентификатор ссылочного атрибута</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="pageSize">Количество строк на странице</param>
+            <returns>Список строк - визуальных элментов с данными</returns>
+        </member>
+        <member name="F:Intersoft.CISSA.BizService.BizService._id">
+            <summary>
+            Класс подключения к сущностям БД
+            </summary>
+        </member>
+        <member name="P:Intersoft.CISSA.BizService.BizService.DataContext">
+            <summary>
+            Контекст подключения к БД
+            </summary>
+        </member>
+        <member name="P:Intersoft.CISSA.BizService.BizService.CurrentUserName">
+            <summary>
+            Логин текущего пользователя
+            </summary>
+        </member>
+        <member name="P:Intersoft.CISSA.BizService.BizService.CurrentUserId">
+            <summary>
+            Идентификатор текущего пользователя
+            </summary>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetDocList(Intersoft.CISSA.DataAccessLayer.Model.Query.Def.QueryDef,System.Int32,System.Int32)">
+            <summary>
+            Возвращает список документов попадающих в запрос
+            </summary>
+            <param name="queryDef">Запрос на выборку данных</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="pageSize">Количество строк на странице</param>
+            <returns>Список идентификаторв документов</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetDocListWithCount(System.Int32@,Intersoft.CISSA.DataAccessLayer.Model.Query.Def.QueryDef,System.Int32,System.Int32)">
+            <summary>
+            Возвращает количество и список документов попадающих в запрос
+            </summary>
+            <param name="count">Количество документов попадающих под запрос в БД</param>
+            <param name="queryDef">Запрос на выборку данных</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="pageSize">Количество строк на странице</param>
+            <returns>Список идентификаторв документов</returns>        
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetQueryCount(Intersoft.CISSA.DataAccessLayer.Model.Query.Def.QueryDef)">
+            <summary>
+            Подсчитывает количество строк в запросе
+            </summary>
+            <param name="queryDef">Запрос на выборку данных</param>
+            <returns>Количество строк</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.QueryFromDoc(Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc)">
+            <summary>
+            Формирует запрос из текущего документа
+            </summary>
+            <param name="document">Документ на основе которого будет формироваться структура запроса</param>
+            <returns>Запрос на выборку данных из БД</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.QueryFromForm(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm)">
+            <summary>
+            Формирует запрос из формы
+            </summary>
+            <param name="form">Форма на основе которого будет формироваться структура запроса</param>
+            <returns>Запрос на выборку данных из БД</returns>        
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.CreateQuery(System.Guid,System.Nullable{System.Guid})">
+            <summary>
+            Создает запрос на основе структуры и статуса документа
+            </summary>
+            <param name="docDefId">Идентификатор класса документа</param>
+            <param name="docStateId">Статус документа, по которому будет производится выборка</param>
+            <returns>Запрос на выборку данных из БД</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GenerateFromTemplate(Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,Intersoft.CISSA.DataAccessLayer.Model.Workflow.WorkflowContextData,System.String)">
+            <summary>
+            Формирует выходной документ из шаблона на основе документа и данных рабочего контекста
+            </summary>
+            <param name="document">Документ, из которого берутся данные для подстановки в шаблон</param>
+            <param name="contextData">Контекст бизнес процесса, из которого берутся данные для подстановки в шаблон</param>
+            <param name="fileName">Наименование файла - шаблона выходного документа в форматах (Excel, PDF)</param>
+            <returns>Массив двоичных данных представляющих собой выходной файл</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.ExcelFromQuery(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,Intersoft.CISSA.DataAccessLayer.Model.Query.Def.QueryDef)">
+            <summary>
+            Формирует Excel документ из формы и запроса выборки данных 
+            </summary>
+            <param name="form">Форма, задающая оформление данных в выходном документе</param>
+            <param name="queryDef">Запрос для выборки данных из БД</param>
+            <returns>Массив двоичных данных тела Excel файла</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.ExcelFromDocIdList(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Collections.Generic.List{System.Guid})">
+            <summary>
+            Формирует Excel документ из формы и списка документов
+            </summary>
+            <param name="form">Форма, задающая оформление данных в выходном документе</param>
+            <param name="docIdList">Список идентификаторов документов, которые необходимо вывести в файл</param>
+            <returns>Массив двоичных данных тела Excel файла</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.ExcelFromFilter(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Nullable{System.Guid},Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc)">
+            <summary>
+            Формирует Excel документ из формы и критериев выборки
+            </summary>
+            <param name="form">Форма, задающая оформление данных в выходном документе</param>
+            <param name="docStateId">Идентификатор статуса документа в качестве критерия выборки документов из БД</param>
+            <param name="filter">Форма фильтра с данными для ограничения выборки документов</param>
+            <returns>Массив двоичных данных тела Excel файла</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.ExcelFromFormFilter(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Nullable{System.Guid},Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm)">
+            <summary>
+            Формирует Excel документ из формы и критериев выборки
+            </summary>
+            <param name="form">Форма, задающая оформление данных в выходном документе</param>
+            <param name="docStateId">Идентификатор статуса документа в качестве критерия выборки документов из БД</param>
+            <param name="filter">Форма фильтра с данными для ограничения выборки документов</param>
+            <returns>Массив двоичных данных тела Excel файла</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetFile(System.String)">
+            <summary>
+            Получает файл по имени
+            </summary>
+            <param name="fileName">Имя файла находящегося на сервере</param>
+            <returns>Массив двоичных данных тела файла</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetUserInfo">
+            <summary>
+            Получает данные учетной записи пользователя
+            </summary>
+            <returns>Сведения о пользователе</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.ChangeUserPassword(System.String,System.String)">
+            <summary>
+            Метод для изменения пароля пользователя
+            </summary>
+            <param name="oldPassword">Старый пароль</param>
+            <param name="newPassword">Новый пароль</param>
+            <returns>Возвращает результат изменения пароля пользователя</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.TryConnect">
+            <summary>
+            Метод для проверки соединения с сервисом бизнес-логики
+            </summary>
+            <returns>Возвращает истина - при успешном подключении к сервису</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.SetUserLanguage(System.Int32)">
+            <summary>
+            Метод установки языка пользовательского интерфейса для текущего пользователя
+            </summary>
+            <param name="languageId">Код устанавливаемого языка</param>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.ClearCache">
+            <summary>
+            Метод для очищения кэша
+            </summary>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.GetCacheInfo">
+            <summary>
+            Получает сведения о состоянии кэша
+            </summary>
+            <returns>Строка описания состояния кэша</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.WorkflowExecute(System.Guid,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Запуск бизнес-процесса
+            </summary>
+            <param name="processId">Идентификатор бизнес-процесса</param>
+            <param name="processParameters">Входные параметры для бизнес-процесса</param>
+            <returns>Контекст исполнения бизнес-процесса</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.WorkflowContinueWithUserAction(Intersoft.CISSA.DataAccessLayer.Model.Workflow.WorkflowContextData,System.Guid)">
+            <summary>
+            Продолжение выполнения бизнес-процесса с учетом пользовательского действия
+            </summary>
+            <param name="contextData">Контекст выполнения бизнес-процесса</param>
+            <param name="userAction">Идентификатор пользовательского действия</param>
+            <returns>Контекст выполнения бизнес-процесса</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.WorkflowContinueWithDocumentId(Intersoft.CISSA.DataAccessLayer.Model.Workflow.WorkflowContextData,System.Guid)">
+            <summary>
+            Продолжение выполнения бизнес-процесса с учетом документа
+            </summary>
+            <param name="contextData">Контекст выполнения бизнес-процесса</param>
+            <param name="docId">Идентификатор документа</param>
+            <returns>Контекст выполнения бизнес-процесса</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.WorkflowContinueWithDocument(Intersoft.CISSA.DataAccessLayer.Model.Workflow.WorkflowContextData,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc)">
+            <summary>
+            Продолжение выполнения бизнес-процесса с учетом документа
+            </summary>
+            <param name="contextData">Контекст выполнения бизнес-процесса</param>
+            <param name="document">Документ</param>
+            <returns>Контекст выполнения бизнес-процесса</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.BizService.WorkflowContinue(Intersoft.CISSA.DataAccessLayer.Model.Workflow.WorkflowContextData)">
+            <summary>
+            Продолжение выполнения бизнес-процесса
+            </summary>
+            <param name="contextData">Контекст выполнения бизнес-процесса</param>
+            <returns>Контекст выполнения бизнес-процесса</returns>
+        </member>
+        <member name="T:Intersoft.CISSA.BizService.Interfaces.IDocManager">
+            <summary>
+            Интерфейс работы с документами
+            </summary>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.DocumentLoad(System.Guid)">
+            <summary>
+            Загружает документ по идентификатору
+            </summary>
+            <param name="documentId">Идентификатор загружаемого документа</param>
+            <returns>Загруженный документ</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.DocumentNew(System.Guid)">
+            <summary>
+            Созадает новый документ по идентификатору типа документа
+            </summary>
+            <param name="docDefId">Идентификатор типа документа</param>
+            <returns>Новый не инициализированный документ</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.DocumentInit(Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,Intersoft.CISSA.DataAccessLayer.Model.Workflow.WorkflowContextData)">
+            <summary>
+            Инициализация полей документа
+            </summary>
+            <param name="doc"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.DocumentSave(Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc)">
+            <summary>
+            Сохраняет документ
+            </summary>
+            <param name="doc">Сохраняемый дкоумент</param>
+            <returns>Сохраненный документ</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.DocumentDelete(System.Guid)">
+            <summary>
+            Удаляет документ
+            </summary>
+            <param name="documentId">Идентификатор удаляемого документа</param>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.DocumentStateList(System.Guid)">
+            <summary>
+            Возвращает историю состояний документа
+            </summary>
+            <param name="docId">Идентификатор документа</param>
+            <returns>Список состояний документа</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.GetEnumList(System.Guid)">
+            <summary>
+            Загружает справочник
+            </summary>
+            <param name="enumId">Идентификатор справочника</param>
+            <returns>Список значений справочника</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.DocumentList(System.Int32@,System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Загружает список документов определенного класса
+            </summary>
+            <param name="docDefId">Класс документа</param>
+            <param name="pageSize">Кол-во элементов на странице</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="pageCount">Кол-во страниц</param>
+            <returns>Список документов</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.DocumentFilterList(System.Int32@,System.Guid,System.Int32,System.Int32,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,System.Nullable{System.Guid})">
+            <summary>
+            Загружает список документов определенного класса
+            </summary>
+            <param name="count">Кол-во записей</param>
+            <param name="docDefId">Класс документа</param>
+            <param name="pageSize">Кол-во элементов на странице</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="sortAttr">Атрибут сортировки</param>
+            <param name="filter">Фильтр</param>
+            <returns>Список документов</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.DocumentStateFilterList(System.Int32@,System.Guid,System.Guid,System.Int32,System.Int32,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,System.Nullable{System.Guid})">
+            <summary>
+            Загружает список документов определенного класса
+            </summary>
+            <param name="count">Кол-во записей</param>
+            <param name="docDefId">Класс документа</param>
+            <param name="docStateId">Статус документа</param>
+            <param name="pageSize">Кол-во элементов на странице</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="sortAttr">Атрибут сортировки</param>
+            <param name="filter">Фильтр</param>
+            <returns>Список документов</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.DocAttrList(System.Int32@,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,System.Guid,System.Int32,System.Int32,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,System.Nullable{System.Guid})">
+            <summary>
+            Загружает список документов из атрибута
+            </summary>
+            <param name="count">Кол-во записей</param>
+            <param name="document">ID Документа</param>
+            <param name="attrDefId">Класс атрибута</param>
+            <param name="pageSize">Кол-во элементов на странице</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="filter">Фильтр</param>
+            <param name="sortAttr">Атрибут сортировки</param>
+            <returns>Список документов</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.DocAttrListById(System.Int32@,System.Guid,System.Guid,System.Int32,System.Int32,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,System.Nullable{System.Guid})">
+            <summary>
+            Загружает список документов из атрибута
+            </summary>
+            <param name="count">Кол-во записей</param>
+            <param name="docId">Id Документа</param>
+            <param name="attrDefId">Класс атрибута</param>
+            <param name="pageSize">Кол-во элементов на странице</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="filter">Фильтр</param>
+            <param name="sortAttr">Атрибут сортировки</param>
+            <returns>Список документов</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.GetNestingDocument(Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,Intersoft.CISSA.DataAccessLayer.Model.Documents.DocAttribute)">
+            <summary>
+            Возвращает вложенный документ
+            </summary>
+            <param name="document">Текущий документ</param>
+            <param name="docAttr">Атрибут ссылающийся на вложенный документ</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.DocIsStored(Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc)">
+            <summary>
+            Проверяет сохранен ли документ в БД
+            </summary>
+            <param name="document">Документ</param>
+            <returns>Истина - сохранен</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.ExistsInDocList(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Проверяет содержится ли документ в списке
+            </summary>
+            <param name="docId">Идентификатор документа, который нужно проверить на вхождение в список</param>
+            <param name="attrDocId">Идентификатор документа которому принадлежит список</param>
+            <param name="attrDefId">Идентификатор атрибута-списка</param>
+            <returns>Истина - имеется в списке</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IDocManager.AddDocToList(System.Guid,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,System.Guid)">
+            <summary>
+            Добавить документ в список
+            </summary>
+            <param name="docId">Идентификатор документа, который необходимо добавить в список</param>
+            <param name="document">Документ содержащий список</param>
+            <param name="attrDefId">Идентификатор списка</param>
+            <returns>Текущий документ</returns>
+        </member>
+        <member name="T:Intersoft.CISSA.BizService.Interfaces.IPresentationManager">
+            <summary>
+            Интерфейс работы с визуальными формами
+            </summary>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.GetAnyForm(System.Guid,System.Int32)">
+            <summary>
+            Загружает форму по идентификатору
+            </summary>
+            <param name="formId">Идентификатор формы</param>
+            <param name="languageId">Код языка</param>
+            <returns>Загруженная форма</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.GetDetailForm(System.Guid,System.Int32)">
+            <summary>
+            Загружает форму по идентификатору
+            </summary>
+            <param name="formId">Идентификатор формы</param>
+            <param name="languageId">Код языка</param>
+            <returns>Загруженная форма</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.GetDetailFormWithData(System.Guid,System.Guid,System.Int32)">
+            <summary>
+            Возвращает форму с данными по идентификатору
+            </summary>
+            <param name="formId">Идентификатор формы</param>
+            <param name="docId">Идентификатор документа</param>
+            <param name="languageId">Код языка</param>
+            <returns>Загруженная форма</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.GetGridForm(System.Guid,System.Int32)">
+            <summary>
+            Загружает табличную форму по идентификатору формы
+            </summary>
+            <param name="formId">Идентификатор формы</param>
+            <param name="languageId">Код языка</param>
+            <returns>Загруженная табличная форма</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.SetFormDoc(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc)">
+            <summary>
+            Записывает значения атрибутов документа в форму
+            </summary>
+            <param name="form">Форма</param>
+            <param name="document">Документ</param>
+            <returns>Форма с данными</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.GetFormDoc(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc)">
+            <summary>
+            Записывает значения из формы в документ
+            </summary>
+            <param name="form">Форма</param>
+            <param name="document">Документ</param>
+            <returns>Измененный документ</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.GetMainForm">
+            <summary>
+            Загружает главную форму
+            </summary>
+            <returns>Главная форма</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.GetMenus(System.Int32)">
+            <summary>
+            Возвращает дерево меню для пользователя
+            </summary>
+            <param name="languageId">Код языка</param>
+            <returns>Список меню</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.GetLanguages">
+            <summary>
+            Возвращает список языков
+            </summary>
+            <returns>Список меню</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.TranslateForm(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Int32)">
+            <summary>
+            Переводит форму на указанный язык
+            </summary>
+            <param name="form">Форма</param>
+            <param name="languageId">Язык</param>
+            <returns>Форма</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.TranslateMenus(System.Collections.Generic.List{Intersoft.CISSA.DataAccessLayer.Model.Controls.BizMenu},System.Int32)">
+            <summary>
+            Переводит список меню на заданный язык
+            </summary>
+            <param name="menus">Список меню</param>
+            <param name="languageId">Язык</param>
+            <returns>Список меню</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.TranslateUserActions(System.Collections.Generic.List{Intersoft.CISSA.DataAccessLayer.Model.Workflow.UserAction},System.Int32)">
+            <summary>
+            Переводит список пользовательских действий на заданный язык
+            </summary>
+            <param name="userActions">Список пользовательских действий</param>
+            <param name="languageId">Язык</param>
+            <returns>Список пользовательских действий</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.GetTableFormRows(System.Int32@,Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Nullable{System.Guid},Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Collections.Generic.IEnumerable{Intersoft.CISSA.DataAccessLayer.Model.Query.AttributeSort},System.Int32,System.Int32)">
+            <summary>
+            Возвращает список строк с данными табличной формы с учетом критерием фильтра
+            </summary>
+            <param name="count">Возвращает количество строк данных в БД</param>
+            <param name="form">Табличная форма, для которой нужны строки данных</param>
+            <param name="docStateId">Статус документов, отображаемые в табличной форме</param>
+            <param name="filter">Форма фильтра с данными</param>
+            <param name="sortAttrs">Список атрибутов с условиями сортировки</param>
+            <param name="pageNo">Номер отображаемой страницы</param>
+            <param name="pageSize">Количество отображаемых строк в таблице</param>
+            <returns>Список строк - визуальных элментов с данными</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.GetTableFormRowsFromQuery(System.Int32@,Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,Intersoft.CISSA.DataAccessLayer.Model.Query.Def.QueryDef,System.Collections.Generic.IEnumerable{Intersoft.CISSA.DataAccessLayer.Model.Query.AttributeSort},System.Int32,System.Int32)">
+            <summary>
+            Возвращает список строк табличной формы с данными, получаемыми из запроса выборки
+            </summary>
+            <param name="count">Количество строк попадаемых в выборку</param>
+            <param name="form">Табличная форма</param>
+            <param name="def">Запрос выборки</param>
+            <param name="sortAttrs">Список атрибутов сотрировки</param>
+            <param name="pageNo">Номер отображаемой страницы в табличной форме</param>
+            <param name="pageSize">Количество отображаемых строк в форме</param>
+            <returns>Список строк - визуальных элментов с данными</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.GetTableFormRowsFromList(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Collections.Generic.IEnumerable{System.Guid},System.Collections.Generic.IEnumerable{Intersoft.CISSA.DataAccessLayer.Model.Query.AttributeSort},System.Int32,System.Int32)">
+            <summary>
+            Возвращает список строк табличной формы с данными, формируемые из списка документов
+            </summary>
+            <param name="form">Табличная форма</param>
+            <param name="docIds">Список идентификаторов документов, которые необходимо высветить в таблице</param>
+            <param name="sortAttrs">Список атрибутов сортировки строк</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="pageSize">Количество строк в странице</param>
+            <returns>Список строк - визуальных элментов с данными</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.GetDocListTableFormRows(System.Int32@,Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Guid,System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Возвращает список строк табличной формы с данными, формируемые из списочного атрибута документа
+            </summary>
+            <param name="count">Количество документов хранящихся в списочном атрибуте</param>
+            <param name="form">Таличная форма</param>
+            <param name="docId">Идентификатор документа, содержащего списочный атрибут</param>
+            <param name="attrDefId">Идентификатор списочного атрибута</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="pageSize">Количество отображаемых строк в таблице</param>
+            <returns>Список строк - визуальных элментов с данными</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IPresentationManager.GetRefListTableFormRows(System.Int32@,Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Guid,System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Возвращает список строк табличной формы с данными, формируемые из списка документов ссылающихся на указанный документ
+            </summary>
+            <param name="count">Количество документов попадающих под запрос</param>
+            <param name="form">Табличная форма</param>
+            <param name="docId">Идентификатор документа</param>
+            <param name="attrDefId">Идентификатор ссылочного атрибута</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="pageSize">Количество строк на странице</param>
+            <returns>Список строк - визуальных элментов с данными</returns>
+        </member>
+        <member name="T:Intersoft.CISSA.BizService.Interfaces.IQueryManager">
+            <summary>
+            Интерфейс работы с запросами выборки данных
+            </summary>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IQueryManager.GetDocList(Intersoft.CISSA.DataAccessLayer.Model.Query.Def.QueryDef,System.Int32,System.Int32)">
+            <summary>
+            Возвращает список документов попадающих в запрос
+            </summary>
+            <param name="queryDef">Запрос на выборку данных</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="pageSize">Количество строк на странице</param>
+            <returns>Список идентификаторв документов</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IQueryManager.GetDocListWithCount(System.Int32@,Intersoft.CISSA.DataAccessLayer.Model.Query.Def.QueryDef,System.Int32,System.Int32)">
+            <summary>
+            Возвращает количество и список документов попадающих в запрос
+            </summary>
+            <param name="count">Количество документов попадающих под запрос в БД</param>
+            <param name="queryDef">Запрос на выборку данных</param>
+            <param name="pageNo">Номер страницы</param>
+            <param name="pageSize">Количество строк на странице</param>
+            <returns>Список идентификаторв документов</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IQueryManager.GetQueryCount(Intersoft.CISSA.DataAccessLayer.Model.Query.Def.QueryDef)">
+            <summary>
+            Подсчитывает количество строк в запросе
+            </summary>
+            <param name="query">Запрос на выборку данных</param>
+            <returns>Количество строк</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IQueryManager.QueryFromDoc(Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc)">
+            <summary>
+            Формирует запрос из текущего документа
+            </summary>
+            <param name="document">Документ на основе которого будет формироваться структура запроса</param>
+            <returns>Запрос на выборку данных из БД</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IQueryManager.QueryFromForm(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm)">
+            <summary>
+            Формирует запрос из формы
+            </summary>
+            <param name="form">Форма на основе которого будет формироваться структура запроса</param>
+            <returns>Запрос на выборку данных из БД</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IQueryManager.CreateQuery(System.Guid,System.Nullable{System.Guid})">
+            <summary>
+            Создает запрос на основе структуры и статуса документа
+            </summary>
+            <param name="docDefId">Идентификатор класса документа</param>
+            <param name="docStateId">Статус документа, по которому будет производится выборка</param>
+            <returns>Запрос на выборку данных из БД</returns>
+        </member>
+        <member name="T:Intersoft.CISSA.BizService.Interfaces.IReportManager">
+            <summary>
+            Интерфейс работы с файлами и формирования выходных документов в форматах PDF и Excel
+            </summary>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IReportManager.GenerateFromTemplate(Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc,Intersoft.CISSA.DataAccessLayer.Model.Workflow.WorkflowContextData,System.String)">
+            <summary>
+            Формирует выходной документ из шаблона на основе документа и данных рабочего контекста
+            </summary>
+            <param name="document">Документ, из которого берутся данные для подстановки в шаблон</param>
+            <param name="contextData">Контекст бизнес процесса, из которого берутся данные для подстановки в шаблон</param>
+            <param name="fileName">Наименование файла - шаблона выходного документа в форматах (Excel, PDF)</param>
+            <returns>Массив двоичных данных представляющих собой выходной файл</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IReportManager.GetFile(System.String)">
+            <summary>
+            Получает файл по имени
+            </summary>
+            <param name="fileName">Имя файла находящегося на сервере</param>
+            <returns>Массив двоичных данных тела файла</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IReportManager.ExcelFromQuery(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,Intersoft.CISSA.DataAccessLayer.Model.Query.Def.QueryDef)">
+            <summary>
+            Формирует Excel документ из формы и запоса выборки данных 
+            </summary>
+            <param name="form">Форма, задающая оформление данных в выходном документе</param>
+            <param name="queryDef">Запрос для выборки данных из БД</param>
+            <returns>Массив двоичных данных тела Excel файла</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IReportManager.ExcelFromDocIdList(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Collections.Generic.List{System.Guid})">
+            <summary>
+            Формирует Excel документ из формы и списка документов
+            </summary>
+            <param name="form">Форма, задающая оформление данных в выходном документе</param>
+            <param name="docIdList">Список идентификаторов документов, которые необходимо вывести в файл</param>
+            <returns>Массив двоичных данных тела Excel файла</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IReportManager.ExcelFromFilter(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Nullable{System.Guid},Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc)">
+            <summary>
+            Формирует Excel документ из формы и критериев выборки
+            </summary>
+            <param name="form">Форма, задающая оформление данных в выходном документе</param>
+            <param name="docStateId">Идентификатор статуса документа в качестве критерия выборки документов из БД</param>
+            <param name="filter">Форма фильтра с данными для ограничения выборки документов</param>
+            <returns>Массив двоичных данных тела Excel файла</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IReportManager.ExcelFromFormFilter(Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm,System.Nullable{System.Guid},Intersoft.CISSA.DataAccessLayer.Model.Controls.BizForm)">
+            <summary>
+            Формирует Excel документ из формы и критериев выборки
+            </summary>
+            <param name="form">Форма, задающая оформление данных в выходном документе</param>
+            <param name="docStateId">Идентификатор статуса документа в качестве критерия выборки документов из БД</param>
+            <param name="filter">Форма фильтра с данными для ограничения выборки документов</param>
+            <returns>Массив двоичных данных тела Excel файла</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IReportManager.ExcelFromDocumentListForm(System.Guid,Intersoft.CISSA.DataAccessLayer.Model.Controls.BizDocumentListForm)">
+            <summary>
+            Формирует Excel документ для вложенной формы списка документов
+            </summary>
+            <param name="documentId">Идентификатор документа</param>
+            <param name="docListForm">Форма вложенного списка</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IReportManager.CreateTableReport(System.Guid)">
+            <summary>
+            Создает контекст отчета по Id базового документа
+            </summary>
+            <param name="docDefId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Intersoft.CISSA.BizService.Interfaces.IWorkflowManager">
+            <summary>
+            Интерфейс выполнения бизнес-процессов КИССП
+            </summary>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IWorkflowManager.WorkflowExecute(System.Guid,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Запуск бизнес-процесса
+            </summary>
+            <param name="processId">Идентификатор бизнес-процесса</param>
+            <param name="processParameters">Входные параметры для бизнес-процесса</param>
+            <returns>Контекст исполнения бизнес-процесса</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IWorkflowManager.WorkflowContinueWithUserAction(Intersoft.CISSA.DataAccessLayer.Model.Workflow.WorkflowContextData,System.Guid)">
+            <summary>
+            Продолжение выполнения бизнес-процесса с учетом пользовательского действия
+            </summary>
+            <param name="contextData">Контекст выполнения бизнес-процесса</param>
+            <param name="userAction">Идентификатор пользовательского действия</param>
+            <returns>Контекст выполнения бизнес-процесса</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IWorkflowManager.WorkflowContinueWithDocumentId(Intersoft.CISSA.DataAccessLayer.Model.Workflow.WorkflowContextData,System.Guid)">
+            <summary>
+            Продолжение выполнения бизнес-процесса с учетом документа
+            </summary>
+            <param name="contextData">Контекст выполнения бизнес-процесса</param>
+            <param name="docId">Идентификатор документа</param>
+            <returns>Контекст выполнения бизнес-процесса</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IWorkflowManager.WorkflowContinueWithDocument(Intersoft.CISSA.DataAccessLayer.Model.Workflow.WorkflowContextData,Intersoft.CISSA.DataAccessLayer.Model.Documents.Doc)">
+            <summary>
+            Продолжение выполнения бизнес-процесса с учетом документа
+            </summary>
+            <param name="contextData">Контекст выполнения бизнес-процесса</param>
+            <param name="document">Документ</param>
+            <returns>Контекст выполнения бизнес-процесса</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IWorkflowManager.WorkflowContinue(Intersoft.CISSA.DataAccessLayer.Model.Workflow.WorkflowContextData)">
+            <summary>
+            Продолжение выполнения бизнес-процесса
+            </summary>
+            <param name="contextData">Контекст выполнения бизнес-процесса</param>
+            <returns>Контекст выполнения бизнес-процесса</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IWorkflowManager.WorkflowContinueWithUploadFile(Intersoft.CISSA.DataAccessLayer.Model.Workflow.WorkflowContextData,System.Byte[],System.String)">
+             <summary>
+            Продолжение выполнения процесса после операции загрузки файла
+             </summary>
+             <param name="contextData">Контекст выполнения процесса</param>
+             <param name="uploadData">Массив данных загружаемого файла</param>
+            <param name="fileName">Имя файла</param>
+            <returns>Контекст процесса</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IWorkflowManager.WorkflowGateExecute(System.String,Intersoft.CISSA.DataAccessLayer.Model.Workflow.WorkflowContextData)">
+            <summary>
+            Вызов процесса по имени внешнего канала
+            </summary>
+            <param name="gateName">Имя канала</param>
+            <param name="contextData">Данные контекста</param>
+            <returns>Контекст процесса</returns>
+        </member>
+        <member name="T:Intersoft.CISSA.BizService.Interfaces.IUserManager">
+            <summary>
+            Интерфейс работы с пользователями
+            </summary>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IUserManager.GetUserInfo">
+            <summary>
+            Получает данные учетной записи пользователя
+            </summary>
+            <returns>Сведения о пользователе</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IUserManager.ChangeUserPassword(System.String,System.String)">
+            <summary>
+            Метод для изменения пароля пользователя
+            </summary>
+            <param name="oldPassword">Старый пароль</param>
+            <param name="newPassword">Новый пароль</param>
+            <returns>Возвращает результат изменения пароля пользователя</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IUserManager.TryConnect">
+            <summary>
+            Метод для проверки соединения с сервисом бизнес-логики
+            </summary>
+            <returns>Возвращает истина - при успешном подключении к сервису</returns>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IUserManager.SetUserLanguage(System.Int32)">
+            <summary>
+            Метод установки языка пользовательского интерфейса для текущего пользователя
+            </summary>
+            <param name="languageId">Код устанавливаемого языка</param>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IUserManager.ClearCache">
+            <summary>
+            Метод для очищения кэша
+            </summary>
+        </member>
+        <member name="M:Intersoft.CISSA.BizService.Interfaces.IUserManager.GetCacheInfo">
+            <summary>
+            Получает сведения о состоянии кэша
+            </summary>
+            <returns>Строка описания состояния кэша</returns>
+        </member>
+    </members>
+</doc>

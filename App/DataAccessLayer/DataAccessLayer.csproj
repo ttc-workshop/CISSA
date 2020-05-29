@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EF47519D-F2B2-4492-BC22-6037ED1F2E38}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Intersoft.CISSA.DataAccessLayer</RootNamespace>
+    <AssemblyName>Intersoft.CISSA.DataAccessLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\Intersoft.CISSA.DataAccessLayer.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CSScriptLibrary">
+      <HintPath>..\..\Libs\CS-script\CSScriptLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="DocX">
+      <HintPath>..\Cissa.Report\DocX.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel.4.5">
+      <HintPath>..\..\Libs\ExcelDataReader\Excel.4.5.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\Libs\ExcelDataReader\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NPOI">
+      <HintPath>..\..\Libs\NPOI 1.2.3\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Abstractions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RavenDB.Client.3.0.3599\lib\net45\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight, Version=3.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RavenDB.Client.3.0.3599\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cache\ICacheContainer.cs" />
+    <Compile Include="Cache\ObjectCache.cs" />
+    <Compile Include="Core\AppServiceProviderFactory.cs" />
+    <Compile Include="Core\AppServiceProviderFactoryProvider.cs" />
+    <Compile Include="Core\GlobalWorkspace.cs" />
+    <Compile Include="Core\IAppServiceProvider.cs" />
+    <Compile Include="Core\IAppServiceProviderFactory.cs" />
+    <Compile Include="Core\IAppServiceProviderRegistrator.cs" />
+    <Compile Include="Core\IUserDataProvider.cs" />
+    <Compile Include="Core\AppServiceProvider.cs" />
+    <Compile Include="Core\UserDataProvider.cs" />
+    <Compile Include="Interfaces\IBuilder.cs" />
+    <Compile Include="Model\BizObjectType.cs" />
+    <Compile Include="Model\Context\DataContext.cs" />
+    <Compile Include="Model\Context\DataContextFactory.cs" />
+    <Compile Include="Model\Context\DataContextFactoryProvider.cs" />
+    <Compile Include="Model\Context\DataContextHelper.cs" />
+    <Compile Include="Model\Context\DocumentDataContext.cs" />
+    <Compile Include="Model\Context\EntityDataContextMetadataLocator.cs" />
+    <Compile Include="Model\Context\IDataContext.cs" />
+    <Compile Include="Model\Context\IDataContextConfigSectionNameProvider.cs" />
+    <Compile Include="Model\Context\IDataContextFactory.cs" />
+    <Compile Include="Model\Context\IEntityDataContext.cs" />
+    <Compile Include="Model\Context\Logger.cs" />
+    <Compile Include="Model\Context\MetaDataContext.cs" />
+    <Compile Include="Model\Context\MultiDataContext.cs" />
+    <Compile Include="Model\Controls\BizControlOptions.cs" />
+    <Compile Include="Model\Controls\FormHelper.cs" />
+    <Compile Include="Model\Controls\IControlFactory.cs" />
+    <Compile Include="Model\Controls\MultiContextControlFactory.cs" />
+    <Compile Include="Model\Documents\DocDefName.cs" />
+    <Compile Include="Model\Documents\DocHelper.cs" />
+    <Compile Include="Model\Documents\DocRef.cs" />
+    <Compile Include="Model\Query\DefDatas\QueryConditionDefData.cs" />
+    <Compile Include="Model\Query\DefDatas\QueryConditionParamDefData.cs" />
+    <Compile Include="Model\Query\DefDatas\QueryDefData.cs" />
+    <Compile Include="Model\Query\DefDatas\QueryItemDefData.cs" />
+    <Compile Include="Model\Controls\BizDataControl.cs" />
+    <Compile Include="Model\Controls\BizDataImage.cs" />
+    <Compile Include="Model\Controls\BizDetailForm.cs" />
+    <Compile Include="Model\Controls\BizEditFile.cs" />
+    <Compile Include="Model\Controls\BizEditSysIdent.cs" />
+    <Compile Include="Model\Controls\BizEditVar.cs" />
+    <Compile Include="Model\Controls\BizMenu.cs" />
+    <Compile Include="Model\Controls\BizTableColumn.cs" />
+    <Compile Include="Model\CompareOperation.cs" />
+    <Compile Include="Model\Controls\ControlFactory.cs" />
+    <Compile Include="Model\Controls\ControlFinder.cs" />
+    <Compile Include="Model\Controls\LayoutType.cs" />
+    <Compile Include="Model\Controls\Scripts\FormScriptContext.cs" />
+    <Compile Include="Model\Controls\Scripts\FormScriptManager.cs" />
+    <Compile Include="Model\Controls\BizTabControl.cs" />
+    <Compile Include="Model\Documents\BlobData.cs" />
+    <Compile Include="Model\Documents\FileData.cs" />
+    <Compile Include="Model\Misc\ComboBoxEnumProvider.cs" />
+    <Compile Include="Model\Misc\IComboBoxEnumProvider.cs" />
+    <Compile Include="Model\Misc\ModelMessage.cs" />
+    <Compile Include="Model\Documents\DocListItem.cs" />
+    <Compile Include="Model\Documents\ObjectDefAttribute.cs" />
+    <Compile Include="Model\Maps\AttributeFieldMap.cs" />
+    <Compile Include="Model\Maps\DocumentTableMap.cs" />
+    <Compile Include="Model\Misc\Monitor.cs" />
+    <Compile Include="Model\Misc\MultiContextComboBoxEnumProvider.cs" />
+    <Compile Include="Model\Query\AttributeSort.cs" />
+    <Compile Include="Model\Query\Builders\ExpressionBuilder.cs" />
+    <Compile Include="Model\Query\Def\QueryAttributeDef.cs" />
+    <Compile Include="Model\Query\Def\QueryConditionPartDef.cs" />
+    <Compile Include="Model\Query\Def\QueryItemDef.cs" />
+    <Compile Include="Model\Query\Def\QueryJoinDef.cs" />
+    <Compile Include="Model\Query\Def\QueryOrderDef.cs" />
+    <Compile Include="Model\Query\Def\QueryAttributeRef.cs" />
+    <Compile Include="Model\Query\Def\QueryGroupDef.cs" />
+    <Compile Include="Model\Query\Def\QuerySourceDef.cs" />
+    <Compile Include="Model\Query\Def\SubQueryDef.cs" />
+    <Compile Include="Model\Query\Helpers\BizControlQuerySourceHelper.cs" />
+    <Compile Include="Model\Query\Helpers\QuerySourceDefHelper.cs" />
+    <Compile Include="Model\Query\Helpers\SqlQueryXmlBuilder.cs" />
+    <Compile Include="Model\Query\DefDatas\QueryItemDefDataHelper.cs" />
+    <Compile Include="Model\Query\DefDatas\QuerySourceDefData.cs" />
+    <Compile Include="Model\Query\Sql\ISqlQueryBuilder.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryBuilderTool.cs" />
+    <Compile Include="Model\Query\Sql\SqlQuery.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryBuilder.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryConditionOperationBuilder.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryConditionBuilder.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryConditionPart.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryConditions.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryJoinBuilder.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryJoin.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryMasterSlaveLink.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryReaderFactory.cs" />
+    <Compile Include="Model\Query\Sql\SqlQuerySubSource.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryDocSource.cs" />
+    <Compile Include="Model\Query\Sql\SqlQuerySource.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryObject.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryBase.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryGroupAttribute.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryOrderAttribute.cs" />
+    <Compile Include="Model\Query\Sql\SqlQuerySelectAttribute.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryAttribute.cs" />
+    <Compile Include="Model\Query\Sql\SqlQuerySourceAttributeRef.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryCondition.cs" />
+    <Compile Include="Model\Query\Sql\SqlQuerySubSourceAttribute.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryDocSourceAttribute.cs" />
+    <Compile Include="Model\Query\Sql\SqlQuerySourceAttribute.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryCommand.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryExBuilder.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryExecutor.cs" />
+    <Compile Include="Model\Query\Sql\SqlQuerySummaryFunction.cs" />
+    <Compile Include="Model\Query\Sql\SqlSourceJoinType.cs" />
+    <Compile Include="Model\Security\SecurityOperation.cs" />
+    <Compile Include="Model\SystemIdent.cs" />
+    <Compile Include="Model\SystemIdentConverter.cs" />
+    <Compile Include="Model\SortType.cs" />
+    <Compile Include="Model\Data\DataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Documents\AutoAttr\AutoAttributeContext.cs" />
+    <Compile Include="Model\Documents\BlobInfo.cs" />
+    <Compile Include="Model\Documents\DocList.cs" />
+    <Compile Include="Model\Documents\DocState.cs" />
+    <Compile Include="Model\Documents\DocStateType.cs" />
+    <Compile Include="Model\Controls\BizEditDateTime.cs" />
+    <Compile Include="Model\Documents\CompareOperator.cs" />
+    <Compile Include="Model\Documents\DateTimeAttribute.cs" />
+    <Compile Include="Model\Documents\DocSerializer.cs" />
+    <Compile Include="Model\Documents\DocumentStateAttribute.cs" />
+    <Compile Include="Model\Documents\DynaDoc.cs" />
+    <Compile Include="Model\Documents\MetaInfoAttribute.cs" />
+    <Compile Include="Model\Documents\LogicOperation.cs" />
+    <Compile Include="Model\Documents\AutoAttr\AutoAttributeScriptManager.cs" />
+    <Compile Include="Model\Documents\OrganizationAttribute.cs" />
+    <Compile Include="Model\Documents\SearchParameter.cs" />
+    <Compile Include="Model\Documents\AutoAttr\AutoAttribute.cs" />
+    <Compile Include="Model\Documents\BlobAttribute.cs" />
+    <Compile Include="Model\Enums\BizEnum.cs" />
+    <Compile Include="Model\Languages\LanguageType.cs" />
+    <Compile Include="Model\Organizations\Organization.cs" />
+    <Compile Include="Model\Query\Builders\BaseQueryBuilder.cs" />
+    <Compile Include="Model\Query\Builders\QueryConditionBuilder.cs" />
+    <Compile Include="Model\Query\Builders\ConditionExpressionBuilder.cs" />
+    <Compile Include="Model\Query\Builders\BaseExpressionBuilder.cs" />
+    <Compile Include="Model\Query\ConditionOperation.cs" />
+    <Compile Include="Model\Query\Def\QueryConditionDef.cs" />
+    <Compile Include="Model\Query\Def\QueryDef.cs" />
+    <Compile Include="Model\Query\DocQuery.cs" />
+    <Compile Include="Model\Query\DocSqlQuery.cs" />
+    <Compile Include="Model\Query\Interfaces\IQuerySource.cs" />
+    <Compile Include="Model\Query\Builders\QueryBuilder.cs" />
+    <Compile Include="Model\Query\Interfaces\ISubQuery.cs" />
+    <Compile Include="Model\Query\QueryCondition.cs" />
+    <Compile Include="Model\Query\ExpressionOperation.cs" />
+    <Compile Include="Model\Query\Interfaces\IQueryExpression.cs" />
+    <Compile Include="Model\Query\Interfaces\IQuery.cs" />
+    <Compile Include="Model\Query\Interfaces\IQueryCondition.cs" />
+    <Compile Include="Model\Query\Interfaces\IQueryJoin.cs" />
+    <Compile Include="Model\Query\QueryEngine.cs" />
+    <Compile Include="Model\Query\ScriptStringBuilder.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryItem.cs" />
+    <Compile Include="Model\Query\Sql\SqlBuilder.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryDefExecutor.cs" />
+    <Compile Include="Model\Query\Sql\SqlQueryReader.cs" />
+    <Compile Include="Model\Query\Utils.cs" />
+    <Compile Include="Model\Reports\AggregateOperation.cs" />
+    <Compile Include="Model\Reports\BizReportDetail.cs" />
+    <Compile Include="Model\Reports\BizTableReport.cs" />
+    <Compile Include="Model\Reports\ReportColumn.cs" />
+    <Compile Include="Model\Reports\IDetailItem.cs" />
+    <Compile Include="Model\Reports\ReportBand.cs" />
+    <Compile Include="Model\Security\BizObjectPermission.cs" />
+    <Compile Include="Model\Security\ObjectDefPermissionCollection.cs" />
+    <Compile Include="Model\Security\Permission.cs" />
+    <Compile Include="Model\Security\PermissionSet.cs" />
+    <Compile Include="Model\SystemParamIdent.cs" />
+    <Compile Include="Model\Templates\ExcelTemplateRepository.cs" />
+    <Compile Include="Model\Templates\ITemplateReportGenerator.cs" />
+    <Compile Include="Model\Templates\PdfTemplateRepository.cs" />
+    <Compile Include="Model\Workflow\ActivityLink.cs" />
+    <Compile Include="Model\BizResultType.cs" />
+    <Compile Include="Model\CissaDataType.cs" />
+    <Compile Include="Model\Controls\BizEditBool.cs" />
+    <Compile Include="Model\Controls\BizDocumentControl.cs" />
+    <Compile Include="Model\Controls\BizEditInt.cs" />
+    <Compile Include="Model\Controls\BizEditFloat.cs" />
+    <Compile Include="Model\Controls\BizEditCurrency.cs" />
+    <Compile Include="Model\Controls\BizPanel.cs" />
+    <Compile Include="Model\Controls\BizTableForm.cs" />
+    <Compile Include="Model\Controls\BizEdit.cs" />
+    <Compile Include="Model\Controls\BizDocumentListForm.cs" />
+    <Compile Include="Model\Controls\BizDynamicDocumentListForm.cs" />
+    <Compile Include="Model\Workflow\DynaContext.cs" />
+    <Compile Include="Model\Workflow\ExternalProcessExecuteResult.cs" />
+    <Compile Include="Model\Workflow\GateCallActivity.cs" />
+    <Compile Include="Model\Workflow\IExternalProcessLauncher.cs" />
+    <Compile Include="Model\Workflow\IStringParams.cs" />
+    <Compile Include="Model\Workflow\ScriptActivity.cs" />
+    <Compile Include="Model\Workflow\DocumentActivity.cs" />
+    <Compile Include="Model\Workflow\DocumentStateActivity.cs" />
+    <Compile Include="Model\Documents\AttrDef.cs" />
+    <Compile Include="Model\Controls\BizButton.cs" />
+    <Compile Include="Model\Controls\BizComboBox.cs" />
+    <Compile Include="Model\Controls\BizControl.cs" />
+    <Compile Include="Model\BizObject.cs" />
+    <Compile Include="Model\BizResult.cs" />
+    <Compile Include="Model\Controls\BizEditText.cs" />
+    <Compile Include="Model\Controls\BizForm.cs" />
+    <Compile Include="Model\Controls\BizGrid.cs" />
+    <Compile Include="Model\Controls\BizImage.cs" />
+    <Compile Include="Model\Controls\BizText.cs" />
+    <Compile Include="Model\Controls\BizRadioItem.cs" />
+    <Compile Include="Model\Documents\BoolAttribute.cs" />
+    <Compile Include="Model\Documents\DocListAttribute.cs" />
+    <Compile Include="Model\Documents\CurrencyAttribute.cs" />
+    <Compile Include="Model\Documents\Doc.cs" />
+    <Compile Include="Model\Documents\DocAttribute.cs" />
+    <Compile Include="Model\Documents\DocDef.cs" />
+    <Compile Include="Model\Documents\AttributeBase.cs" />
+    <Compile Include="Model\Documents\EnumAttribute.cs" />
+    <Compile Include="Model\Enums\EnumDef.cs" />
+    <Compile Include="Model\Enums\EnumValue.cs" />
+    <Compile Include="Model\Documents\FloatAttribute.cs" />
+    <Compile Include="Model\Documents\IntAttribute.cs" />
+    <Compile Include="Model\Documents\TextAttribute.cs" />
+    <Compile Include="Model\Documents\TypeDef.cs" />
+    <Compile Include="Model\Workflow\FinishActivity.cs" />
+    <Compile Include="Model\Workflow\IWorkflowEngine.cs" />
+    <Compile Include="Model\Workflow\PresentationActivity.cs" />
+    <Compile Include="Model\Workflow\ProcessCallActivity.cs" />
+    <Compile Include="Model\UserInfo.cs" />
+    <Compile Include="Model\Workflow\ScriptManager.cs" />
+    <Compile Include="Model\Workflow\ScriptType.cs" />
+    <Compile Include="Model\Workflow\UserAction.cs" />
+    <Compile Include="Model\Workflow\WorkflowActivity.cs" />
+    <Compile Include="Model\Workflow\WorkflowActivityEngine.cs" />
+    <Compile Include="Model\Workflow\WorkflowContext.cs" />
+    <Compile Include="Model\Workflow\WorkflowContextData.cs" />
+    <Compile Include="Model\Workflow\WorkflowDefaultUserAction.cs" />
+    <Compile Include="Model\Workflow\WorkflowDocumentOperation.cs" />
+    <Compile Include="Model\Workflow\WorkflowEngine.cs" />
+    <Compile Include="Model\Workflow\WorkflowGateRef.cs" />
+    <Compile Include="Model\Workflow\WorkflowProcess.cs" />
+    <Compile Include="Model\Workflow\WorkflowRuntimeState.cs" />
+    <Compile Include="Model\Workflow\WorkflowVariable.cs" />
+    <Compile Include="Model\Workflow\StartActivity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\DocDefStateListProvider.cs" />
+    <Compile Include="Providers\IDocDefStateListProvider.cs" />
+    <Compile Include="Report\DataColumn.cs" />
+    <Compile Include="Report\ExcelReport.cs" />
+    <Compile Include="Report\IExceleble.cs" />
+    <Compile Include="Report\IExcelReport.cs" />
+    <Compile Include="Report\Position.cs" />
+    <Compile Include="Report\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\Styles.cs" />
+    <Compile Include="Repository\AttributeRepository.cs" />
+    <Compile Include="Model\Documents\DocDefRelation.cs" />
+    <Compile Include="Repository\DocDefRepository.cs" />
+    <Compile Include="Repository\DocRepository.cs" />
+    <Compile Include="Repository\DocStateRepository.cs" />
+    <Compile Include="Repository\DocumentNumberGenerator.cs" />
+    <Compile Include="Repository\DocumentTableMapRepository.cs" />
+    <Compile Include="Repository\EnumRepository.cs" />
+    <Compile Include="Repository\FormRepository.cs" />
+    <Compile Include="Repository\GeneratorRepository.cs" />
+    <Compile Include="Repository\IAttributeRepository.cs" />
+    <Compile Include="Repository\IDocDefRepository.cs" />
+    <Compile Include="Repository\IDocRepository.cs" />
+    <Compile Include="Repository\IDocStateRepository.cs" />
+    <Compile Include="Repository\IDocumentNumberGenerator.cs" />
+    <Compile Include="Repository\IDocumentTableMapRepository.cs" />
+    <Compile Include="Repository\IEnumRepository.cs" />
+    <Compile Include="Repository\IFormRepository.cs" />
+    <Compile Include="Repository\ILanguageRepository.cs" />
+    <Compile Include="Repository\IOrgRepository.cs" />
+    <Compile Include="Repository\IPermissionRepository.cs" />
+    <Compile Include="Model\Reports\IReportRepository.cs" />
+    <Compile Include="Repository\IQueryRepository.cs" />
+    <Compile Include="Repository\ISqlScriptRepository.cs" />
+    <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Repository\IWorkflowRepository.cs" />
+    <Compile Include="Repository\LanguageRepository.cs" />
+    <Compile Include="Repository\MultiContextDocDefRepository.cs" />
+    <Compile Include="Repository\MultiContextDocRepository.cs" />
+    <Compile Include="Repository\MultiContextDocStateRepository.cs" />
+    <Compile Include="Repository\MultiContextDocumentTableMapRepository.cs" />
+    <Compile Include="Repository\MultiContextEnumRepository.cs" />
+    <Compile Include="Repository\MultiContextFormRepository.cs" />
+    <Compile Include="Repository\MultiContextLanguageRepository.cs" />
+    <Compile Include="Repository\MultiContextOrgRepository.cs" />
+    <Compile Include="Repository\MultiContextPermissionRepository.cs" />
+    <Compile Include="Repository\MultiContextQueryRepository.cs" />
+    <Compile Include="Repository\MultiContextUserRepository.cs" />
+    <Compile Include="Repository\MultiContextWorkflowRepository.cs" />
+    <Compile Include="Repository\OrgRepository.cs" />
+    <Compile Include="Repository\PermissionRepository.cs" />
+    <Compile Include="Model\Reports\ReportRepository.cs" />
+    <Compile Include="Repository\QueryRepository.cs" />
+    <Compile Include="Repository\SqlScriptRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Model\Workflow\WorkflowGate.cs" />
+    <Compile Include="Repository\WorkflowRepository.cs" />
+    <Compile Include="Storage\AttributeStorage.cs" />
+    <Compile Include="Storage\DocumentStorage.cs" />
+    <Compile Include="Storage\IAttributeStorage.cs" />
+    <Compile Include="Storage\DocTableMapSqlBuilder.cs" />
+    <Compile Include="Storage\IDocumentStorage.cs" />
+    <Compile Include="Utils\ByteArrayHelper.cs" />
+    <Compile Include="Utils\CSParser.cs" />
+    <Compile Include="Utils\CsvReader.cs" />
+    <Compile Include="Utils\CsvWriter.cs" />
+    <Compile Include="Utils\DataConverter.cs" />
+    <Compile Include="Utils\ExcelDataReader.cs" />
+    <Compile Include="Utils\MetadataForms.cs" />
+    <Compile Include="Utils\MetaobjectDefs.cs" />
+    <Compile Include="Utils\ObjectSerializer.cs" />
+    <Compile Include="Utils\RusNumberConverter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Model\Data\DataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Report\Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PdfFiller\PdfFiller.csproj">
+      <Project>{6D1EA375-A0D7-4D5B-96C0-080475C9A7F7}</Project>
+      <Name>PdfFiller</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

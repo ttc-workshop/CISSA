@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" type="text/css"/>
+        <script src="@Url.Content("~/Scripts/jquery-1.5.1.js")" type="text/javascript"></script>
+        <!-- <script src="@Url.Content("~/Scripts/cissa.validation.js")" type="text/javascript"></script>-->
+        <title>@ViewBag.Title</title>
+        @Html.Telerik().StyleSheetRegistrar().DefaultGroup(group => group.Add("telerik.common.css"))
+    </head>
+    <body>
+    <div class="page">
+        <div id="header">
+            <div id="logoimg"></div>
+            <div style="margin-top:20px;margin-left:160px;"><h1><b>@*Resources.Account.OrgName*@</b></h1></div>
+        </div>
+        <div id="tool-bar">
+            <span>
+                <a href="@Url.Action("SetLanguage", "Account", new { lang = "ru" })" class="menu-tab-spec"><span class="l"></span><span class="r"></span><span class="t">РУС</span></a>
+                <a href="@Url.Action("SetLanguage", "Account", new { lang = "ky" })" class="menu-tab-spec"><span class="l"></span><span class="r"></span><span class="t">КЫРГ</span></a>
+                <a href="@Url.Action("SetLanguage", "Account", new { lang = "en" })" class="menu-tab-spec"><span class="l"></span><span class="r"></span><span class="t">ENG</span></a>
+            </span>
+        </div>
+    @*<a href="@Url.Action("Index", "Home")"><img border="0" src="@Url.Content("~/Content/img/InterSoftLogo.jpg")" /><br /><br/></a>*@
+    
+    <div style="height:110px"></div>
+    <div id="wb_Text1" style="margin:0px 0px 2% ; padding:0px; position:relative; top: 0%; text-align:center;">
+        <font style="font-size:20px" color="#3b5998"><b>@Resources.Account.AppName</b></font>
+    </div>
+            @RenderBody()
+    </div>
+    </body>
+     @Html.Telerik().ScriptRegistrar()
+</html>

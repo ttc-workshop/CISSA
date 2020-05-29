@@ -1,0 +1,11 @@
+﻿@model String
+@{
+    int nesting = (int?)ViewData["Nesting"] ?? 0;
+}
+
+<div class="detail-form frame @("level" + nesting)">
+    @if (!String.IsNullOrWhiteSpace(Model))
+    {
+        <h1>@Model</h1>
+    }
+    <div class="frame-content">

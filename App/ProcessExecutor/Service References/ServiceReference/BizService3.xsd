@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Sql" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" />
+  <xs:complexType name="QueryDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryItemDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Attributes" nillable="true" type="tns:ArrayOfQueryAttributeDef" />
+          <xs:element minOccurs="0" name="DocumentId" type="ser:guid" />
+          <xs:element minOccurs="0" name="GroupAttributes" nillable="true" type="tns:ArrayOfQueryGroupDef" />
+          <xs:element minOccurs="0" name="HavingConditions" nillable="true" type="tns:ArrayOfQueryConditionDef" />
+          <xs:element minOccurs="0" name="Joins" nillable="true" type="tns:ArrayOfQueryJoinDef" />
+          <xs:element minOccurs="0" name="ListAttrId" type="ser:guid" />
+          <xs:element minOccurs="0" name="ListAttrName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrderAttributes" nillable="true" type="tns:ArrayOfQueryOrderDef" />
+          <xs:element minOccurs="0" name="OwnerDocDefId" type="ser:guid" />
+          <xs:element minOccurs="0" name="PageNo" type="xs:int" />
+          <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+          <xs:element minOccurs="0" name="SelectAttributes" nillable="true" type="tns:ArrayOfQueryAttributeDef" />
+          <xs:element minOccurs="0" name="Source" nillable="true" type="tns:QuerySourceDef" />
+          <xs:element minOccurs="0" name="Sources" nillable="true" type="tns:ArrayOfQuerySourceDef" />
+          <xs:element minOccurs="0" name="UserId" type="ser:guid" />
+          <xs:element minOccurs="0" name="WhereConditions" nillable="true" type="tns:ArrayOfQueryConditionDef" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QueryDef" nillable="true" type="tns:QueryDef" />
+  <xs:complexType name="QueryItemDef">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="QueryItemDef" nillable="true" type="tns:QueryItemDef" />
+  <xs:complexType name="SubQueryDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryItemDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Alias" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Attribute" nillable="true" type="tns:QueryAttributeDef" />
+          <xs:element minOccurs="0" name="Conditions" nillable="true" type="tns:ArrayOfQueryConditionDef" />
+          <xs:element minOccurs="0" name="QueryDef" nillable="true" type="tns:QueryDef" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SubQueryDef" nillable="true" type="tns:SubQueryDef" />
+  <xs:complexType name="QueryAttributeDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryItemDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Alias" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Invisible" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QueryAttributeDef" nillable="true" type="tns:QueryAttributeDef" />
+  <xs:complexType name="QueryExpAttributeDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryAttributeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Attributes" nillable="true" type="tns:ArrayOfQueryAttributeRef" />
+          <xs:element minOccurs="0" name="Expression" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QueryExpAttributeDef" nillable="true" type="tns:QueryExpAttributeDef" />
+  <xs:complexType name="ArrayOfQueryAttributeRef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueryAttributeRef" nillable="true" type="tns:QueryAttributeRef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueryAttributeRef" nillable="true" type="tns:ArrayOfQueryAttributeRef" />
+  <xs:complexType name="QueryAttributeRef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttributeId" type="ser:guid" />
+      <xs:element minOccurs="0" name="AttributeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Source" nillable="true" type="tns:QuerySourceDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryAttributeRef" nillable="true" type="tns:QueryAttributeRef" />
+  <xs:complexType name="QuerySourceDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryItemDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Alias" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DocDefId" type="ser:guid" />
+          <xs:element minOccurs="0" name="DocDefName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SubQuery" nillable="true" type="tns:QueryDef" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QuerySourceDef" nillable="true" type="tns:QuerySourceDef" />
+  <xs:complexType name="QueryGroupDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryItemDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Attribute" nillable="true" type="tns:QueryAttributeDef" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QueryGroupDef" nillable="true" type="tns:QueryGroupDef" />
+  <xs:complexType name="QuerySingleAttributeDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryAttributeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Attribute" nillable="true" type="tns:QueryAttributeRef" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QuerySingleAttributeDef" nillable="true" type="tns:QuerySingleAttributeDef" />
+  <xs:complexType name="QuerySubAttributeDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryAttributeDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SubQuery" nillable="true" type="tns:SubQueryDef" />
+          <xs:element minOccurs="0" name="SubQueryAttribute" nillable="true" type="tns:QueryAttributeDef" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QuerySubAttributeDef" nillable="true" type="tns:QuerySubAttributeDef" />
+  <xs:complexType name="QueryJoinDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryItemDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Conditions" nillable="true" type="tns:ArrayOfQueryConditionDef" />
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Sql" minOccurs="0" name="Operation" type="q1:SqlSourceJoinType" />
+          <xs:element minOccurs="0" name="Source" nillable="true" type="tns:QuerySourceDef" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QueryJoinDef" nillable="true" type="tns:QueryJoinDef" />
+  <xs:complexType name="ArrayOfQueryConditionDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueryConditionDef" nillable="true" type="tns:QueryConditionDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueryConditionDef" nillable="true" type="tns:ArrayOfQueryConditionDef" />
+  <xs:complexType name="QueryConditionDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryItemDef">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" minOccurs="0" name="Condition" type="q2:ConditionOperation" />
+          <xs:element minOccurs="0" name="Conditions" nillable="true" type="tns:ArrayOfQueryConditionDef" />
+          <xs:element minOccurs="0" name="Left" nillable="true" type="tns:QueryConditionPartDef" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" minOccurs="0" name="Operation" type="q3:ExpressionOperation" />
+          <xs:element minOccurs="0" name="Right" nillable="true" type="tns:QueryConditionPartDef" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QueryConditionDef" nillable="true" type="tns:QueryConditionDef" />
+  <xs:complexType name="QueryConditionPartDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Attribute" nillable="true" type="tns:QueryAttributeDef" />
+      <xs:element minOccurs="0" name="Params" nillable="true" type="tns:ArrayOfQueryConditionValueDef" />
+      <xs:element minOccurs="0" name="SubQuery" nillable="true" type="tns:SubQueryDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryConditionPartDef" nillable="true" type="tns:QueryConditionPartDef" />
+  <xs:complexType name="ArrayOfQueryConditionValueDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueryConditionValueDef" nillable="true" type="tns:QueryConditionValueDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueryConditionValueDef" nillable="true" type="tns:ArrayOfQueryConditionValueDef" />
+  <xs:complexType name="QueryConditionValueDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryConditionValueDef" nillable="true" type="tns:QueryConditionValueDef" />
+  <xs:complexType name="QueryOrderDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryItemDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Asc" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Attribute" nillable="true" type="tns:QueryAttributeDef" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QueryOrderDef" nillable="true" type="tns:QueryOrderDef" />
+  <xs:complexType name="ArrayOfQueryAttributeDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueryAttributeDef" nillable="true" type="tns:QueryAttributeDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueryAttributeDef" nillable="true" type="tns:ArrayOfQueryAttributeDef" />
+  <xs:complexType name="ArrayOfQueryGroupDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueryGroupDef" nillable="true" type="tns:QueryGroupDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueryGroupDef" nillable="true" type="tns:ArrayOfQueryGroupDef" />
+  <xs:complexType name="ArrayOfQueryJoinDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueryJoinDef" nillable="true" type="tns:QueryJoinDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueryJoinDef" nillable="true" type="tns:ArrayOfQueryJoinDef" />
+  <xs:complexType name="ArrayOfQueryOrderDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueryOrderDef" nillable="true" type="tns:QueryOrderDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueryOrderDef" nillable="true" type="tns:ArrayOfQueryOrderDef" />
+  <xs:complexType name="ArrayOfQuerySourceDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QuerySourceDef" nillable="true" type="tns:QuerySourceDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQuerySourceDef" nillable="true" type="tns:ArrayOfQuerySourceDef" />
+</xs:schema>

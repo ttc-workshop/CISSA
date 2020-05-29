@@ -1,0 +1,65 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference
+@model Intersoft.CISSA.UserApp.Models.Application.ContextStates.ConfigTableReport
+
+@{
+    ViewBag.Title = Resources.Report.AddColumns;
+}
+<div class="detail-form frame">
+    <h1>@Resources.Report.AddColumns</h1>
+    <form action="@Url.Action("AddColumns")" method="POST">
+        <div class="frame-content">
+            <div class="h-panel">
+                <button class="t-button" type="submit">@Resources.Report.AddColumns</button>
+                @Html.ActionLink(Resources.Home.ToolBar_Back, "Config", null, new { @class = "t-button" })
+            </div>
+            <div class="t-widget t-grid">
+                <input type="hidden" name="SourceId" value="@Model.SourceId.ToString()" />
+                <table cellpadding="2" cellspacing="0" border="1">
+                    <thead class="t-grid-header">
+                        <tr class="t-grid-header-wrap">
+                            <th class="t-header">@Resources.Form.SelectColumn</th>
+                            <th class="t-header">@Resources.Report.AttributeColumn</th>
+                            @*<th class="t-header">@Resources.Form.ActionColumn</th>*@
+                        </tr>
+                    </thead>
+                    <tbody class="t-grid-content">
+                        @if (Model != null && Model.Context != null && Model.Context.Def != null && Model.Context.Def.Sources != null)
+                        {
+                            var i = 0;
+                            var source = Model.Context.Def.Sources.FirstOrDefault(sr => sr.Id == Model.SourceId);
+                            if (source != null && source.DocDef != null && source.DocDef.Attributes != null)
+                            {
+                                foreach (var attrDef in source.DocDef.Attributes)
+                                {
+                                    if (attrDef.Type.Id != (short)CissaDataType.Blob && 
+                                        attrDef.Type.Id != (short)CissaDataType.Doc && 
+                                        attrDef.Type.Id != (short)CissaDataType.DocList &&
+                                        !String.IsNullOrWhiteSpace(attrDef.Caption) && attrDef.Caption.Trim()[0] != '*')
+                                    {
+                                        i++;
+                                        <tr class="@(i%2 == 1 ? "t-alt" : "")">
+                                            <td>@Html.CheckBox(attrDef.Id.ToString())</td>
+                                            <td>@attrDef.Caption</td>
+                                            @*<td>@Html.ActionLink(Resources.Report.AddColumn, "AddColumn", new {sourceId = Model.SourceId, attrId = attrDef.Id}, new {@class = "t-button"})</td>*@
+                                        </tr>
+                                    }
+                                }
+                            }
+                            if (source != null && source.Attributes != null)
+                            {
+                                foreach (var attrDef in source.Attributes)
+                                {
+                                    i++;
+                                    <tr class="@(i%2 == 1 ? "t-alt" : "")">
+                                        <td>@Html.CheckBox(attrDef.Id.ToString())</td>
+                                        <td>@attrDef.Caption</td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>

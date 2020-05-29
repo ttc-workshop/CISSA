@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using Intersoft.CISSA.UserApp.ServiceReference;
+
+namespace Intersoft.CISSA.UserApp.Models.Application.ContextStates
+{
+    public class ShowFilterForm : BaseForm, IDocumentContextState
+    {
+        public Doc Filter { get; private set; }
+
+        public ShowFilterForm(IContext context, Guid formId) : base(context, formId)
+        {
+        }
+
+        public ShowFilterForm(IContext context, Guid formId, Doc filter)
+            : base(context, formId)
+        {
+            Filter = filter;
+        }
+
+        public ShowFilterForm(IContext context, ContextState previous, Guid formId) : base(context, previous, formId)
+        {
+        }
+
+        public ShowFilterForm(IContext context, ContextState previous, Guid formId, Doc filter)
+            : base(context, previous, formId)
+        {
+            Filter = filter;
+        }
+
+        public override ContextAction GetAction(IContext context)
+        {
+            return new ContextAction("Form", "Filter");
+        }
+
+        public Guid? GetDocumentId(IContext context)
+        {
+            if (Filter != null) return Filter.Id;
+            return null;
+        }
+
+        public Doc GetDocument(IContext context)
+        {
+            return Filter;
+        }
+    }
+}

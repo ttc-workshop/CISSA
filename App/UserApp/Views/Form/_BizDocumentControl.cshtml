@@ -1,0 +1,128 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizDocumentControl
+@{
+    bool isGrid = (bool?)ViewData["ParentIsGrid"] ?? false;
+    bool detailGrid = (bool?)ViewData["DetailGrid"] ?? false;
+    bool editing = (bool?)ViewData["Editing"] ?? false;
+    bool editMode = (bool?)ViewData["EditMode"] ?? false;
+    bool filterForm = (bool?)ViewData["FilterForm"] ?? false;
+    if (!filterForm) { ViewData["EditMode"] = false; }
+    var documentId = ViewData["DocumentId"];
+    var buttons = new List<BizButton>();
+    ViewData["DocumentId"] = Model.Value;
+    if (Model.ReadOnly) { ViewData["EditMode"] = false; }
+}
+@if (!isGrid && !detailGrid)
+{
+    @Html.Partial("__BeginFrameBox2", Model)
+}
+@if (editing && Model.Value == null)
+{
+    return;
+}
+@if (Model.Children != null && Model.Children.Count > 0)
+{
+    if (detailGrid)
+    {
+        @Html.Partial("__BeginDetailPanelRow", "")
+        @* if (!editing && Model.FormId != null && Model.Value != null)
+        {
+            @Html.ActionLink("Изменить", "EditDoc", "Form", new { formId = Model.FormId, docId = @Model.Value }, new { @class = "t-button" }) 
+        }
+        @Html.Partial("__EndDetailRow") *@
+    }
+    @Html.Partial("__BeginFrameBox2", Model)
+    if (!editing && Model.FormId != null && Model.Value != null)
+    {
+        @*Ajax.ActionLink("Открыть", "ShowDoc", "Form", new { formId = Model.FormId, docId = @Model.Value }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "content-body" }, new { @class = "t-button" })*@
+        @Html.ActionLink(Resources.Form.Open, "ShowDoc", "Form", new { formId = Model.FormId, docId = @Model.Value }, new { @class = "t-button" })
+        <span class="button-space"></span>
+        if (!Model.ReadOnly)
+        {
+            @*Ajax.ActionLink("Изменить", "EditDoc", "Form", new { formId = Model.FormId, docId = @Model.Value }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "content-body" }, new { @class = "t-button" })*@
+            @Html.ActionLink(Resources.Form.Edit, "EditDoc", "Form", new {formId = Model.FormId, docId = @Model.Value}, new {@class = "t-button"})
+        }
+    }
+    <table class="detail-grid">
+    @foreach (var child in Model.Children)
+    {
+        if (!child.Invisible || child.Options.HasFlag(BizControlOptionFlags.Hidden))
+        {
+            if (child is BizButton)
+            {
+                if (!editMode) { buttons.Add((BizButton)child); }
+            }
+            else
+            {
+                if (buttons.Count > 0)
+                {
+                    if (!editMode)
+                    {
+                        @Html.Partial("__Buttons", buttons)        
+                    }
+                    buttons.Clear();
+                }
+                @Html.Partial("_" + child.GetType().Name, child)
+            }
+        }
+    }
+    @if (buttons.Count > 0)
+    { 
+        @Html.Partial("__Buttons", buttons)            
+        buttons.Clear();
+    }
+    </table>
+    @Html.Partial("__EndFrameBox")
+    if (detailGrid)
+    {
+        @Html.Partial("__EndDetailRow")
+    }
+}
+else if (Model.DocForm != null)
+{
+    if (!detailGrid)
+    {
+        @Html.Partial("_" + Model.DocForm.GetType().Name, Model.DocForm)
+    }
+    else
+    {
+       @* @Html.Partial("__BeginDetailCategoryRow", Model.Caption)*@
+        @Html.Partial("__BeginDetailPanelRow", "")
+        @Html.Partial("__BeginFrameBox2", Model)
+        if (!editing && Model.FormId != null && Model.Value != null)
+        {
+            @*Ajax.ActionLink("Открыть", "ShowDoc", "Form", new { formId = Model.FormId, docId = @Model.Value }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "content-body" }, new { @class = "t-button" })*@
+            @Html.ActionLink(Resources.Form.Open, "ShowDoc", "Form", new { formId = Model.FormId, docId = @Model.Value }, new { @class = "t-button" })
+            <span class="button-space"></span>
+            @*Ajax.ActionLink("Изменить", "EditDoc", "Form", new { formId = Model.DocForm.Id, docId = @Model.DocForm.DocumentId }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "content-body" }, new { @class = "t-button" })*@
+            @Html.ActionLink(Resources.Form.Edit, "EditDoc", "Form", new { formId = Model.FormId, docId = @Model.Value }, new { @class = "t-button" })
+        }
+        <table class="detail-grid">
+                @*@Html.Partial("__EndDetailRow")*@
+        @if (((BizDetailForm)Model.DocForm).LayoutId <= 1)
+        {
+            <tr>
+                @Html.Partial("_" + Model.DocForm.GetType().Name, Model.DocForm)
+            </tr>
+        }
+        else
+        {
+            ViewData["DetailGrid"] = true;
+            
+            <tr class="detail-row">
+                <td class="detail-cell-caption"></td>
+                <td class="detail-cell-value">
+                    @Html.Partial("_" + Model.DocForm.GetType().Name, Model.DocForm)
+                </td>
+            </tr>
+        }
+        </table>
+        @Html.Partial("__EndFrameBox")
+        @Html.Partial("__EndDetailRow")
+    }
+}
+@{
+    ViewData["DocumentId"] = documentId;
+    ViewData["DetailGrid"] = detailGrid;
+    ViewData["EditMode"] = editMode;
+}

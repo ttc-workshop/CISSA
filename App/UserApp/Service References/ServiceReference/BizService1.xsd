@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Misc" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Misc" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:1296/BizService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfMonitorNode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MonitorNode" nillable="true" type="tns:MonitorNode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMonitorNode" nillable="true" type="tns:ArrayOfMonitorNode" />
+  <xs:complexType name="MonitorNode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Data" nillable="true" type="tns:MonitorData" />
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfMonitorNode" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MonitorNode" nillable="true" type="tns:MonitorNode" />
+  <xs:complexType name="MonitorData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AvgTime" type="ser:duration" />
+      <xs:element minOccurs="0" name="ExceptionAvgTime" type="ser:duration" />
+      <xs:element minOccurs="0" name="ExceptionCount" type="xs:int" />
+      <xs:element minOccurs="0" name="ExceptionMaxTime" type="ser:duration" />
+      <xs:element minOccurs="0" name="ExceptionMinTime" type="ser:duration" />
+      <xs:element minOccurs="0" name="ExceptionTime" type="ser:duration" />
+      <xs:element minOccurs="0" name="MaxSessionCount" type="xs:int" />
+      <xs:element minOccurs="0" name="MaxTime" type="ser:duration" />
+      <xs:element minOccurs="0" name="MinTime" type="ser:duration" />
+      <xs:element minOccurs="0" name="SessionCount" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalCount" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalTime" type="ser:duration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MonitorData" nillable="true" type="tns:MonitorData" />
+  <xs:complexType name="ArrayOfModelMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ModelMessage" nillable="true" type="tns:ModelMessage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfModelMessage" nillable="true" type="tns:ArrayOfModelMessage" />
+  <xs:complexType name="ModelMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Key" type="ser:guid" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ModelMessage" nillable="true" type="tns:ModelMessage" />
+</xs:schema>

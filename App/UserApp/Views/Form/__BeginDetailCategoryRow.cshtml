@@ -1,0 +1,11 @@
+﻿@model String
+<tr class="detail-row">
+    @if (!String.IsNullOrEmpty(Model))
+    {
+        <td class="detail-category">@Model</td>
+    }
+    else
+    {
+        <td class="detail-category"></td>
+    }
+    <td class="detail-cell-value">

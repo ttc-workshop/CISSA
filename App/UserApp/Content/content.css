@@ -1,0 +1,36 @@
+#content {
+	margin-left: 200px;
+	padding: 5px;
+	padding-left:15px;
+	position: relative;
+	font-size: 90%;
+	display: block;
+}
+#back-2 {
+	border-bottom-style: solid;
+	border-bottom-color: blue;
+	border-bottom-width: 1px;
+	padding: 4px;
+}
+#grid-1 {
+	background: #f4f8f9;
+	padding: 5px;
+}
+#grid-1:hover {
+	background: #ffffcc;
+}
+#grid-2 {
+	background: #fff;
+	padding: 5px;
+}
+#grid-2:hover {
+	background: #ffffcc;
+}
+#grid-in-1 {
+	width: 30%;
+	float: left;
+}
+#grid-in-2 {
+	width: 70%;
+	float: left;
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:simpleType name="ExpressionOperation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="And" />
+      <xs:enumeration value="Or" />
+      <xs:enumeration value="AndNot" />
+      <xs:enumeration value="OrNot" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ExpressionOperation" nillable="true" type="tns:ExpressionOperation" />
+  <xs:simpleType name="ConditionOperation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Equal" />
+      <xs:enumeration value="NotEqual" />
+      <xs:enumeration value="GreatThen" />
+      <xs:enumeration value="GreatEqual" />
+      <xs:enumeration value="LessThen" />
+      <xs:enumeration value="LessEqual" />
+      <xs:enumeration value="Contains" />
+      <xs:enumeration value="NotContains" />
+      <xs:enumeration value="Like" />
+      <xs:enumeration value="NotLike" />
+      <xs:enumeration value="Between" />
+      <xs:enumeration value="NotBetween" />
+      <xs:enumeration value="In" />
+      <xs:enumeration value="NotIn" />
+      <xs:enumeration value="IsNull" />
+      <xs:enumeration value="IsNotNull" />
+      <xs:enumeration value="Include" />
+      <xs:enumeration value="Is" />
+      <xs:enumeration value="NotIs" />
+      <xs:enumeration value="Exp" />
+      <xs:enumeration value="Levenstein" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ConditionOperation" nillable="true" type="tns:ConditionOperation" />
+  <xs:complexType name="ArrayOfAttributeSort">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AttributeSort" nillable="true" type="tns:AttributeSort" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAttributeSort" nillable="true" type="tns:ArrayOfAttributeSort" />
+  <xs:complexType name="AttributeSort">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Asc" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AttributeId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AttributeSort" nillable="true" type="tns:AttributeSort" />
+</xs:schema>

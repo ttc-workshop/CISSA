@@ -1,0 +1,57 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model IEnumerable<MonitorNode>
+
+@{
+    ViewBag.Title = "Monitor Info";
+    Layout = "~/Views/Shared/_Layout5.cshtml";
+}
+
+<h2>title</h2>
+<table border="1" cellpadding="2" cellspacing="0">
+    <tr>
+        <th rowspan="2">Name</th>
+        <th rowspan="2">Total Count</th>
+        <th rowspan="2">Total Time</th>
+        <th rowspan="2">Session Count</th>
+        <th rowspan="2">Max Session Count</th>
+        <th rowspan="2">Max Time</th>
+        <th rowspan="2">Min Time</th>
+        <th rowspan="2">Avg Time</th>
+        <th colspan="5">Exception</th>
+    </tr>
+    <tr>
+        <th>Count</th>
+        <th>Time</th>
+        <th>Max Time</th>
+        <th>Min Time</th>
+        <th>Avg Time</th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                @if (item.Data != null)
+                {
+                    <td align="center">@item.Data.TotalCount</td>
+                    <td>@item.Data.TotalTime</td>
+                    <td align="center">@item.Data.SessionCount</td>
+                    <td align="center">@item.Data.MaxSessionCount</td>
+                    <td>@item.Data.MaxTime</td>
+                    <td>@item.Data.MinTime</td>
+                    <td>@item.Data.AvgTime</td>
+                    <td align="center">@item.Data.ExceptionCount</td>
+                    <td>@item.Data.ExceptionTime</td>
+                    <td>@item.Data.ExceptionMaxTime</td>
+                    <td>@item.Data.ExceptionMinTime</td>
+                    <td>@item.Data.ExceptionAvgTime</td>
+                }
+                else
+                {
+                    <td colspan="12"></td>
+                }
+            </tr>
+        }
+    }
+</table>

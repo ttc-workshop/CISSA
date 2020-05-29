@@ -1,0 +1,24 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+
+@model List<BizButton>
+
+@if (Model != null)
+{
+    bool detailGrid = (bool?)ViewData["DetailGrid"] ?? false;
+    bool tableGrid = (bool?)ViewData["ParentIsGrid"] ?? false;
+
+    if (detailGrid && !tableGrid)
+    { @Html.Partial("__BeginDetailCellRow", "") }
+    @*<tr class="detail-row">
+        <td class="detail-cell-caption"></td>
+        <td class="detail-cell-value">*@
+    foreach (var button in Model)
+    {
+        @Html.Partial("_" + button.GetType().Name, button)
+        <span class="button-space"></span>
+    }
+        @*</td>
+    </tr>*@
+    if (detailGrid && !tableGrid)
+    { @Html.Partial("__EndDetailRow") }
+}

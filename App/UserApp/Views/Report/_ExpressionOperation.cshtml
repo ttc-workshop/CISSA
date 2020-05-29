@@ -1,0 +1,35 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference
+@model ReportConditionItemDef
+@if (Model != null)
+{
+    var selectList = new List<DropDownItem>(
+        new[]
+        {
+            new DropDownItem
+            {
+                Selected = (Model.Operation == ExpressionOperation.And),
+                Text = Resources.Report.ExpressionAnd,
+                Value = ExpressionOperation.And.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (Model.Operation == ExpressionOperation.AndNot),
+                Text = Resources.Report.ExpressionAndNot,
+                Value = ExpressionOperation.AndNot.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (Model.Operation == ExpressionOperation.Or),
+                Text = Resources.Report.ExpressionOr,
+                Value = ExpressionOperation.Or.ToString()
+            },
+            new DropDownItem
+            {
+                Selected = (Model.Operation == ExpressionOperation.OrNot),
+                Text = Resources.Report.ExpressionOrNot,
+                Value = ExpressionOperation.OrNot.ToString()
+            }
+        });
+
+    @Html.Telerik().DropDownList().Name(Model.Id.ToString()).BindTo(selectList).ClientEvents(events => events.OnChange("onChangeConditionExpression"));
+}

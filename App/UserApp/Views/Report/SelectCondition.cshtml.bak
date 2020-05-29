@@ -1,0 +1,43 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference
+@model Intersoft.CISSA.UserApp.Models.Application.ContextStates.ConfigTableReport
+
+@{
+    ViewBag.Title = Resources.Report.AddCondition;
+}
+<div class="detail-form frame">
+    <h1>@Resources.Report.AddCondition</h1>
+    <div class="frame-content">
+        <div class="h-panel">@Html.ActionLink(Resources.Home.ToolBar_Back, "Config", null, new { @class = "t-button" })</div>
+        <div class="t-widget t-grid">
+            <table cellpadding="2" cellspacing="0" border="1">
+                <thead class="t-grid-header">
+                    <tr class="t-grid-header-wrap">
+                        <th class="t-header">@Resources.Report.AttributeColumn</th>
+                        <th class="t-header">@Resources.Form.ActionColumn</th>
+                    </tr>
+                </thead>
+                <tbody class="t-grid-content">
+                    @if (Model != null && Model.Context != null && Model.Context.Def != null && Model.Context.Def.Sources != null)
+                    {
+                        var source = Model.Context.Def.Sources.FirstOrDefault(sr => sr.Id == Model.SourceId);
+                        if (source != null && source.DocDef != null && source.DocDef.Attributes != null)
+                        {
+                            var i = 0;
+                            foreach (var attrDef in source.DocDef.Attributes)
+                            {
+                                if (attrDef.Type.Id != (short)CissaDataType.Blob && attrDef.Type.Id != (short)CissaDataType.Doc && attrDef.Type.Id != (short)CissaDataType.DocList)
+                                {
+                                    i++;
+                                    <tr class="@(i%2 == 1 ? "t-alt" : "")">
+                                        <td>@attrDef.Caption</td>
+                                        <td>@Html.ActionLink(Resources.Report.AddCondition, "AddCondition", new { sourceId = Model.SourceId, attrId = attrDef.Id }, new { @class = "t-button" })</td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

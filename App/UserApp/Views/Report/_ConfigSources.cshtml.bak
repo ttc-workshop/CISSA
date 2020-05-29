@@ -1,0 +1,47 @@
+﻿@model Intersoft.CISSA.UserApp.Models.Application.ContextStates.ConfigTableReport
+
+<div class="t-widget t-grid">
+    <table cellpadding="2" cellspacing="0" border="1">
+        <thead class="t-grid-header">
+            <tr class="t-grid-header-wrap">
+                <th class="t-header" colspan="2">@Resources.Report.SourceColumn</th>
+                <th class="t-header">@Resources.Form.ActionColumn</th>
+            </tr>
+        </thead>
+        <tbody class="t-grid-content">
+            @if (Model.Context.Def != null && Model.Context.Def.Sources != null)
+            {
+                var source = Model.Context.Def.Sources.FirstOrDefault(s => s.Id == Model.Context.Def.SourceId);
+                if (source != null)
+                {
+                    <tr>
+                        <td colspan="2">@source.DocDef.Caption</td>
+                        <td>
+                            @Html.ActionLink(@Resources.Report.AddColumn, "SelectColumn", new { id = Model.Context.Def.SourceId }, new { @class = "t-button" })
+                            @Html.ActionLink(@Resources.Report.AddSource, "AddSource", new { id = Model.Context.Def.SourceId }, new { @class = "t-button" })
+                            @Html.ActionLink(@Resources.Report.AddCondition, "SelectCondition", new { id = Model.Context.Def.SourceId }, new { @class = "t-button" })
+                        </td>
+                    </tr>
+                }
+                var i = 1;
+                foreach (var joinDef in Model.Context.Def.Joins)
+                {
+                    source = Model.Context.Def.Sources.FirstOrDefault(s => s.Id == joinDef.SourceId);
+                    if (source != null)
+                    {
+                        i++;
+                        <tr class="@(i%2 == 1 ? "t-alt" : "")">
+                            <td>-</td>
+                            <td>@source.DocDef.Caption</td>
+                            <td>
+                                @Html.ActionLink(@Resources.Report.AddColumn, "SelectColumn", new { id = joinDef.SourceId }, new { @class = "t-button" })
+                                @Html.ActionLink(@Resources.Report.AddSource, "AddSource", new { id = joinDef.SourceId }, new { @class = "t-button" })
+                                @Html.ActionLink(@Resources.Report.AddCondition, "SelectCondition", new { id = joinDef.SourceId }, new { @class = "t-button" })
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

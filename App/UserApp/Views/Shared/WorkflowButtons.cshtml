@@ -1,0 +1,23 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@using System.Linq;
+
+@model List<ActivityLink>
+
+@foreach (ActivityLink link in Model.Where(i => i.UserAction != null))
+{
+    if (link.UserAction.Id == Guid.Parse("1F921E62-5B79-4F19-8360-000000000001"))
+    {
+        <button class="t-button" type="submit">Сохранить</button>
+    }
+
+    if (link.UserAction.Id == Guid.Parse("1F921E62-5B79-4F19-8360-000000000002"))
+    {
+        <button class="t-button" type="button" onclick="parent.location='@Url.Action("Return", "Process")'">Отменить</button>
+    }
+    
+    <span class="button-space">&nbsp;</span>
+    
+}
+
+
+

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Intersoft.CISSA.UserApp.ServiceReference.DocDefName>
+
+@{
+    ViewBag.Title = Resources.Report.SelectSource;
+}
+<div class="detail-form frame">
+    <h1>@Resources.Report.SelectSource</h1>
+    <div class="frame-content">
+        <div class="v-panel">
+            <div class="panel-header">@Resources.Report.UploadForm</div>
+            @using (Html.BeginForm("Restore", "Report", FormMethod.Post, new {id = "uploadForm", enctype = "multipart/form-data"}))
+            {
+                @(Html.Telerik().Upload().Name("attachments"))
+                <div class="v-panel">
+                    <div class="h-panel">
+                        <input type="submit" value="@Resources.Report.Upload" class="t-button"/>
+                        <input type="reset" value="@Resources.Form.ResetForm" class="t-button"/>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="t-widget t-grid">
+            <table cellpadding="2" cellspacing="0" border="1">
+                <thead class="t-grid-header">
+                <tr class="t-grid-header-wrap">
+                    <th class="t-header">@Resources.Form.No</th>
+                    <th class="t-header">@Resources.Report.SourceColumn</th>
+                    <th class="t-header">@Resources.Form.ActionColumn</th>
+                </tr>
+                </thead>
+                <tbody class="t-grid-content">
+                @if (Model != null)
+                {
+                    var i = 0;
+                    foreach (var item in Model)
+                    {
+                        if (String.IsNullOrEmpty(item.Caption))
+                        {
+                            continue;
+                        }
+                        i++;
+                        <tr class="@(i%2 == 1 ? "t-alt" : "")">
+                            <td>@i</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Caption)
+                            </td>
+                            <td>
+                                @Html.ActionLink(@Resources.Form.Select, "SelectSource", new {id = item.Id}, new {@class = "t-button"})
+                            </td>
+                        </tr>
+                    }
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

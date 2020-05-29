@@ -1,0 +1,5 @@
+C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\WCFProxyPool\ClientBasePool\obj\Debug\ClientBasePool.csprojResolveAssemblyReference.cache
+C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\WCFProxyPool\ClientBasePool\bin\Debug\System.ServiceModel.ChannelPool.dll
+C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\WCFProxyPool\ClientBasePool\bin\Debug\System.ServiceModel.ChannelPool.pdb
+C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\WCFProxyPool\ClientBasePool\obj\Debug\System.ServiceModel.ChannelPool.dll
+C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\WCFProxyPool\ClientBasePool\obj\Debug\System.ServiceModel.ChannelPool.pdb

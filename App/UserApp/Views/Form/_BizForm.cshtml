@@ -1,0 +1,27 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizForm
+
+@if (Model != null)
+{
+    var isGrid = ViewData["ParentIsGrid"];
+    var nesting = ViewData["Nesting"];
+    ViewData["ParentIsGrid"] = false;
+    ViewData["Nesting"] = (int)nesting + 1;
+    if (isGrid != null ? !(bool)isGrid : true)
+    {
+        @Html.Label(Model.Caption ?? "")
+    }
+    <div class="div-actions">
+        @Html.ActionLink(Resources.Form.Edit, "EditDoc", "Form", new { formId = @Model.Id, docId = @Model.DocumentId }, null)
+    </div>
+    
+   foreach (BizControl child in Model.Children)
+   {
+       if (!child.Invisible && !child.Options.HasFlag(BizControlOptionFlags.Hidden))
+       { 
+            <span class="control">@Html.Partial("_" + child.GetType().Name, child)</span>
+       }
+   }
+   ViewData["Nesting"] = nesting;
+   ViewData["ParentIsGrid"] = isGrid;
+}

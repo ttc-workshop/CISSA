@@ -1,0 +1,19 @@
+﻿Выполняется установка сборки 'C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\ProcessService\bin\Debug\processService.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\ProcessService\bin\Debug\processService.InstallLog
+   assemblypath = C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\ProcessService\bin\Debug\processService.exe
+Отсутствуют общие программы установки с атрибутом RunInstallerAttribute.Yes в сборке C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\ProcessService\bin\Debug\processService.exe.
+Выполняется фиксация сборки 'C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\ProcessService\bin\Debug\processService.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\ProcessService\bin\Debug\processService.InstallLog
+   assemblypath = C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\ProcessService\bin\Debug\processService.exe
+Отсутствуют общие программы установки с атрибутом RunInstallerAttribute.Yes в сборке C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\ProcessService\bin\Debug\processService.exe.
+Удалите файл InstallState, поскольку отсутствуют программы установки.
+Выполняется удаление сборки 'C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\ProcessService\bin\Debug\processService.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   logfile = C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\ProcessService\bin\Debug\processService.InstallLog
+   assemblypath = C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\ProcessService\bin\Debug\processService.exe
+Отсутствуют общие программы установки с атрибутом RunInstallerAttribute.Yes в сборке C:\Users\Администратор\Documents\Dev\Vs-2013\cissa-4\trunk\Utils\ProcessService\bin\Debug\processService.exe.

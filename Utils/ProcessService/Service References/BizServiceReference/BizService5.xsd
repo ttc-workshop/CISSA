@@ -1,0 +1,1449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Misc" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Languages" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Enums" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd16" namespace="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd17" namespace="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Defs" />
+  <xs:element name="GetUserInfo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model" minOccurs="0" name="GetUserInfoResult" nillable="true" type="q1:UserInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeUserPassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="oldPassword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="newPassword" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeUserPasswordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model" minOccurs="0" name="ChangeUserPasswordResult" nillable="true" type="q2:BizResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TryConnect">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TryConnectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TryConnectResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserLanguage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="languageId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserLanguageResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClearCache">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClearCacheResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCacheInfo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCacheInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCacheInfoResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMonitorNodes">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMonitorNodesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Misc" minOccurs="0" name="GetMonitorNodesResult" nillable="true" type="q3:ArrayOfMonitorNode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLanguageId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cultureName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLanguageIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLanguageIdResult" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLanguageCultureName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="languageId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLanguageCultureNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLanguageCultureNameResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnyForm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="formId" type="q4:guid" />
+        <xs:element minOccurs="0" name="languageId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAnyFormResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetAnyFormResult" nillable="true" type="q5:BizForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDetailForm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="formId" type="q6:guid" />
+        <xs:element minOccurs="0" name="languageId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDetailFormResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetDetailFormResult" nillable="true" type="q7:BizDetailForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDetailFormWithData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="formId" type="q8:guid" />
+        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docId" type="q9:guid" />
+        <xs:element minOccurs="0" name="languageId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDetailFormWithDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetDetailFormWithDataResult" nillable="true" type="q10:BizDetailForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGridForm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="formId" type="q11:guid" />
+        <xs:element minOccurs="0" name="languageId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGridFormResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetGridFormResult" nillable="true" type="q12:BizTableForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetFormDoc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q13:BizForm" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="document" nillable="true" type="q14:Doc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetFormDocResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="SetFormDocResult" nillable="true" type="q15:BizForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFormDoc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q16:BizForm" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="document" nillable="true" type="q17:Doc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFormDocResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="GetFormDocResult" nillable="true" type="q18:Doc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMainForm">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMainFormResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetMainFormResult" nillable="true" type="q19:BizForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMenus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="languageId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMenusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetMenusResult" nillable="true" type="q20:ArrayOfBizMenu" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLanguages">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLanguagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Languages" minOccurs="0" name="GetLanguagesResult" nillable="true" type="q21:ArrayOfLanguageType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TranslateForm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q22:BizForm" />
+        <xs:element minOccurs="0" name="languageId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TranslateFormResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="TranslateFormResult" nillable="true" type="q23:BizForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TranslateMenus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="menus" nillable="true" type="q24:ArrayOfBizMenu" />
+        <xs:element minOccurs="0" name="languageId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TranslateMenusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="TranslateMenusResult" nillable="true" type="q25:ArrayOfBizMenu" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TranslateUserActions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="userActions" nillable="true" type="q26:ArrayOfUserAction" />
+        <xs:element minOccurs="0" name="languageId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TranslateUserActionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="TranslateUserActionsResult" nillable="true" type="q27:ArrayOfUserAction" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRows">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q28:BizForm" />
+        <xs:element xmlns:q29="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docStateId" nillable="true" type="q29:guid" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="filter" nillable="true" type="q30:BizForm" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" minOccurs="0" name="sortAttrs" nillable="true" type="q31:ArrayOfAttributeSort" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetTableFormRowsResult" nillable="true" type="q32:ArrayOfBizControl" />
+        <xs:element minOccurs="0" name="count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q33:BizForm" />
+        <xs:element xmlns:q34="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docStateId" nillable="true" type="q34:guid" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="filter" nillable="true" type="q35:BizForm" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" minOccurs="0" name="sortAttrs" nillable="true" type="q36:ArrayOfAttributeSort" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetTableFormRowDataResult" nillable="true" type="q37:ArrayOfBizControl" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q38:BizForm" />
+        <xs:element xmlns:q39="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docStateId" nillable="true" type="q39:guid" />
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="filter" nillable="true" type="q40:BizForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowCountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetTableFormRowCountResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowsFromQuery">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q41:BizForm" />
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" minOccurs="0" name="def" nillable="true" type="q42:QueryDef" />
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" minOccurs="0" name="sortAttrs" nillable="true" type="q43:ArrayOfAttributeSort" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowsFromQueryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetTableFormRowsFromQueryResult" nillable="true" type="q44:ArrayOfBizControl" />
+        <xs:element minOccurs="0" name="count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowDataFromQuery">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q45:BizForm" />
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" minOccurs="0" name="def" nillable="true" type="q46:QueryDef" />
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" minOccurs="0" name="sortAttrs" nillable="true" type="q47:ArrayOfAttributeSort" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowDataFromQueryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetTableFormRowDataFromQueryResult" nillable="true" type="q48:ArrayOfBizControl" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowsFromFilterQuery">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q49:BizForm" />
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" minOccurs="0" name="def" nillable="true" type="q50:QueryDef" />
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="filter" nillable="true" type="q51:BizForm" />
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" minOccurs="0" name="sortAttrs" nillable="true" type="q52:ArrayOfAttributeSort" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowsFromFilterQueryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetTableFormRowsFromFilterQueryResult" nillable="true" type="q53:ArrayOfBizControl" />
+        <xs:element minOccurs="0" name="count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowDataFromFilterQuery">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q54:BizForm" />
+        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" minOccurs="0" name="def" nillable="true" type="q55:QueryDef" />
+        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="filter" nillable="true" type="q56:BizForm" />
+        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" minOccurs="0" name="sortAttrs" nillable="true" type="q57:ArrayOfAttributeSort" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowDataFromFilterQueryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetTableFormRowDataFromFilterQueryResult" nillable="true" type="q58:ArrayOfBizControl" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowCountFromQuery">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q59="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q59:BizForm" />
+        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" minOccurs="0" name="def" nillable="true" type="q60:QueryDef" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowCountFromQueryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetTableFormRowCountFromQueryResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowCountFromFilterQuery">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q61="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q61:BizForm" />
+        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" minOccurs="0" name="def" nillable="true" type="q62:QueryDef" />
+        <xs:element xmlns:q63="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="filter" nillable="true" type="q63:BizForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowCountFromFilterQueryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetTableFormRowCountFromFilterQueryResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowsFromList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q64="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q64:BizForm" />
+        <xs:element xmlns:q65="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="docIds" nillable="true" type="q65:ArrayOfguid" />
+        <xs:element xmlns:q66="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" minOccurs="0" name="sortAttrs" nillable="true" type="q66:ArrayOfAttributeSort" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTableFormRowsFromListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetTableFormRowsFromListResult" nillable="true" type="q67:ArrayOfBizControl" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocListTableFormRows">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q68="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q68:BizForm" />
+        <xs:element xmlns:q69="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docId" type="q69:guid" />
+        <xs:element xmlns:q70="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDefId" type="q70:guid" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocListTableFormRowsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q71="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetDocListTableFormRowsResult" nillable="true" type="q71:ArrayOfBizControl" />
+        <xs:element minOccurs="0" name="count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocListTableFormRowData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q72="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q72:BizForm" />
+        <xs:element xmlns:q73="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docId" type="q73:guid" />
+        <xs:element xmlns:q74="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDefId" type="q74:guid" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocListTableFormRowDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q75="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetDocListTableFormRowDataResult" nillable="true" type="q75:ArrayOfBizControl" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocListTableFormRowCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q76="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q76:BizForm" />
+        <xs:element xmlns:q77="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docId" type="q77:guid" />
+        <xs:element xmlns:q78="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDefId" type="q78:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocListTableFormRowCountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDocListTableFormRowCountResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRefListTableFormRows">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q79="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q79:BizForm" />
+        <xs:element xmlns:q80="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docId" type="q80:guid" />
+        <xs:element xmlns:q81="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDefId" type="q81:guid" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRefListTableFormRowsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q82="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetRefListTableFormRowsResult" nillable="true" type="q82:ArrayOfBizControl" />
+        <xs:element minOccurs="0" name="count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRefListTableFormRowData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q83="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q83:BizForm" />
+        <xs:element xmlns:q84="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docId" type="q84:guid" />
+        <xs:element xmlns:q85="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDefId" type="q85:guid" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRefListTableFormRowDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q86="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="GetRefListTableFormRowDataResult" nillable="true" type="q86:ArrayOfBizControl" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRefListTableFormRowCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q87="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q87:BizForm" />
+        <xs:element xmlns:q88="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docId" type="q88:guid" />
+        <xs:element xmlns:q89="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDefId" type="q89:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRefListTableFormRowCountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetRefListTableFormRowCountResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFormErrors">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q90="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q90:BizForm" />
+        <xs:element xmlns:q91="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Misc" minOccurs="0" name="errors" nillable="true" type="q91:ArrayOfModelMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFormErrorsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q92="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Misc" minOccurs="0" name="GetFormErrorsResult" nillable="true" type="q92:ArrayOfModelMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetFormOptions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q93="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q93:BizForm" />
+        <xs:element xmlns:q94="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="formOptions" nillable="true" type="q94:ArrayOfKeyValueOfguidArrayOfBizControlOptionjg02tw4K" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetFormOptionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q95="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="SetFormOptionsResult" nillable="true" type="q95:BizForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetFormControlOptions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q96="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q96:BizForm" />
+        <xs:element xmlns:q97="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="formOptions" nillable="true" type="q97:ArrayOfBizControlOption" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetFormControlOptionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q98="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="SetFormControlOptionsResult" nillable="true" type="q98:BizForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q99="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="formId" type="q99:guid" />
+        <xs:element xmlns:q100="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="imageId" type="q100:guid" />
+        <xs:element minOccurs="0" name="height" type="xs:int" />
+        <xs:element minOccurs="0" name="width" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetImageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetImageResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFormComboBoxValues">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q101="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q101:BizForm" />
+        <xs:element xmlns:q102="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="comboBox" nillable="true" type="q102:BizComboBox" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFormComboBoxValuesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q103="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Enums" minOccurs="0" name="GetFormComboBoxValuesResult" nillable="true" type="q103:ArrayOfEnumValue" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentLoad">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q104="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="documentId" type="q104:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentLoadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q105="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="DocumentLoadResult" nillable="true" type="q105:Doc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentNew">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q106="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docDefId" type="q106:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentNewResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q107="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="DocumentNewResult" nillable="true" type="q107:Doc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentInit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q108="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="doc" nillable="true" type="q108:Doc" />
+        <xs:element xmlns:q109="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="data" nillable="true" type="q109:WorkflowContextData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentInitResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q110="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="DocumentInitResult" nillable="true" type="q110:Doc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentSave">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q111="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="doc" nillable="true" type="q111:Doc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentSaveResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q112="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="DocumentSaveResult" nillable="true" type="q112:Doc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentDelete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q113="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="documentId" type="q113:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentDeleteResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentStateList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q114="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docId" type="q114:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentStateListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q115="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="DocumentStateListResult" nillable="true" type="q115:ArrayOfDocState" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEnumList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q116="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="enumId" type="q116:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEnumListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q117="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Enums" minOccurs="0" name="GetEnumListResult" nillable="true" type="q117:ArrayOfEnumValue" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q118="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docDefId" type="q118:guid" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q119="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DocumentListResult" nillable="true" type="q119:ArrayOfguid" />
+        <xs:element minOccurs="0" name="pageCount" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentFilterList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q120="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docDefId" type="q120:guid" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+        <xs:element xmlns:q121="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="filter" nillable="true" type="q121:Doc" />
+        <xs:element xmlns:q122="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sortAttr" nillable="true" type="q122:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentFilterListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q123="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DocumentFilterListResult" nillable="true" type="q123:ArrayOfguid" />
+        <xs:element minOccurs="0" name="count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentStateFilterList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q124="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docDefId" type="q124:guid" />
+        <xs:element xmlns:q125="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docStateId" type="q125:guid" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+        <xs:element xmlns:q126="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="filter" nillable="true" type="q126:Doc" />
+        <xs:element xmlns:q127="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sortAttr" nillable="true" type="q127:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocumentStateFilterListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q128="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DocumentStateFilterListResult" nillable="true" type="q128:ArrayOfguid" />
+        <xs:element minOccurs="0" name="count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocAttrList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q129="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="document" nillable="true" type="q129:Doc" />
+        <xs:element xmlns:q130="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDefId" type="q130:guid" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+        <xs:element xmlns:q131="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="filter" nillable="true" type="q131:Doc" />
+        <xs:element xmlns:q132="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sortAttr" nillable="true" type="q132:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocAttrListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q133="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DocAttrListResult" nillable="true" type="q133:ArrayOfguid" />
+        <xs:element minOccurs="0" name="count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocAttrListById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q134="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docId" type="q134:guid" />
+        <xs:element xmlns:q135="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDefId" type="q135:guid" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+        <xs:element xmlns:q136="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="filter" nillable="true" type="q136:Doc" />
+        <xs:element xmlns:q137="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sortAttr" nillable="true" type="q137:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocAttrListByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q138="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DocAttrListByIdResult" nillable="true" type="q138:ArrayOfguid" />
+        <xs:element minOccurs="0" name="count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNestingDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q139="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="document" nillable="true" type="q139:Doc" />
+        <xs:element xmlns:q140="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="docAttr" nillable="true" type="q140:DocAttribute" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNestingDocumentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q141="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="GetNestingDocumentResult" nillable="true" type="q141:Doc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocIsStored">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q142="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="document" nillable="true" type="q142:Doc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DocIsStoredResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DocIsStoredResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistsInDocList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q143="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docId" type="q143:guid" />
+        <xs:element xmlns:q144="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDocId" type="q144:guid" />
+        <xs:element xmlns:q145="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDefId" type="q145:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistsInDocListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExistsInDocListResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddDocToList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q146="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docId" type="q146:guid" />
+        <xs:element xmlns:q147="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="document" nillable="true" type="q147:Doc" />
+        <xs:element xmlns:q148="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDefId" type="q148:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddDocToListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q149="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="AddDocToListResult" nillable="true" type="q149:Doc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocBlob">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q150="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docId" type="q150:guid" />
+        <xs:element xmlns:q151="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDefId" type="q151:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocBlobResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q152="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="GetDocBlobResult" nillable="true" type="q152:BlobData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q153="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docId" type="q153:guid" />
+        <xs:element xmlns:q154="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDefId" type="q154:guid" />
+        <xs:element minOccurs="0" name="height" type="xs:int" />
+        <xs:element minOccurs="0" name="width" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocImageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q155="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="GetDocImageResult" nillable="true" type="q155:BlobData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveDocImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q156="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docId" type="q156:guid" />
+        <xs:element xmlns:q157="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDefId" type="q157:guid" />
+        <xs:element minOccurs="0" name="data" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="fileName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveDocImageResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocDefNames">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocDefNamesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q158="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="GetDocDefNamesResult" nillable="true" type="q158:ArrayOfDocDefName" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WorkflowExecute">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q159="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="processId" type="q159:guid" />
+        <xs:element xmlns:q160="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="processParameters" nillable="true" type="q160:ArrayOfKeyValueOfstringanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WorkflowExecuteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q161="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="WorkflowExecuteResult" nillable="true" type="q161:WorkflowContextData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WorkflowContinueWithUserAction">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q162="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="contextData" nillable="true" type="q162:WorkflowContextData" />
+        <xs:element xmlns:q163="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userAction" type="q163:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WorkflowContinueWithUserActionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q164="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="WorkflowContinueWithUserActionResult" nillable="true" type="q164:WorkflowContextData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WorkflowContinueWithDocumentId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q165="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="contextData" nillable="true" type="q165:WorkflowContextData" />
+        <xs:element xmlns:q166="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docId" type="q166:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WorkflowContinueWithDocumentIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q167="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="WorkflowContinueWithDocumentIdResult" nillable="true" type="q167:WorkflowContextData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WorkflowContinueWithDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q168="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="contextData" nillable="true" type="q168:WorkflowContextData" />
+        <xs:element xmlns:q169="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="document" nillable="true" type="q169:Doc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WorkflowContinueWithDocumentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q170="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="WorkflowContinueWithDocumentResult" nillable="true" type="q170:WorkflowContextData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WorkflowContinue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q171="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="contextData" nillable="true" type="q171:WorkflowContextData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WorkflowContinueResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q172="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="WorkflowContinueResult" nillable="true" type="q172:WorkflowContextData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WorkflowContinueWithUploadFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q173="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="contextData" nillable="true" type="q173:WorkflowContextData" />
+        <xs:element minOccurs="0" name="uploadData" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="fileName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WorkflowContinueWithUploadFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q174="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="WorkflowContinueWithUploadFileResult" nillable="true" type="q174:WorkflowContextData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WorkflowGateExecute">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gateName" nillable="true" type="xs:string" />
+        <xs:element xmlns:q175="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="contextData" nillable="true" type="q175:WorkflowContextData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WorkflowGateExecuteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q176="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="WorkflowGateExecuteResult" nillable="true" type="q176:ExternalProcessExecuteResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GenerateFromTemplate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q177="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="document" nillable="true" type="q177:Doc" />
+        <xs:element xmlns:q178="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" minOccurs="0" name="contextData" nillable="true" type="q178:WorkflowContextData" />
+        <xs:element minOccurs="0" name="fileName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GenerateFromTemplateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GenerateFromTemplateResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fileName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetFileResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcelFromQuery">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q179="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q179:BizForm" />
+        <xs:element xmlns:q180="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" minOccurs="0" name="queryDef" nillable="true" type="q180:QueryDef" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcelFromQueryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExcelFromQueryResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcelFromDocIdList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q181="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q181:BizForm" />
+        <xs:element xmlns:q182="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="docIdList" nillable="true" type="q182:ArrayOfguid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcelFromDocIdListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExcelFromDocIdListResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcelFromFilter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q183="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q183:BizForm" />
+        <xs:element xmlns:q184="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docStateId" nillable="true" type="q184:guid" />
+        <xs:element xmlns:q185="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="filter" nillable="true" type="q185:Doc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcelFromFilterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExcelFromFilterResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcelFromFormFilter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q186="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q186:BizForm" />
+        <xs:element xmlns:q187="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docStateId" nillable="true" type="q187:guid" />
+        <xs:element xmlns:q188="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="filter" nillable="true" type="q188:BizForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcelFromFormFilterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExcelFromFormFilterResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcelFromDocumentListForm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q189="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="documentId" type="q189:guid" />
+        <xs:element xmlns:q190="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="docListForm" nillable="true" type="q190:BizDocumentListForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcelFromDocumentListFormResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExcelFromDocumentListFormResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcelFromDetailForm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q191="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q191:BizForm" />
+        <xs:element xmlns:q192="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="doc" nillable="true" type="q192:Doc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExcelFromDetailFormResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExcelFromDetailFormResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateTableReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q193="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docDefId" type="q193:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateTableReportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q194="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="CreateTableReportResult" nillable="true" type="q194:TableReportContext" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="JoinTableReportSource">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q195="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="context" nillable="true" type="q195:TableReportContext" />
+        <xs:element xmlns:q196="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="masterSourceId" type="q196:guid" />
+        <xs:element xmlns:q197="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docDefId" type="q197:guid" />
+        <xs:element xmlns:q198="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDefId" type="q198:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="JoinTableReportSourceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q199="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="JoinTableReportSourceResult" nillable="true" type="q199:TableReportContext" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveTableReportSource">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q200="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="context" nillable="true" type="q200:TableReportContext" />
+        <xs:element xmlns:q201="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sourceId" type="q201:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveTableReportSourceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q202="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="RemoveTableReportSourceResult" nillable="true" type="q202:TableReportContext" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTableReportColumn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q203="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="context" nillable="true" type="q203:TableReportContext" />
+        <xs:element xmlns:q204="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sourceId" type="q204:guid" />
+        <xs:element xmlns:q205="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="attrDefId" type="q205:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTableReportColumnResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q206="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="AddTableReportColumnResult" nillable="true" type="q206:TableReportContext" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTableReportColumns">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q207="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="context" nillable="true" type="q207:TableReportContext" />
+        <xs:element xmlns:q208="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sourceId" type="q208:guid" />
+        <xs:element xmlns:q209="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="attrDefIds" nillable="true" type="q209:ArrayOfguid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTableReportColumnsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q210="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="AddTableReportColumnsResult" nillable="true" type="q210:TableReportContext" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveTableReportColumn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q211="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="context" nillable="true" type="q211:TableReportContext" />
+        <xs:element xmlns:q212="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="columnId" type="q212:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveTableReportColumnResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q213="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="RemoveTableReportColumnResult" nillable="true" type="q213:TableReportContext" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTableReportCondition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q214="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="context" nillable="true" type="q214:TableReportContext" />
+        <xs:element xmlns:q215="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="leftSourceId" type="q215:guid" />
+        <xs:element xmlns:q216="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="leftAttrId" type="q216:guid" />
+        <xs:element xmlns:q217="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Defs" minOccurs="0" name="type" type="q217:ReportConditionDefType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTableReportConditionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q218="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="AddTableReportConditionResult" nillable="true" type="q218:TableReportContext" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveTableReportCondition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q219="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="context" nillable="true" type="q219:TableReportContext" />
+        <xs:element xmlns:q220="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="conditionId" type="q220:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveTableReportConditionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q221="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="RemoveTableReportConditionResult" nillable="true" type="q221:TableReportContext" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTableReportExpCondition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q222="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="context" nillable="true" type="q222:TableReportContext" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTableReportExpConditionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q223="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="AddTableReportExpConditionResult" nillable="true" type="q223:TableReportContext" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExecuteTableReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q224="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Context" minOccurs="0" name="context" nillable="true" type="q224:TableReportContext" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExecuteTableReportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExecuteTableReportResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q225="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" minOccurs="0" name="queryDef" nillable="true" type="q225:QueryDef" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q226="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetDocListResult" nillable="true" type="q226:ArrayOfguid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocListWithCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q227="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" minOccurs="0" name="queryDef" nillable="true" type="q227:QueryDef" />
+        <xs:element minOccurs="0" name="pageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDocListWithCountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q228="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetDocListWithCountResult" nillable="true" type="q228:ArrayOfguid" />
+        <xs:element minOccurs="0" name="count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQueryCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q229="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" minOccurs="0" name="query" nillable="true" type="q229:QueryDef" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQueryCountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetQueryCountResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryFromDoc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q230="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="document" nillable="true" type="q230:Doc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryFromDocResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q231="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" minOccurs="0" name="QueryFromDocResult" nillable="true" type="q231:QueryDef" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryFromForm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q232="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="form" nillable="true" type="q232:BizForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryFromFormResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q233="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" minOccurs="0" name="QueryFromFormResult" nillable="true" type="q233:QueryDef" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateQuery">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q234="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docDefId" type="q234:guid" />
+        <xs:element xmlns:q235="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="docStateId" nillable="true" type="q235:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateQueryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q236="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" minOccurs="0" name="CreateQueryResult" nillable="true" type="q236:QueryDef" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

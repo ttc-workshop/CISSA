@@ -1,0 +1,19 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@using Intersoft.CISSA.UserApp.Models;
+@model BizDynamicDocumentListForm
+
+@{
+    var isGrid = (bool?)ViewData["ParentIsGrid"] ?? false;
+}
+@if (!isGrid)
+{
+    @Html.Label(Model.Caption ?? "")
+}
+
+@{
+    var mengdForm = new ManagedTableForm(Model.TableForm);
+
+    <div class="sub-form">
+        @Html.Partial("_" + mengdForm.GetType().Name, mengdForm)
+    </div>
+}

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="cissaEntities-Web.config Connection String" description="cissaEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=~\Model\Data\DataModel.csdl|~\Model\Data\DataModel.ssdl|~\Model\Data\DataModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=195.38.189.100;Initial Catalog=asist_db;Password=QQQwww123;Persist Security Info=True;User ID=sa;MultipleActiveResultSets=True;Max Pool Size=500;Connect Timeout=120&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Администратор\\Documents\\Dev\\Vs-2013\\cissa-4\\trunk\\App\\BizService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='cissaEntities']/@connectionString" />
+  </parameter>
+  <parameter name="asistMeta-Web.config Connection String" description="asistMeta Connection String used in web.config by the application to access the database." defaultValue="Data Source=localhost;Initial Catalog=asist-meta;Password=QQQwww123;Persist Security Info=True;User ID=sa;MultipleActiveResultSets=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Администратор\\Documents\\Dev\\Vs-2013\\cissa-4\\trunk\\App\\BizService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='asistMeta']/@connectionString" />
+  </parameter>
+  <parameter name="asistData-Web.config Connection String" description="asistData Connection String used in web.config by the application to access the database." defaultValue="Data Source=192.168.0.11;Initial Catalog=asist-tj-data;Password=QQQwww123;Persist Security Info=True;User ID=sa;MultipleActiveResultSets=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Администратор\\Documents\\Dev\\Vs-2013\\cissa-4\\trunk\\App\\BizService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='asistData']/@connectionString" />
+  </parameter>
+  <parameter name="cissaMeta-Web.config Connection String" description="cissaMeta Connection String used in web.config by the application to access the database." defaultValue="Data Source=192.168.0.11;Initial Catalog=cissa;Password=QQQwww123;Persist Security Info=True;User ID=sa;MultipleActiveResultSets=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Администратор\\Documents\\Dev\\Vs-2013\\cissa-4\\trunk\\App\\BizService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='cissaMeta']/@connectionString" />
+  </parameter>
+  <parameter name="asistMetaLocal-Web.config Connection String" description="asistMetaLocal Connection String used in web.config by the application to access the database." defaultValue="Data Source=localhost;Initial Catalog=asist-meta;Password=QQQwww123;Persist Security Info=True;User ID=sa;MultipleActiveResultSets=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Администратор\\Documents\\Dev\\Vs-2013\\cissa-4\\trunk\\App\\BizService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='asistMetaLocal']/@connectionString" />
+  </parameter>
+  <parameter name="data-Web.config Connection String" description="data Connection String used in web.config by the application to access the database." defaultValue="Data Source=localhost;Initial Catalog=asist-tj-data-new;Password=QQQwww123;Persist Security Info=True;User ID=sa;MultipleActiveResultSets=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Администратор\\Documents\\Dev\\Vs-2013\\cissa-4\\trunk\\App\\BizService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='data']/@connectionString" />
+  </parameter>
+  <parameter name="asistMetaNew-Web.config Connection String" description="asistMetaNew Connection String used in web.config by the application to access the database." defaultValue="Data Source=localhost;Initial Catalog=asist-meta-new;Password=QQQwww123;Persist Security Info=True;User ID=sa;MultipleActiveResultSets=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Администратор\\Documents\\Dev\\Vs-2013\\cissa-4\\trunk\\App\\BizService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='asistMetaNew']/@connectionString" />
+  </parameter>
+  <parameter name="asistDataNew-Web.config Connection String" description="asistDataNew Connection String used in web.config by the application to access the database." defaultValue="Data Source=192.168.0.11;Initial Catalog=asist-data-new;Password=QQQwww123;Persist Security Info=True;User ID=sa;MultipleActiveResultSets=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Администратор\\Documents\\Dev\\Vs-2013\\cissa-4\\trunk\\App\\BizService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='asistDataNew']/@connectionString" />
+  </parameter>
+  <parameter name="asistMetaTj-Web.config Connection String" description="asistMetaTj Connection String used in web.config by the application to access the database." defaultValue="Data Source=192.168.0.64;Initial Catalog=asist-meta-new;Password=WestWood-911;Persist Security Info=True;User ID=sa;MultipleActiveResultSets=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Администратор\\Documents\\Dev\\Vs-2013\\cissa-4\\trunk\\App\\BizService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='asistMetaTj']/@connectionString" />
+  </parameter>
+  <parameter name="asistDataTj-Web.config Connection String" description="asistDataTj Connection String used in web.config by the application to access the database." defaultValue="Data Source=192.168.0.64;Initial Catalog=asist-data-new;Password=WestWood-911;Persist Security Info=True;User ID=sa;MultipleActiveResultSets=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Администратор\\Documents\\Dev\\Vs-2013\\cissa-4\\trunk\\App\\BizService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='asistDataTj']/@connectionString" />
+  </parameter>
+</parameters>

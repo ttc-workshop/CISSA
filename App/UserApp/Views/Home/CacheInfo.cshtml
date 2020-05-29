@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "CacheInfo";
+    Layout = "~/Views/Shared/_Layout5.cshtml";
+}
+<h2>Cache Information</h2>
+<ul>
+@{
+    var s = ViewData["Info"];
+    if (s != null) 
+    {
+        var sr = new StringReader(s.ToString());
+        string line;
+        while ((line = sr.ReadLine()) != null)
+        {
+            <li>@line</li>
+        }
+    }
+}
+</ul>
+@Html.ActionLink(@Resources.Home.ClearCache, "ClearCache", null, new { @class="t-button" })
+

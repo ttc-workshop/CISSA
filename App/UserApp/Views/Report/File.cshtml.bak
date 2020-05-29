@@ -1,0 +1,8 @@
+﻿@model Intersoft.CISSA.UserApp.Models.Application.ContextStates.SendFile
+
+@{
+    ViewBag.Title = "File";
+}
+
+<h2>File</h2>
+

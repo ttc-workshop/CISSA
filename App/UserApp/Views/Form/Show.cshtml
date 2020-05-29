@@ -1,0 +1,87 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+
+@model BizDetailForm
+
+@{
+    var caption = ViewData["FormCaption"];
+    ViewBag.Title = caption != null ? caption.ToString() : "";
+}
+@if (Model != null)
+{
+    var actions = (IList<UserAction>)ViewData["UserActions"];
+    var inProcess = (bool?)ViewData["InProcess"] ?? false;
+    ViewData["DetailGrid"] = true;
+    <div class="detail-form frame">
+        <h1>@(caption != null ? caption.ToString() : "")</h1>
+    <div class="frame-content">
+    <table class="detail-grid">
+        @Html.Partial("__BeginDetailPanelRow", String.Empty)
+        @{Html.Telerik().Menu()
+            .Name(Model.Id.ToString() + "-toolbar")
+            .HtmlAttributes(new { style = "margin-left:0px;" })
+            .Items(menu =>
+            {
+                if (Model.AllowEdit)
+                {
+                    menu.Add()
+                        .Text(@Resources.Form.Edit)
+                        .Action("EditDoc", "Form", new { formId = Model.Id, docId = @Model.DocumentId })
+                    @*.LinkHtmlAttributes(new Dictionary<string, object>() { 
+                        { "data-ajax", "true" }, 
+                        { "data-ajax-method", "GET" }, 
+                        { "data-ajax-mode", "replace" }, 
+                        { "data-ajax-update", "#content-body" },
+                        { "data-ajax-success", "UpdatePlaceholder" } })*@;
+                }
+
+                if (actions != null)
+                    foreach (var action in actions)
+                    {
+                        menu.Add().Text(action.Name)
+                            .Action("UserAction", "Form", new { id = action.Id });
+                    }
+                else if (inProcess)
+                {
+                    menu.Add().Text(Resources.Form.Continue)
+                        .Action("Continue", "Process");
+                    menu.Add().Text(Resources.Form.Cancel)
+                        .Action("AskCancel", "Process");
+                }
+                menu.Add().Text(Resources.Form.StateHistory).Action("DocStates", "Form", new { Id = Model.DocumentId })
+                    @*.LinkHtmlAttributes(new Dictionary<string, object>() { 
+                        { "data-ajax", "true" }, 
+                        { "data-ajax-method", "GET" }, 
+                        { "data-ajax-mode", "replace" }, 
+                        { "data-ajax-update", "#content-body" },
+                        { "data-ajax-success", "UpdatePlaceholder" } })*@;
+                if (Model.AllowDelete)
+                {
+                    menu.Add()
+                        .Text(@Resources.Form.Delete)
+                        .Action("DeleteDoc", "Form", new { formId = Model.Id, docId = @Model.DocumentId });
+                }
+                menu.Add().Text(Resources.Form.ToExcel).Action("FormToExcel", "Form", new {id = Model.Id, docId = Model.DocumentId});
+            })
+                .Render();
+        }
+        @Html.Partial("__EndDetailRow")
+        @Html.Partial("_" + Model.GetType().Name, Model)
+    </table>
+    </div>
+        <hr />
+        <p align="center" class="footer">
+            <span>@Resources.Form.CurrentState: <label>@(Model.DocumentState != null ? Model.DocumentState.Type.Name : @Resources.Form.WithoutState)</label>; </span>
+            @if (Model.DocumentState != null)
+            {
+                <span>@Resources.Form.StateSetDate: <label>@(Model.DocumentState.Created != null ? Model.DocumentState.Created.ToString() : "[-]")</label>; </span>
+                <span>@Resources.Form.User: <label>@Model.DocumentState.WorkerName</label> </span>
+            }
+        </p>
+        <p align="center" class="footer">
+            <span>@Resources.Form.Author: <label>@Model.UserFullName</label>; </span>
+            <span>@Resources.Form.CreationDate: <label>@Model.Created</label>;</span>
+            <span>@Resources.Form.PositionTitle: <label>@Model.PositionName</label>; </span>
+            <span>@Resources.Form.Organization: <label>@Model.OrganizationName</label> </span>
+        </p>
+    </div>    
+}

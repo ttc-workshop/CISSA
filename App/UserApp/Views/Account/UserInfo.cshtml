@@ -1,0 +1,31 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model UserInfo
+
+@{
+    Layout = null;
+}
+
+@if (Model != null)
+{
+    <span><b>@Resources.Account.UserInfoNameLabel: </b>@Model.LastName @Model.FirstName</span><br/>
+
+    if (String.IsNullOrEmpty(Model.PositionName)) 
+    { 
+        <span>@Resources.Account.UserInfoNoTitle</span> 
+    }
+    else
+    { 
+        <span><b>@Resources.Account.UserInfoTitleLabel:</b> @Model.PositionName</span> 
+    }
+                                           
+    @(String.IsNullOrEmpty(Model.OrgUnitTypeName) ? "" : Model.OrgUnitTypeName) 
+    <br/>
+    if (String.IsNullOrEmpty(Model.OrganizationName))
+    { 
+        <span>@Resources.Account.UserInfoNoOrg</span> 
+    }
+    else
+    { 
+        <span><b>@Resources.Account.UserInfoOrgLabel:</b> @Model.OrganizationName</span> 
+    }
+}

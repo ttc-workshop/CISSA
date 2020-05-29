@@ -1,0 +1,22 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference
+@{
+    ViewBag.Title = Resources.Form.Upload;
+    var actions = ViewData["UserActions"] as IList<UserAction>;
+}
+<div class="detail-form frame">
+    <h1>@Resources.Form.UploadForm</h1>
+    <div class="frame-content">
+        <p>@ViewData["Message"]</p><hr />
+        @if (actions != null)
+        {
+            @Html.Partial("__UserActionButtons")
+        }
+        @using (Html.BeginForm("Upload", "Form", FormMethod.Post, new {id = "uploadForm", enctype = "multipart/form-data"}))
+        {
+            @(Html.Telerik().Upload().Name("attachments"))
+            <input type="submit" value="@Resources.Form.Upload" class="t-button"/>
+            <input type="reset" value="@Resources.Form.ResetForm" class="t-button"/>
+        }
+    </div>
+    <div class="cleared"></div>
+</div>

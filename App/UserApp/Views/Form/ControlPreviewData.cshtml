@@ -1,0 +1,193 @@
+﻿@model Intersoft.CISSA.UserApp.ServiceReference.BizControl
+@using Intersoft.CISSA.UserApp.ServiceReference;
+@using Intersoft.CISSA.UserApp.Models;
+
+@{
+    var control = Model;
+}
+
+@if (control is BizText)
+{
+    var text = (BizText)control;
+    @text.Caption
+}
+
+@if (control is BizEditText)
+{
+    var edit = (BizEditText)control;
+    @edit.Attribute.Value
+    <br />
+}
+
+@if (control is BizEditInt)
+{
+    var edit = (BizEditInt)control;
+    @edit.Attribute.Value
+    <span class="field-validation-error" name="@edit.Id.ToString()"></span>
+    <br />
+}
+
+@if (control is BizEditFloat)
+{
+    var edit = (BizEditFloat)control;
+    @edit.Attribute.Value
+    <span class="field-validation-error" name="@edit.Id.ToString()"></span> 
+    <br />
+}
+
+@if (control is BizEditCurrency)
+{
+    var edit = (BizEditCurrency)control;
+    @edit.Attribute.Value <text>сом</text>
+    <span class="field-validation-error" name="@edit.Id.ToString()"></span>
+    <br />
+}
+
+@if (control is BizEditDateTime)
+{
+    var edit = (BizEditDateTime)control;
+    @edit.Attribute.Value.ToLongDateString()
+    <span class="field-validation-error" name="@edit.Id.ToString()"></span>
+    <br />
+}
+
+@if (control is BizEditBool)
+{
+    var box = (BizEditBool)control;
+    @Html.CheckBox(box.Id.ToString(), box.Attribute.Value, new { @class = box.Style, title = box.Title, disabled = "true" })
+}
+
+@if (control is BizComboBox)
+{
+    var combo = (BizComboBox)control;
+
+    if (combo.IsRadio)
+    {
+        if (combo.Attribute.AttrDef.EnumDefType.EnumItems != null)
+        {
+            IList<EnumValue> items = combo.Attribute.AttrDef.EnumDefType.EnumItems;
+            foreach (var item in items)
+            {
+                @Html.RadioButton(combo.Id.ToString(), item.Id, item.Id == combo.Attribute.AttrDef.Id, new { disable = true })
+                <text>@item.Value</text>
+            }
+        }
+        
+        @Html.ValidationMessage(combo.Id.ToString())   
+        <br/>
+    }
+    else
+    {
+        @Html.Label(combo.Caption ?? "")
+
+        if (combo.Attribute.AttrDef.EnumDefType.EnumItems != null)
+        {
+            IList<EnumValue> items = combo.Attribute.AttrDef.EnumDefType.EnumItems;
+            var selectValue = (from i in items
+                               where i.Id == combo.Attribute.Value
+                               select i.Value).FirstOrDefault();
+        
+            @Html.Encode(selectValue);
+        }
+    }
+    <br />
+}
+
+@if (control is BizPanel)
+{
+    var panel = (BizPanel)control;
+
+    if (panel.IsHorizontal)
+    {
+        <fieldset class = "@panel.Style" title="@panel.Title">
+            <legend>@panel.Caption</legend>
+            <table class = "@panel.Style" border="0">
+                <tr>
+                    @foreach (BizControl subControl in panel.Children)
+                    {
+                        <td>@Html.Partial("ControlPreview", subControl)</td>
+                    }
+                 </tr>
+             </table>
+        </fieldset>
+    }
+    else if (!panel.IsHorizontal)
+    {
+        <fieldset class = "@control.Style" title = "@control.Title">
+            <legend>@panel.Caption</legend>
+            <table class = "@control.Style" border="0">
+                @foreach (BizControl subControl in panel.Children)
+                {
+                    <tr><td>@Html.Partial("ControlPreview", subControl)</td></tr>
+                }
+            </table>
+         </fieldset>
+    }
+    else
+    {
+        <h3>Неверно указан тип панели</h3>
+    }
+}
+
+@if (control is BizImage)
+{
+    var image = (BizImage)control;
+    switch (image.Path)
+    {
+        case BizImage.Location.Local:
+            <img src = "@image.LocalPath" alt = "@image.Title" class = "@image.Style" height = "@image.Height" width = "@image.Width" />
+                                                                                                                   break;
+
+        case BizImage.Location.DataBase:
+                                                                                                                   //TODO: реализовать
+                                                                                                                   break;
+
+        default:
+           <h3>Неверно указан тип расположения изображения</h3>
+                                                                                                                   break;
+    }
+    <br/>
+}
+
+@if (control is BizButton)
+{
+    var button = (BizButton)control;
+
+    switch (button.ButtonType)
+    {
+        case BizButtonType.Button:
+            if (button.ProcessId != null)
+            {
+                <button type="button" class="@button.Style" title="@button.Title" onClick="parent.location='@Url.Action("Run", "Process", new { id = (Guid)button.ProcessId })'">@button.Caption</button>
+            }
+            else
+            {
+                <button type="button" class="@button.Style" title="@button.Title" onClick="parent.location='@Url.Action("UserAction", "Form", new { id = button.UserActionId ?? Guid.Empty })'">@button.Caption</button>
+            }
+            break;
+
+        case BizButtonType.Reset:
+            <button type="reset" class = "@button.Style" title = "@button.Title" >@button.Caption</button> 
+                                                                             break;
+
+        case BizButtonType.Submit:
+            <button type="submit" class = "@button.Style" title = "@button.Title">@button.Caption</button> 
+                                                                             break;
+
+        case BizButtonType.Link:
+                                                                             if (button.ProcessId != null)
+                                                                             {
+                @Html.ActionLink(button.Caption, "Run", "Process", new { id = (Guid)button.ProcessId }, null)
+                                                                             }
+                                                                             else
+                                                                             {
+                @Html.ActionLink(button.Caption, "UserAction", "Form", new { id = button.UserActionId ?? Guid.Empty }, null)
+                                                                             }
+                                                                             break;
+
+        default:
+            <h3>Неверно указан тип кнопки</h3>
+            break;
+    }
+}
+

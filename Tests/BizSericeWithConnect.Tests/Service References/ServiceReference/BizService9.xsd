@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.DefDatas" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.DefDatas" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/AsistService/BizService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost/AsistService/BizService.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Security" />
+  <xs:import schemaLocation="http://localhost/AsistService/BizService.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" />
+  <xs:import schemaLocation="http://localhost/AsistService/BizService.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Sql" />
+  <xs:import schemaLocation="http://localhost/AsistService/BizService.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" />
+  <xs:complexType name="ArrayOfQueryItemDefData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueryItemDefData" nillable="true" type="tns:QueryItemDefData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueryItemDefData" nillable="true" type="tns:ArrayOfQueryItemDefData" />
+  <xs:complexType name="QueryItemDefData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfQueryItemDefData" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Security" minOccurs="0" name="Permissions" nillable="true" type="q1:PermissionSet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryItemDefData" nillable="true" type="tns:QueryItemDefData" />
+  <xs:complexType name="QuerySourceDefData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryItemDefData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Alias" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="DocDef" nillable="true" type="q2:DocDef" />
+          <xs:element minOccurs="0" name="DocumentId" nillable="true" type="ser:guid" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Sql" minOccurs="0" name="JoinType" type="q3:SqlSourceJoinType" />
+          <xs:element minOccurs="0" name="Query" nillable="true" type="tns:QueryDefData" />
+          <xs:element minOccurs="0" name="QueryId" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QuerySourceDefData" nillable="true" type="tns:QuerySourceDefData" />
+  <xs:complexType name="QueryDefData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryItemDefData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Alias" nillable="true" type="xs:string" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="DocDef" nillable="true" type="q4:DocDef" />
+          <xs:element minOccurs="0" name="DocumentId" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QueryDefData" nillable="true" type="tns:QueryDefData" />
+  <xs:complexType name="QueryConditionDefData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryItemDefData">
+        <xs:sequence>
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" minOccurs="0" name="Expression" type="q5:ExpressionOperation" />
+          <xs:element minOccurs="0" name="LeftAttributeId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="LeftAttributeName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LeftParamName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LeftQuery" nillable="true" type="tns:QueryDefData" />
+          <xs:element minOccurs="0" name="LeftSourceId" type="ser:guid" />
+          <xs:element minOccurs="0" name="LeftSourceName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LeftValue" nillable="true" type="xs:string" />
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" minOccurs="0" name="Operation" type="q6:ConditionOperation" />
+          <xs:element minOccurs="0" name="RightAttributeId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="RightAttributeName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RightParamName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RightQuery" nillable="true" type="tns:QueryDefData" />
+          <xs:element minOccurs="0" name="RightSourceId" type="ser:guid" />
+          <xs:element minOccurs="0" name="RightSourceName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RightValue" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QueryConditionDefData" nillable="true" type="tns:QueryConditionDefData" />
+</xs:schema>

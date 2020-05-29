@@ -1,0 +1,269 @@
+﻿@model Intersoft.CISSA.UserApp.ServiceReference.BizControl
+@using Intersoft.CISSA.UserApp.ServiceReference;
+@using Intersoft.CISSA.UserApp.Models;
+
+@{
+    var control = Model;
+}
+
+@if (control is BizText)
+{
+    var text = (BizText)control;
+    @text.Caption
+}
+
+@if (control is BizEditText)
+{
+    var edit = (BizEditText)control;
+    @Html.Label(edit.Caption ?? "");
+    @edit.Attribute.Value
+    <br />
+}
+
+@if (control is BizEditInt)
+{
+    var edit = (BizEditInt)control;
+    @Html.Label(edit.Caption)
+    @edit.Attribute.Value
+    <span class="field-validation-error" name="@edit.Id.ToString()"></span>
+    <br />
+}
+
+@if (control is BizEditFloat)
+{
+    var edit = (BizEditFloat)control;
+    @Html.Label(edit.Caption)
+    @edit.Attribute.Value
+    <span class="field-validation-error" name="@edit.Id.ToString()"></span> 
+    <br />
+}
+
+@if (control is BizEditCurrency)
+{
+    var edit = (BizEditCurrency)control;
+    @Html.Label(edit.Caption)
+    @edit.Attribute.Value <text>сом</text>
+    <span class="field-validation-error" name="@edit.Id.ToString()"></span>
+    <br />
+}
+
+@if (control is BizEditDateTime)
+{
+    var edit = (BizEditDateTime)control;
+    @Html.Label(edit.Caption)
+    @edit.Attribute.Value.ToLongDateString()
+    <span class="field-validation-error" name="@edit.Id.ToString()"></span>
+    <br />
+}
+
+@if (control is BizEditBool)
+{
+    var box = (BizEditBool)control;
+    @Html.Label(box.Caption ?? "")
+    @Html.CheckBox(box.Id.ToString(), box.Attribute.Value, new { @class = box.Style, title = box.Title, disabled = "true" })
+}
+ 
+@if (control is BizComboBox)
+{
+    var combo = (BizComboBox)control;
+
+
+    if (combo.IsRadio)
+    {
+
+        if (combo.Attribute.AttrDef.EnumDefType.EnumItems != null)
+        {
+            IList<EnumValue> items = combo.Attribute.AttrDef.EnumDefType.EnumItems;
+            foreach (var item in items)
+            {
+                @Html.RadioButton(combo.Id.ToString(), item.Id, combo.Attribute != null && item.Id == combo.Attribute.AttrDef.Id, new { disable = true })
+                <text>@item.Value</text>
+            }
+        }
+        
+        @Html.ValidationMessage(combo.Id.ToString())   
+        <br/>
+    }
+    else
+    {
+        @Html.Label(combo.Caption)
+
+        if (combo.Attribute.AttrDef.EnumDefType.EnumItems != null)
+        {
+            IList<EnumValue> items = combo.Attribute.AttrDef.EnumDefType.EnumItems;
+            var selectValue = (from i in items
+                               where i.Id == combo.Attribute.Value
+                               select i.Value).FirstOrDefault();
+        
+            @selectValue
+        }
+    }
+    <br />
+}
+
+@if (control is BizDocumentListForm)
+{
+    var docListForm = (BizDocumentListForm)control;
+    @Html.Label(docListForm.Caption);
+                                    var mengdForm = new ManagedTableForm(docListForm.TableForm);
+    <div class="sub-form">
+        @Html.Partial("TableShow", mengdForm)   
+    </div>
+}
+
+@if (control is BizDynamicDocumentListForm)
+{
+    var docListForm = (BizDynamicDocumentListForm)control;
+    @Html.Label(docListForm.Caption);
+                                    var mengdForm = new ManagedTableForm(docListForm.TableForm);
+    <div class="sub-form">
+        @Html.Partial("TableShow", mengdForm)                                
+    </div>
+}
+
+@if (control is BizDocumentControl)
+{
+    var docControl = (BizDocumentControl)control;
+    @Html.Label(docControl.Caption);
+    <div class="sub-form">
+        @Html.Partial("ShowPreview", docControl.DocForm)                                
+    </div>
+}
+
+@if (control is BizGrid)
+{
+    var grid = (BizGrid)control;
+
+    if (grid.IsDetail)
+    {
+        <table class="@grid.Style" border="@grid.BorderWidth" title="@grid.Style" >
+
+            @foreach (var child in grid.Children)
+            {
+                <tr>
+                    <th>
+                        @child.Caption
+                    </th>
+                    <td>
+                        @Html.Partial("ControlPreview", child)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+    else if (!grid.IsDetail)
+    {
+        <h3>Этот функционал не реализован</h3>
+        <table class = "@grid.Style" width = "@grid.TableWidth" border = "@grid.BorderWidth" title = "@grid.Style" >
+
+            <tr>
+                @foreach (var child in grid.Children)
+                {
+                    <th>@child.Caption</th>
+                }
+             </tr>
+
+             @*TODO: в этом  цикле нужно прокрутить пройтись по списку документов и вывести их список *@
+             @for (uint i = 0; i < grid.Children.Count; i++)
+             {
+                <tr>
+                    @foreach (var row in grid.Children)
+                    {
+                        <td>@Html.Partial("ControlPreview", row)</td>
+                    }
+                 </tr>
+             }
+
+        </table>
+    }
+    else
+    {
+        <h3>Неверно указан тип грида</h3> 
+    }
+}
+
+@if (control is BizImage)
+{
+    var image = (BizImage)control;
+    switch (image.Path)
+    {
+        case BizImage.Location.Local:
+            <img src = "@image.LocalPath" alt = "@image.Title" class = "@image.Style" height = "@image.Height" width = "@image.Width" />
+                                                                                                                   break;
+
+        case BizImage.Location.DataBase:
+                                                                                                                   //TODO: реализовать
+                                                                                                                   break;
+
+        default:
+           <h3>Неверно указан тип расположения изображения</h3>
+                                                                                                                   break;
+    }
+    <br/>
+}
+
+@if (control is BizPanel)
+{
+    var panel = (BizPanel)control;
+
+    if (panel.IsHorizontal)
+    {
+        <fieldset class = "@panel.Style" title="@panel.Title">
+            <legend>@panel.Caption</legend>
+            <table class = "@panel.Style" border="0">
+                <tr>
+                    @foreach (BizControl child in panel.Children)
+                    {
+                        <td>@Html.Partial("ControlPreview", child)</td>
+                    }
+                 </tr>
+             </table>
+        </fieldset>
+    }
+    else if (!panel.IsHorizontal)
+    {
+        <fieldset class = "@control.Style" title = "@control.Title">
+            <legend>@panel.Caption</legend>
+            <table class = "@control.Style" border="0">
+
+            @foreach (BizControl child in panel.Children)
+            {
+                <tr><td>@Html.Partial("ControlPreview", child)</td></tr>
+            }
+            </table>
+         </fieldset>
+    }
+    else
+    {
+        <h3>Неверно указан тип панели</h3>
+    }
+}
+
+@if (control is BizButton)
+{
+    var button = (BizButton)control;
+
+    switch (button.ButtonType)
+    {
+        case BizButtonType.Button:
+            <button type="button" class = "@button.Style" title = "@button.Title" onClick="parent.location='@Url.Action("Execute", "Process", new { id = button.ActionId })'" >@button.Caption</button> 
+                                                                                                                                                                          break;
+
+        case BizButtonType.Reset:
+            <button type="reset" class = "@button.Style" title = "@button.Title" >@button.Caption</button> 
+                                                                             break;
+
+        case BizButtonType.Submit:
+            <button type="submit" class = "@button.Style" title = "@button.Title">@button.Caption</button> 
+                                                                             break;
+
+        case BizButtonType.Link:
+            @Html.ActionLink(button.Caption, "Execute", "Process", new { id = button.ActionId }, null)
+       break;
+
+        default:
+            <h3>Неверно указан тип кнопки</h3>
+       break;
+    }
+}

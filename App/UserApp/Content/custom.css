@@ -1,0 +1,101 @@
+﻿.button-panel
+{
+    width: 100%;
+    text-align: center;
+}
+
+
+.button-panel .button-space
+{
+    width: 150pt;
+    padding: 0px 25px 0px 25px;
+}
+
+.t-form-content
+{
+    padding: 0.4em;
+}
+
+.art-user-info
+{
+    display: block;
+    position: absolute;
+    top: 62px;
+    width: 100%;
+    text-align:right;
+    right:55%;
+}
+/*
+label
+{
+    width: 200px;
+    text-align: right;
+    display: inline-block;
+}
+*/
+div .control
+{
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.detail-grid
+{
+    padding: 4px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(104, 140, 175);
+    border-style: solid;
+    border-width: 1px;
+    position: relative;
+}
+
+.detail-row
+{
+    
+}
+
+.detail-title
+{
+    font-size: large;
+    font-weight: bold;
+    color: #3366CC;
+}
+
+.detail-category
+{
+    /*padding: 2px 2px 2px 4px;*/
+    text-align: left;
+    font-weight: bold;
+    color: #3366CC;
+    background-color: #e0eded;
+}
+
+.detail-cell-caption
+{
+    /*    text-align: right;*/
+/*    padding: 1px 0px 1px 4px;*/
+    width: 45%;
+    border-right-color: #ddd;
+    border-right-style: solid;
+    border-right-width: 1px;
+}
+
+.detail-cell-value
+{
+    text-align: left;
+    /*padding: 1px 0px 1px 4px;*/
+}
+
+.detail-row td
+{
+    border-bottom-color: #d6e5f3;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    padding-bottom: 0.2em;
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+    padding-top: 0.2em;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}

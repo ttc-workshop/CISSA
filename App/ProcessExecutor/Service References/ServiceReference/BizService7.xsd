@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Languages" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Languages" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfLanguageType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LanguageType" nillable="true" type="tns:LanguageType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLanguageType" nillable="true" type="tns:ArrayOfLanguageType" />
+  <xs:complexType name="LanguageType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CultureName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LanguageType" nillable="true" type="tns:LanguageType" />
+</xs:schema>

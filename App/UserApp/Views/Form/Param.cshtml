@@ -1,0 +1,79 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizForm
+@{
+    var caption = ViewData["FormCaption"];
+    ViewBag.Title = caption != null ? caption.ToString() : Resources.Form.ParamFormTitle;
+}
+@if (Model != null)
+{
+    bool tableGrid = (bool?)ViewData["ParentIsGrid"] ?? false;
+    var nesting = ViewData["Nesting"];
+    var detailGrid = ViewData["DetailGrid"];
+    var editMode = ViewData["EditMode"];
+
+    ViewData["ParentIsGrid"] = false;
+    ViewData["Nesting"] = (int)nesting + 1;
+    ViewData["EditMode"] = true;
+    ViewData["DetailGrid"] = true;
+
+    @*using (Ajax.BeginForm("ApplyParam", "Form", null, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "content-body" }, new { id = "ParamForm" }))*@
+    using (Html.BeginForm("ApplyParam", "Form", FormMethod.Post, new { id = "ParamForm" }))
+    {
+        ViewData["DetailGrid"] = true;
+        
+        <div class="detail-form frame">
+            <h1>@(caption != null ? caption.ToString() : "")</h1>
+        <div class="frame-content">
+        <table class="detail-grid">
+            @Html.Partial("__BeginDetailPanelRow", Model.Caption)
+            @Html.ValidationSummary()    
+            @Html.Partial("__EndDetailRow")
+            @foreach (BizControl child in Model.Children)
+            {
+                if (!child.Invisible && !child.Options.HasFlag(BizControlOptionFlags.Hidden))
+                { 
+                    @Html.Partial("_" + child.GetType().Name, child)
+                }
+            }
+            <tr class="detail-row">
+                <td colspan="2"></td>
+            </tr>
+            <tr class="detail-row">
+                <td>
+                    <input type="hidden" id="UserAction" name="UserAction" value="" />
+                </td>
+                <td>
+                    @if (ViewData["UserActions"] != null)
+                    {
+                        var list = (IList<UserAction>)ViewData["UserActions"];
+                        foreach (var action in list)
+                        {
+                            <button type="button" class="t-button" onclick="javascript:applyUserAction('@action.Id');">@action.Name</button>
+                            <span class="button-space"></span>
+                        }
+                    }
+                </td>
+            </tr>
+        </table>
+        </div>
+        </div>
+    }
+    <script type="text/javascript">
+       /* $(document).ready(function () {
+            SetFormValidation("ParamForm");
+        });*/
+        function applyUserAction(actionId) 
+        {
+            document.forms["ParamForm"].elements["UserAction"].value = actionId;
+            document.forms["ParamForm"].submit();
+            @*$.ajax({
+                type: 'POST',
+                url: '@Url.Action("ApplyParam", "Form")'
+                });*@
+        }
+    </script>
+    ViewData["Nesting"] = nesting;
+    ViewData["ParentIsGrid"] = tableGrid;
+    ViewData["DetailGrid"] = detailGrid;
+    ViewData["EditMode"] = editMode;
+}

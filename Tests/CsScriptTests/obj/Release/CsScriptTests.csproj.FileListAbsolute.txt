@@ -1,0 +1,6 @@
+C:\Users\Ruslan\Desktop\Cissa2\trunk\Project\Tests\CsScriptTests\bin\Release\CsScriptTests.dll
+C:\Users\Ruslan\Desktop\Cissa2\trunk\Project\Tests\CsScriptTests\bin\Release\CsScriptTests.pdb
+C:\Users\Ruslan\Desktop\Cissa2\trunk\Project\Tests\CsScriptTests\bin\Release\CSScriptLibrary.dll
+C:\Users\Ruslan\Desktop\Cissa2\trunk\Project\Tests\CsScriptTests\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Ruslan\Desktop\Cissa2\trunk\Project\Tests\CsScriptTests\obj\Release\CsScriptTests.dll
+C:\Users\Ruslan\Desktop\Cissa2\trunk\Project\Tests\CsScriptTests\obj\Release\CsScriptTests.pdb

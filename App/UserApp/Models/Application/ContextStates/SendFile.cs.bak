@@ -1,0 +1,22 @@
+﻿namespace Intersoft.CISSA.UserApp.Models.Application.ContextStates
+{
+    public class SendFile : BaseContextState
+    {
+        public string FileName { get; private set; }
+
+        public SendFile(IContext context, string fileName) : base(context)
+        {
+            FileName = fileName;
+        }
+
+        public SendFile(IContext context, ContextState previous, string fileName) : base(context, previous)
+        {
+            FileName = fileName;
+        }
+
+        public override ContextAction GetAction(IContext context)
+        {
+            return new ContextAction("Report", "File");
+        }
+    }
+}

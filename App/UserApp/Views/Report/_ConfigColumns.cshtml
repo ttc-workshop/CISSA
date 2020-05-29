@@ -1,0 +1,90 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference
+@model Intersoft.CISSA.UserApp.Models.Application.ContextStates.ConfigTableReport
+
+<div class="t-widget t-grid">
+    <table cellpadding="2" cellspacing="0" border="1">
+        <thead class="t-grid-header">
+        <tr class="t-grid-header-wrap">
+            <th class="t-header">@Resources.Report.SourceColumn</th>
+            <th class="t-header">@Resources.Report.AttributeColumn</th>
+            <th class="t-header">@Resources.Report.ColumnColumn</th>
+            <th class="t-header">@Resources.Report.SortColumn</th>
+            <th class="t-header">@Resources.Report.GroupColumn</th>
+            <th class="t-header">@Resources.Form.ActionColumn</th>
+        </tr>
+        </thead>
+        <tbody class="t-grid-content">
+        @if (Model.Context.Def != null && Model.Context.Def.Columns != null)
+        {
+            var i = 0;
+            foreach (var columnDef in Model.Context.Def.Columns)
+            {
+                var attrColumnDef = columnDef as ReportAttributeColumnDef;
+                if (attrColumnDef != null && attrColumnDef.Attribute != null)
+                {
+                    var source = Model.Context.Def.Sources.FirstOrDefault(s => s.Id == attrColumnDef.Attribute.SourceId);
+                    if (source != null)
+                    {
+                        var attr = source.DocDef.Attributes.FirstOrDefault(a => a.Id == attrColumnDef.Attribute.AttributeId);
+                        if (attr != null)
+                        {
+                            i++;
+                            <tr class="@(i%2 == 1 ? "t-alt" : "")">
+                                <td>@source.DocDef.Caption</td>
+                                <td>@attr.Caption</td>
+                                <td><span id="column-@attrColumnDef.Id">@attrColumnDef.Caption</span></td>
+                                <td>@Html.Partial("_ColumnSort", attrColumnDef)</td>
+                                <td>@Html.Partial("_ColumnGrouping", attrColumnDef)</td>
+                                @*<td>@Html.CheckBox("g" + attrColumnDef.Id, attrColumnDef.Grouping, new { @onclick = "onClickColumnGrouping('" + attrColumnDef.Id + "')" })</td>*@
+                                <td>
+                                    <button class="t-button" onclick=" openColumnDialog('@attrColumnDef.Id.ToString()') ">@Resources.Form.Edit</button>
+                                    @Html.ActionLink(@Resources.Form.Delete, "RemoveColumn", new {id = columnDef.Id}, new {@class = "t-button"})
+                                    @Html.ActionLink(@Resources.Report.MoveUp, "MoveColumn", new {id = columnDef.Id, up = true}, new {@class = "t-button"})
+                                    @Html.ActionLink(@Resources.Report.MoveDown, "MoveColumn", new {id = columnDef.Id, up = false}, new {@class = "t-button"})
+                                </td>
+                            </tr>
+                        }
+                        else if (source.Attributes != null)
+                        {
+                            var sysAttr = source.Attributes.FirstOrDefault(a => a.Id == attrColumnDef.Attribute.AttributeId);
+                            if (sysAttr != null)
+                            {
+                                i++;
+                                <tr class="@(i%2 == 1 ? "t-alt" : "")">
+                                    <td>@source.DocDef.Caption</td>
+                                    <td>@sysAttr.Caption</td>
+                                    <td><span id="column-@attrColumnDef.Id">@attrColumnDef.Caption</span></td>
+                                    <td>@Html.Partial("_ColumnSort", attrColumnDef)</td>
+                                    <td>@Html.Partial("_ColumnGrouping", attrColumnDef)</td>
+                                    <td>
+                                        <button class="t-button" onclick=" openColumnDialog('@attrColumnDef.Id.ToString()') ">@Resources.Form.Edit</button>
+                                        @Html.ActionLink(@Resources.Form.Delete, "RemoveColumn", new { id = columnDef.Id }, new { @class = "t-button" })
+                                        @Html.ActionLink(@Resources.Report.MoveUp, "MoveColumn", new { id = columnDef.Id, up = true }, new { @class = "t-button" })
+                                        @Html.ActionLink(@Resources.Report.MoveDown, "MoveColumn", new { id = columnDef.Id, up = false }, new { @class = "t-button" })
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        </tbody>
+    </table>
+</div>
+<div id="columnDialog" title="Данные параметра">
+    <div class="v-panel">
+        <input id="columnId" type="hidden" />
+        <div class="detail-row">
+            <span class="detail-cell-caption">Наименование параметра</span><span class="detail-cell-value"><input id="columnCaption" class="control" type="text" /></span>
+        </div>
+        <div></div>
+        <hr />
+        <button class="t-button" onclick="saveColumnDialog() ">@Resources.Form.Submit</button>
+    </div>
+</div>
+<script>
+    $("#columnDialog").dialog({
+        autoOpen: false
+    });
+</script>

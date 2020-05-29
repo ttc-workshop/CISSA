@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+@using Intersoft.CISSA.UserApp.Utils;
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/style.css")" type="text/css" media="screen" />
+    <!--[if IE 6]><link rel="stylesheet" href="@Url.Content("~/Content/style.ie6.css")" type="text/css" media="screen" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" href="@Url.Content("~/Content/style.ie7.css")" type="text/css" media="screen" /><![endif]-->
+
+    <!--<link href="@Url.Content("~/Content/general.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("~/Content/left.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("~/Content/content.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" type="text/css"/> -->
+<!--    <script src="@Url.Content("~/Scripts/jquery-1.4.1.min.js")" type="text/javascript"></script> -->
+    <script src="@Url.Content("~/Scripts/cissa.validation.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jscript.menu.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/script.js")" type="text/javascript"></script>
+
+    @*
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    *@
+
+    @Html.Telerik().StyleSheetRegistrar().DefaultGroup(group => group.Add("telerik.common.css").Add("telerik.vista.css"))
+</head>
+
+<body>
+    <div id="art-main">
+        <div class="art-sheet">
+            <div class="art-sheet-tl"></div>
+            <div class="art-sheet-tr"></div>
+            <div class="art-sheet-bl"></div>
+            <div class="art-sheet-br"></div>
+            <div class="art-sheet-tc"></div>
+            <div class="art-sheet-bc"></div>
+            <div class="art-sheet-cl"></div>
+            <div class="art-sheet-cr"></div>
+            <div class="art-sheet-cc"></div>
+            <div class="art-sheet-body">
+                <div class="art-header">
+                    <div class="art-header-center">
+                        <div class="art-header-jpeg"></div>
+                    </div>
+                    <div class="art-logo">
+                     <h1 id="name-text" class="art-logo-name"><a href="#">Корпоративная информационная система</a></h1>
+                     <h2 id="slogan-text" class="art-logo-text">Социальной помощи</h2>
+                    </div>
+                    <div id="user">
+                        @Html.Partial("_LogOnPartial")
+                        @(UserManager.IsAuthorized ? UserManager.Info.OrgUnitName : String.Empty)
+                    </div>        
+                </div>
+                <div class="art-nav">
+                	<div class="l"></div>
+                	<div class="r"></div>
+                	<ul class="art-menu">
+                		<li>
+                			<a href="@Url.Action("Index", "Home")" class="active"><span class="l"></span><span class="r"></span><span class="t">Главная</span></a>
+                		</li>
+                		<li>
+                			<a href="@Url.Action("About", "Home")"><span class="l"></span><span class="r"></span><span class="t">О системе</span></a>
+                		</li>
+                	</ul>
+                </div>
+
+                <div class="art-content-layout">
+                    <div class="art-content-layout-row">
+                        <div class="art-layout-cell art-sidebar1">
+                          <div class="art-vmenublock">
+                              <div class="art-vmenublock-body">
+                                          <div class="art-vmenublockheader">
+                                              <h3 class="t">Меню</h3>
+                                          </div>
+                                          <div class="art-vmenublockcontent">
+                                              <div class="art-vmenublockcontent-body">
+                                                    <div class="art-vmenublockcontent art-article">                
+                                                        <ul class="art-vmenu">
+                                                          	<li>
+                                                          		<a href="@Url.Action("Index", "Home")"><span class="l"></span><span class="r"></span><span class="t">Главная</span></a>
+                                                          	</li>
+                                                          	<li>
+                                                          		<a href="page.html?i2"><span class="l"></span><span class="r"></span><span class="t">Государственные пособия</span></a>
+                                                          		<ul>
+                                                          			<li><a href="page.html?">ЕЕП</a></li>
+                                                          			<li><a href="page.html?">ЕСП</a></li>
+                                                          		</ul>
+                                                          	</li>
+                                                          	<li class="active">
+                                                          		<a class="active" href="page.html?i3"><span class="l"></span><span class="r"></span><span class="t">Денежные компенсации</span></a>
+                                                          		<ul class="active">
+                                                          			<li><a href="page.html?i3s1">Денежные выплаты</a></li>
+                                                          			<li><a href="page.html" class="active">Компенсации</a></li>
+                                                          			<li><a href="page.html?i3s3">Льготы</a></li>
+                                                          		</ul>
+                                                          	</li>
+                                                          	<li>
+                                                          		<a href="page.html?i5"><span class="l"></span><span class="r"></span><span class="t">Сообщения</span></a>
+                                                          		<ul>
+                                                          			<li><a href="page.html?i5s1">2008</a>
+                                                          				<ul>
+                                                          					<li><a href="page.html?i5s1s1">January</a></li>
+                                                          					<li><a href="page.html?i5s1s2">February</a></li>
+                                                          					<li><a href="page.html?i5s1s3">March</a></li>
+                                                          				</ul>
+                                                          			</li>
+                                                          			<li><a href="page.html?i5s2">2007</a>
+                                                          				<ul>
+                                                          					<li><a href="page.html?i5s2s1">January</a></li>
+                                                          					<li><a href="page.html?i5s2s2">February</a></li>
+                                                          					<li><a href="page.html?i5s2s3">March</a></li>
+                                                          				</ul>
+                                                          			</li>
+                                                          			<li><a href="page.html?i5s3">2006</a>
+                                                          				<ul>
+                                                          					<li><a href="page.html?i5s3s1">January</a></li>
+                                                          					<li><a href="page.html?i5s3s2">February</a></li>
+                                                          					<li><a href="page.html?i5s3s3">March</a></li>
+                                                          				</ul>
+                                                          			</li>
+                                                          		</ul>
+                                                          	</li>
+                                                          	<li>
+                                                          		<a href="page.html?i6"><span class="l"></span><span class="r"></span><span class="t">Форум</span></a>
+                                                          	</li>
+                                                          	<li>
+                                                          		<a href="page.html?i7"><span class="l"></span><span class="r"></span><span class="t">О программе</span></a>
+                                                          	</li>
+                                                          	<li>
+                                                          		<a href="page.html?i8"><span class="l"></span><span class="r"></span><span class="t">Контакты</span></a>
+                                                          	</li>
+                                                          </ul></div>
+                                          
+                                          		<div class="cleared"></div>
+                                              </div>
+                                          </div>
+                          		<div class="cleared"></div>
+                              </div>
+                          </div>
+                                          
+                          <div class="art-block">
+                              <div class="art-block-body">
+                                          <div class="art-blockheader">
+                                              <h3 class="t">Поиск</h3>
+                                          </div>
+                                          <div class="art-blockcontent">
+                                              <div class="art-blockcontent-body">
+                                                <div class="art-blockcontent art-article">                
+                                                    <form id="search" name="search" action="@Url.Action("Search", "Home")" method="post">
+                                                            <table cellspacing="0" cellpadding="0" width="95%" border="0">
+                                                              <tr class="Controls">
+                                                                <td><label for="searchkeywords" style="display:none;">Ключевые слова</label><input type="text" name="keywords" value="" id="searchkeywords" style="width: 92%;" /></td>
+                                                              </tr>
+                                                              <tr class="Bottom">
+                                                                  <td align="right">
+                                                                    <span class="art-button-wrapper">
+                                                          	            <span class="art-button-l"> </span>
+                                                          	            <span class="art-button-r"> </span>
+                                                          	            <input class="art-button" type="submit" name="DoSearch" value="Search" />
+                                                                    </span>
+                                                                  </td>
+                                                              </tr>
+                                                            </table>
+                                                     </form>
+                                                </div>
+                                          
+                                          		<div class="cleared"></div>
+                                              </div>
+                                          </div>
+                          		<div class="cleared"></div>
+                              </div>
+                          </div>
+
+                          <div class="art-block">
+                              <div class="art-block-body">
+                                          <div class="art-blockheader">
+                                              <h3 class="t">Тех.поддержка</h3>
+                                          </div>
+                                          <div class="art-blockcontent">
+                                              <div class="art-blockcontent-body">
+                                                          <div>
+                                                              <b>Отдел информационных технологий</b><br />
+                                                              г.Бишкек, ул.Тыныстанова 215<br />
+                                                              Email: <a href="mailto:oit@mlsp.kg">oit@mlsp.kg</a><br />
+                                                              <br />
+                                                              Тел.: (312) 66-37-69 <br />
+                                                              Факс: (312) 62-45-11
+                                                          </div>
+                                          
+                                          		<div class="cleared"></div>
+                                              </div>
+                                          </div>
+                          		<div class="cleared"></div>
+                              </div>
+                          </div>
+                          <div class="cleared"></div>
+                        </div>
+                        <div class="art-layout-cell art-content">
+                          <div class="art-post">
+                              <div class="art-post-tl"></div>
+                              <div class="art-post-tr"></div>
+                              <div class="art-post-bl"></div>
+                              <div class="art-post-br"></div>
+                              <div class="art-post-tc"></div>
+                              <div class="art-post-bc"></div>
+                              <div class="art-post-cl"></div>
+                              <div class="art-post-cr"></div>
+                              <div class="art-post-cc"></div>
+                              <div class="art-post-body">
+
+                                 @RenderBody()
+
+                         		<div class="cleared"></div>
+                              </div>
+                          </div>
+                          <div class="cleared"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cleared"></div>
+                <div class="art-footer">
+                    <div class="art-footer-t"></div>
+                    <div class="art-footer-l"></div>
+                    <div class="art-footer-b"></div>
+                    <div class="art-footer-r"></div>
+                    <div class="art-footer-body">
+                         <a href="#" class="art-rss-tag-icon" title="RSS"></a>
+                        <div class="art-footer-text">
+                            <p><a href="#">Link1</a> | <a href="#">Link2</a> | <a href="#">Link3</a></p><p>Copyright &copy; 2011 InterSoft Ltd. All rights reserved.</p>
+                        </div>
+                		<div class="cleared"></div>
+                    </div>
+                </div>
+        		<div class="cleared"></div>
+            </div>
+        </div>
+        <div class="cleared"></div>
+        <p class="art-page-footer"><a href="http://www.intersoft.kg/">ОсОО "Интерсофт"</a> Программное обеспечение разработанно специально для Министерства социальной защиты населения КР</p>
+    </div>
+</body>
+    @Html.Telerik().ScriptRegistrar()
+</html>

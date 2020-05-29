@@ -1,0 +1,37 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizEditFile
+@{
+    bool tableGrid = (bool?)ViewData["ParentIsGrid"] ?? false;
+    bool detailGrid = (bool?)ViewData["DetailGrid"] ?? false;
+    bool editMode = !Model.ReadOnly && ViewData["EditMode"] != null && (bool)ViewData["EditMode"];
+
+    if (!tableGrid && !detailGrid)
+    {
+        <span>@(Model.Caption ?? "")</span> @*@Html.LabelForModel(Model.Caption ?? "")*@
+    }
+    if (detailGrid && !tableGrid)
+    {
+        @Html.Partial("__BeginDetailCellRow", Model.Caption ?? "")
+    }
+}
+<span class="t-input">
+    @(Model.FileName ?? "-")
+@if (!editMode && !tableGrid && !Model.ReadOnly)
+{
+    @*Ajax.ActionLink(Resources.Form.DownloadFile, "DownloadFile", "Form", new { docId = Model.DocumentId, attrId = Model.AttributeDefId }, new AjaxOptions{ /*UpdateTargetId = "content-body"*/ }, new { @class = "t-button" })*@
+    <button type="button" class="t-button" title="@Resources.Form.DownloadFile" onclick="parent.location='@Url.Action("DownloadFile", "Form", new {docId = Model.DocumentId, attrId = Model.AttributeDefId})'">
+        @Resources.Form.DownloadFile
+    </button>
+}
+</span>
+@if (editMode && /*!tableGrid &&*/ !Model.ReadOnly)
+{
+    @(Html.Telerik().Upload().Name(Model.Id.ToString())
+              .Async(async => async.Save("SaveFile", "Form", new { id = Model.DocumentId, attrId = Model.AttributeDefId })
+                  .Remove("RemoveFile", "Form", new { id = Model.DocumentId, attrId = Model.AttributeDefId }).SaveField("files")))
+    <span class="field-validation-error" name="@Model.Id.ToString()">@Html.ValidationMessage(Model.Id.ToString())</span>
+}
+@if (detailGrid && !tableGrid)
+{
+    @Html.Partial("__EndDetailRow")
+}

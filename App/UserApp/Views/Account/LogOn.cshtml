@@ -1,0 +1,70 @@
+﻿@model Intersoft.CISSA.UserApp.Models.LogOnModel
+@{
+    Layout = "~/Views/Shared/LogOnLayout.cshtml";   
+    ViewBag.Title = Resources.Account.LoginForm; // "Вход в систему";
+}
+<span align="center">
+    @Html.ValidationSummary(true, Resources.Account.LoginErrorMessage /*"Вход в систему не произведен. Пожалуйста проверьте ошибки и повторите вxод."*/)
+</span>
+@using (Html.BeginForm()) {
+<div align="center">
+    <div id="wb_Login1" class="detail-form frame" style="width:480px;position:relative;float:middle;z-index:0;">
+        <h1>@Resources.Account.LoginForm</h1>
+        <table cellspacing="0" cellpadding="4">
+<!--            <tr>
+                <td colspan="2" align="center" style="height:20px;background-color:#DFE9F5;color:#387AC8;">Вход в систему</td>
+            </tr> -->
+            <tr>
+                <td align="right" style="height:20px;width:141px"> 
+                    @Html.LabelFor(m => m.UserName):</td>
+                <td align="left">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "t-input" })
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </td>
+            </tr>
+            <tr>
+                <td align="right" style="height:20px"> 
+                    @Html.LabelFor(m => m.Password):
+                </td>
+                <td align="left">
+                    @Html.PasswordFor(m => m.Password, new { @class = "t-input" })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td><td style="height:20px" align="left">
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td align="left" valign="bottom">
+                    <input type="submit" name="login" class="t-button" value="@Resources.Account.Enter" id="login">
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<p align="center">        
+@*    <div id="wb_TextMenu1" style="padding:8;position:absolute;width:100%;top:90%;text-align:center;">
+        <font style="font-size:13px;" color="#000000">
+            <a href="http://www.intersoft.kg/">@Resources.Account.DeveloperCompany</a> |
+            &nbsp;
+            <a href="">@Resources.Account.CommonHelpMenu</a> |
+            &nbsp;
+            <a href="@Url.Action("About", "Home")">@Resources.Account.About</a>
+        </font>
+    </div>
+*@    
+    <div style = "margin:0;padding:0; text-align:center; position:absolute;width:100%; top:94%;" >
+        @Resources.Account.Copyright <a href="http://www.intersoft.kg/">@Resources.Account.DeveloperCompany</a>
+    </div> 
+</p>    
+    
+
+
+    
+}

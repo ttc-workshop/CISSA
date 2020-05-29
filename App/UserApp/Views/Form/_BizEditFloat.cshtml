@@ -1,0 +1,40 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizEditFloat
+@{
+    bool tableGrid = (bool?)ViewData["ParentIsGrid"] ?? false;
+    bool detailGrid = (bool?)ViewData["DetailGrid"] ?? false;
+    bool editMode = !Model.ReadOnly && ViewData["EditMode"] != null && (bool)ViewData["EditMode"];
+    int cols = Model.Cols > 0 ? Model.Cols : 30;
+    //    string value = Model.Value != null ? ((double) Model.Value).ToString(!String.IsNullOrWhiteSpace(Model.Format) ? Model.Format : "{0:# ##0.00}") : "-";
+    string value = Model.Value != null ? String.Format(!String.IsNullOrWhiteSpace(Model.Format) ? "{0:" + Model.Format + "}" : "{0:# ##0.00}", Model.Value) : "-";
+
+    if (!tableGrid && !detailGrid)
+    {
+        <span>@(Model.Caption ?? "")</span> @*@Html.LabelForModel(Model.Caption ?? "")*@
+    }
+    if (detailGrid && !tableGrid)
+    {
+        @Html.Partial("__BeginDetailCellRow", Model.Caption ?? "")
+    }
+    if (!editMode || /*tableGrid ||*/ Model.ReadOnly)
+    {
+        <span class="t-input numeric">@value</span>
+    }
+    else
+    {
+        @Html.TextBox(Model.Id.ToString(), Model.Value, new
+        {
+            validatable = "true", @class = "t-input " + Model.Style, title = Model.Title, size = cols,
+            style = "margin-left:0px;"
+        })
+        @*(Html.Telerik().NumericTextBox<double>().DecimalDigits(2).EmptyMessage("")
+            .Name(Model.Id.ToString())
+            .HtmlAttributes(new { size = cols })
+            .Value(Model.Value))*@
+        <span class="field-validation-error" name="@Model.Id.ToString()">@Html.ValidationMessage(Model.Id.ToString())</span>
+    }
+    if (detailGrid && !tableGrid)
+    {
+        @Html.Partial("__EndDetailRow")
+    }
+}

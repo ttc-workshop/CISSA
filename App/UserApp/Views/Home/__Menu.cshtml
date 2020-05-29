@@ -1,0 +1,28 @@
+﻿@model Intersoft.CISSA.UserApp.ServiceReference.BizMenu
+
+@if (Model != null)
+{
+    string url = "";
+    if (Model.ProcessId != null)
+    {
+        url = Url.Action("RunProcess", "Home", new { id = Model.ProcessId, menuId = Model.Id });
+    }
+    else if (Model.FormId != null && Model.DocStateId != null)
+    {
+        url = Url.Action("ShowFilterList", "Home", new { id = Model.FormId, docStateId = Model.DocStateId, menuId = Model.Id });
+    }
+    else if (Model.FormId != null)
+    {
+        url = Url.Action("ShowList", "Home", new { id = Model.FormId, menuId = Model.Id });
+    } 
+    <li><a href="@url">@(Model.Caption ?? "---")</a>
+    @if (Model.Children != null)
+    {
+		<ul>
+        @foreach (var child in Model.Children)
+        {
+            @Html.Partial("__menu", child)
+        }</ul>
+    }
+    </li>
+}

@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Ошибка";
+}
+<div class="detail-form frame">
+        <h1>@Resources.Form.Error</h1>
+    <div class="frame-content">
+        <p>@ViewData["Message"]</p>
+        <hr />
+        <p align="center">
+        @*if (ViewData["NoContext"] != null)
+        {*@
+            <button class="t-button" type="button" onclick="parent.location='@Url.Action("Return", "Home")'">@Resources.Form.Ok</button>
+        @*}
+        else 
+        {
+            @Ajax.ActionLink("Ok", "Return", "Home", null, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "content-body" }, new { @class = "t-button" })
+        }*@
+        </p>
+    </div>
+    <div class="cleared"></div>
+</div>

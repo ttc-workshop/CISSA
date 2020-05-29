@@ -1,0 +1,217 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font: 12px/18px Arial, Tahoma, Verdana, sans-serif;
+}
+a {
+	color: blue;
+	outline: none;
+	text-decoration: underline;
+}
+a:hover {
+	text-decoration: none;
+}
+a.buttons {
+	font-family: Verdana, Geneva, sans-serif;
+	color: #1476af;
+	float:left;
+	font-size:13px;
+	text-decoration: none;
+}
+a:hover.buttons {
+	color: #005384;
+	float:left;
+	font-weight: bold;
+	font-size:13px;
+	text-decoration: none;
+}
+.floating {
+ background:#fff;
+ color:#000;
+ padding: 10px 20px 0px 20px;
+ width: auto;
+ height: 700px;
+}
+p {
+	margin: 0 0 18px
+}
+img {
+	border: none;
+}
+input {
+	vertical-align: middle;
+}
+#wrapper {
+	min-width: 1000px;
+	max-width: 1920px;
+	background: #e7e7e7;
+	margin: 0 auto;
+}
+/* Header
+-----------------------------------------------------------------------------*/
+#header {
+	height: 70px;
+	background: #586596; /* Old browsers */
+	background: -moz-linear-gradient(top,  #586596 0%, #343e59 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#586596), color-stop(100%,#343e59)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #586596 0%,#343e59 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #586596 0%,#343e59 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #586596 0%,#343e59 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #586596 0%,#343e59 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#586596', endColorstr='#343e59',GradientType=0 ); /* IE6-9 */
+}
+#logoimg{
+background:url("img/mylogo.png") no-repeat;
+width: 120px;
+height: 70px;
+float: left;
+}
+#buttons {
+	width:100%;
+	height: 30px;
+	background: #fff;
+	border-top: solid 1px #b6b6b6;
+	border-bottom: solid 1px #b6b6b6;
+	
+}
+/*#buttonscopy {
+	height: 30px;
+	background: #fff;
+	border-top: solid 1px #b6b6b6;
+	border-bottom: solid 1px #b6b6b6;
+} запасной вариант*/
+#bnav1{
+width: auto;
+height: 30px;
+float: left;
+margin-top: 5px;
+margin-left: 10px;
+}/*
+#bnav2{
+background:url("img/2.png") no-repeat;
+width: 70px;
+height: 30px;
+float: left;
+}
+#bnav3{
+background:url("img/3.png") no-repeat;
+width: 70px;
+height: 30px;
+margin-left: 6px;
+float: left;
+}
+#bnav4{
+background:url("img/4.png") no-repeat;
+width: 70px;
+height: 30px;
+float: left;
+}
+#bnav5{
+background:url("img/5.png") no-repeat;
+width: 70px;
+height: 30px;
+float: left;
+}
+#bnav6{
+background:url("img/6.png") no-repeat;
+width: 70px;
+height: 30px;
+float: left;
+}*/
+#buttonsuse {
+	height: 35px;
+	background: #d3d3d3;
+	border-bottom: solid 1px #b6b6b6;	
+}
+#buse1{
+background:url("img/save.png") no-repeat;
+width: 100px;
+height: 35px;
+float: left;
+margin-left: -22%;
+}
+#buse2{
+background:url("img/cancel.png") no-repeat;
+width: 100px;
+height: 35px;
+float: left;
+margin-left: -17%;
+}
+#buse3{
+background:url("img/cont.png") no-repeat;
+width: 100px;
+height: 35px;
+float: left;
+margin-left: -12%;
+}
+#buse4{
+background:url("img/create.png") no-repeat;
+width: 100px;
+height: 35px;
+float: left;
+margin-left: -7%;
+}
+/* Middle
+-----------------------------------------------------------------------------*/
+#middle {
+	width: 100%;
+	height: 1%;
+	position: relative;
+}
+#middle:after {
+	content: '';
+	clear: both;
+	display: table;
+}
+#container {
+	width: 100%;
+	float: left;
+	overflow: hidden;
+}
+#content {
+	height: 1000px;
+	background: #fff;
+	margin: 1px 5px 5px 175px;
+	padding: 10px 20px 0px 20px;
+}
+/*Стили для гармошки*/
+		#options {width:457px; margin:0px 0px 40px; text-align:right; color:#9ac1c9}
+		#options a {text-decoration:none; color:#9ac1c9}
+		#options a:hover {color:#033}
+
+		#acc {width:457px; list-style:none; color:#033; margin:0px 0px 40px}
+		#acc h3 {width:443px; border:1px solid #9ac1c9; padding:6px 6px 8px; font-weight:bold; margin-top:5px; cursor:pointer; background:url(img/header.gif)}
+		#acc h3:hover {background:url(img/header_over.gif)}
+		#acc .acc-section {overflow:hidden; background:#fff}
+		#acc .acc-content {width:425px; padding:15px; border:1px solid #9ac1c9; border-top:none; background:#fff}
+
+		#nested {width:425px; list-style:none; color:#033; margin-bottom:15px}
+		#nested h3 {width:411px; border:1px solid #9ac1c9; padding:6px 6px 8px; font-weight:bold; margin-top:5px; cursor:pointer; background:url(img/header.gif)}
+		#nested h3:hover {background:url(img/header_over.gif)}
+		#nested .acc-section {overflow:hidden; background:#fff}
+		#nested .acc-content {width:393px; padding:15px; border:1px solid #9ac1c9; border-top:none; background:#fff}
+		#nested .acc-selected {background:url(img/header_over.gif)}
+/*Стили для гармошки конец*/
+
+/* Sidebar Left
+-----------------------------------------------------------------------------*/
+#sideLeft {
+	float: left;
+	width: auto;
+	height: 700px;
+	margin-left: 5px;
+	background: #fff;
+	padding: 10px 20px 0px 20px;
+}
+
+
+/* Footer
+-----------------------------------------------------------------------------*/
+#footer {
+	height: auto;
+	background: #e7e7e7;
+	border-top: solid 1px #b6b6b6;
+	border-bottom: solid 1px #b6b6b6;
+}

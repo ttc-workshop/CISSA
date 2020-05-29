@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="13f32627-0ab4-4249-8664-e164f846336c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1296/BizService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BizService.xsd" MetadataType="Schema" ID="59395712-a495-409b-ab4b-d7d95bc2afc9" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd7" />
+    <MetadataFile FileName="BizService1.xsd" MetadataType="Schema" ID="1f707c05-6f97-42bc-bb74-ab02da01e234" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd4" />
+    <MetadataFile FileName="BizService2.xsd" MetadataType="Schema" ID="7d84c47e-d7d2-4b64-aeee-7a1fc3661333" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd5" />
+    <MetadataFile FileName="BizService.wsdl" MetadataType="Wsdl" ID="eda32e20-c662-4f92-8917-b149d75d6107" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?wsdl" />
+    <MetadataFile FileName="BizService3.xsd" MetadataType="Schema" ID="3f13cd3a-80a6-48b3-8a75-75ac3c13eadf" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd13" />
+    <MetadataFile FileName="BizService4.xsd" MetadataType="Schema" ID="d7ccf6df-4943-4217-9c20-9b153be2c734" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd10" />
+    <MetadataFile FileName="BizService14.xsd" MetadataType="Schema" ID="1ce7c3c5-c11c-4300-b061-951876eb8405" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd14" />
+    <MetadataFile FileName="BizService5.xsd" MetadataType="Schema" ID="b25df9ac-bdb4-4b4b-95d8-ee3e0430c12f" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd11" />
+    <MetadataFile FileName="BizService15.xsd" MetadataType="Schema" ID="49c370b3-d7ec-4521-ac0e-5e218e5e0447" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd15" />
+    <MetadataFile FileName="BizService.disco" MetadataType="Disco" ID="d740ce04-392d-4b42-bf8c-a976fae5ea17" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?disco" />
+    <MetadataFile FileName="BizService6.xsd" MetadataType="Schema" ID="b8a0b225-a32e-4078-8b2e-7a630a7d811b" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd8" />
+    <MetadataFile FileName="BizService7.xsd" MetadataType="Schema" ID="9086a9ae-087a-43b8-b2e6-93c7d154d01a" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd9" />
+    <MetadataFile FileName="BizService8.xsd" MetadataType="Schema" ID="2c251d74-d835-4394-b8e6-bae4c152c065" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd12" />
+    <MetadataFile FileName="BizService9.xsd" MetadataType="Schema" ID="13e5cd77-4650-438f-8f95-0cdd9394a6b5" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd2" />
+    <MetadataFile FileName="BizService10.xsd" MetadataType="Schema" ID="5008e81c-d274-4882-8146-7e4ac3140118" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd3" />
+    <MetadataFile FileName="BizService11.xsd" MetadataType="Schema" ID="ffa296c6-94a0-4b49-a4a4-7281f0ea53f4" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd0" />
+    <MetadataFile FileName="BizService12.xsd" MetadataType="Schema" ID="79b59dd3-8914-43f2-94dc-16ddd076376f" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd1" />
+    <MetadataFile FileName="BizService13.xsd" MetadataType="Schema" ID="1e81c594-615a-4d2a-b680-79fc759dd3cb" SourceId="1" SourceUrl="http://localhost:1296/BizService.svc?xsd=xsd6" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

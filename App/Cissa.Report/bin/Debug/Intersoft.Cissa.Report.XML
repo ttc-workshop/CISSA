@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Intersoft.Cissa.Report</name>
+    </assembly>
+    <members>
+        <member name="T:Intersoft.Cissa.Report.Defs.ReportFieldDef">
+            <summary>
+            Поле - используется для отображения системных переменных в заголовках или подвале отчета
+            </summary>
+        </member>
+        <member name="M:Intersoft.Cissa.Report.ExcelReport.AddPageHeader(System.String,Intersoft.Cissa.Report.Position)">
+            <summary>
+            Äîáàâëÿåò âåðõíèé êîëîíòèòóë ñòðàíèöû
+            </summary>
+            <param name="text">Òåêñò</param>
+            <param name="position">Ïîçèöèÿ</param>
+        </member>
+        <member name="M:Intersoft.Cissa.Report.ExcelReport.AddPageFooter(System.String,Intersoft.Cissa.Report.Position)">
+            <summary>
+            Äîáàâëÿåò íèæíèé êîëîíòèòóë ñòðàíèöû
+            </summary>
+            <param name="text">Òåêñò</param>
+            <param name="position">Ïîçèöèÿ</param>
+        </member>
+        <member name="M:Intersoft.Cissa.Report.IExcelReport.AddPageHeader(System.String,Intersoft.Cissa.Report.Position)">
+            <summary>
+            Добавляет верхний колонтитул страницы
+            </summary>
+            <param name="text">Текст</param>
+            <param name="position">Позиция</param>
+        </member>
+        <member name="M:Intersoft.Cissa.Report.IExcelReport.AddPageFooter(System.String,Intersoft.Cissa.Report.Position)">
+            <summary>
+            Добавляет нижний колонтитул страницы
+            </summary>
+            <param name="text">Текст</param>
+            <param name="position">Позиция</param>
+        </member>
+        <member name="T:Intersoft.Cissa.Report.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Intersoft.Cissa.Report.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Intersoft.Cissa.Report.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Intersoft.Cissa.Report.Resources.CompanyName">
+            <summary>
+              Looks up a localized string similar to Intersoft.
+            </summary>
+        </member>
+        <member name="P:Intersoft.Cissa.Report.Resources.logo">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Intersoft.Cissa.Report.Resources.ReportApplicationName">
+            <summary>
+              Looks up a localized string similar to CISSA.Reports.ExcelReport.
+            </summary>
+        </member>
+    </members>
+</doc>

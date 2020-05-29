@@ -1,0 +1,46 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference
+@model Intersoft.CISSA.UserApp.Models.Application.ContextStates.ConfigTableReport
+
+<div class="t-widget t-grid">
+    <table cellpadding="2" cellspacing="0" border="1">
+        <thead class="t-grid-header">
+            <tr class="t-grid-header-wrap">
+                <th class="t-header">@Resources.Report.SourceColumn</th>
+                <th class="t-header">@Resources.Report.ColumnColumn</th>
+                <th class="t-header">@Resources.Form.ActionColumn</th>
+            </tr>
+        </thead>
+        <tbody class="t-grid-content">
+        @if (Model.Context.Def != null && Model.Context.Def.Columns != null)
+        {
+            var i = 0;
+            foreach (var columnDef in Model.Context.Def.Columns)
+            {
+                var attrColumnDef = columnDef as ReportAttributeColumnDef;
+                if (attrColumnDef != null && attrColumnDef.Attribute != null)
+                {
+                    var source = Model.Context.Def.Sources.FirstOrDefault(s => s.Id == attrColumnDef.Attribute.SourceId);
+                    if (source != null)
+                    {
+                        var attr = source.DocDef.Attributes.FirstOrDefault(a => a.Id == attrColumnDef.Attribute.AttributeId);
+                        if (attr != null)
+                        {
+                            i++;
+                            <tr class="@(i%2 == 1 ? "t-alt" : "")">
+                                <td>@source.DocDef.Caption</td>
+                                <td>@attr.Caption</td>
+                                <td>
+                                    @Html.ActionLink(@Resources.Form.Edit, "EditColumn", new {id = columnDef.Id}, new {@class = "t-button"})
+                                    @Html.ActionLink(@Resources.Form.Delete, "RemoveColumn", new {id = columnDef.Id}, new {@class = "t-button"})
+                                    @Html.ActionLink(@Resources.Report.MoveUp, "MoveColumn", new { id = columnDef.Id, up = true }, new { @class = "t-button" })
+                                    @Html.ActionLink(@Resources.Report.MoveDown, "MoveColumn", new { id = columnDef.Id, up = false }, new { @class = "t-button" })
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+        }
+        </tbody>
+    </table>
+</div>

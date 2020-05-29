@@ -1,0 +1,24 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@{
+    ViewBag.Title = Resources.Form.Message;
+    var actions = ViewData["UserActions"];
+}
+<div class="detail-form frame">
+        <h1>@Resources.Form.Message</h1>
+    <div class="frame-content">
+        <p>@ViewData["Message"]</p>
+        <hr />
+        @if (actions == null || (actions is IList<UserAction> && ((IList<UserAction>)actions).Count == 0))
+        {
+            <p align="center">
+                <button class="t-button" type="button" onclick="parent.location='@Url.Action("Continue", "Process")'">@Resources.Form.Continue</button>
+                <button class="t-button" type="button" onclick="parent.location='@Url.Action("AskCancel", "Process")'">@Resources.Form.Cancel</button>
+            </p>
+        } 
+        else
+        {
+            @Html.Partial("__UserActionButtons")
+        }
+    </div>
+    <div class="cleared"></div>
+</div>

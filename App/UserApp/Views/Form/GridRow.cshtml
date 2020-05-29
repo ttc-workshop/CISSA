@@ -1,0 +1,23 @@
+﻿@using Intersoft.CISSA.UserApp.Models;
+
+@model ManagedTableFormRow
+
+@{
+    Layout = null;
+
+    ViewData["ParentIsGrid"] = true;
+    ViewData["DetailGrid"] = false;
+    ViewData["Nesting"] = 2;
+}
+
+@foreach (var column in Model.Columns)
+{
+    if (column.Control != null && (column.Children == null || column.Children.Count == 0))
+    {
+        <td>@Html.Partial("_" + column.Control.GetType().Name, column.Control)</td>
+    }    
+    if (column.Children != null && column.Children.Count > 0)
+    {
+        @Html.Partial("__ColumnData", column);
+    }
+}

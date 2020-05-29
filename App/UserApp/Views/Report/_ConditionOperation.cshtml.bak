@@ -1,0 +1,40 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference
+@using Resources
+@model ReportConditionDef
+@if (Model != null)
+{
+    switch (Model.Condition)
+    {
+        case CompareOperation.Equal:
+            @Report.CompareEqual
+            break;
+        case CompareOperation.Less:
+            @Report.CompareLess
+            break;
+        case CompareOperation.LessEqual:
+            @Report.CompareLessEqual
+            break;
+        case CompareOperation.Great:
+            @Report.CompareGreat
+            break;
+        case CompareOperation.GreatEqual:
+            @Report.CompareGreatEqual
+            break;
+        case CompareOperation.NotEqual:
+            @Report.CompareNotEqual
+            break;
+        case CompareOperation.Like:
+            @Report.CompareLike
+            break;
+        case CompareOperation.NotLike:
+            @Report.CompareNotLike
+            break;
+        case CompareOperation.StartWith:
+            @Report.CompareStartWith
+            break;
+        case CompareOperation.EndWith:
+            @Report.CompareEndWith
+            break;
+    }
+}
+

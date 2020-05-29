@@ -1,0 +1,117 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model List<BizMenu>
+
+@{
+    Layout = null;   
+ }
+
+@if (Model != null)
+{
+    Guid currentMenuId = (Guid?) ViewData["CurrentMenuId"] ?? Guid.Empty;
+@*    
+    @(Html.Telerik().PanelBar()
+        .Name("MainMenuPanel")
+        .BindTo((IEnumerable) Model, menus =>
+        {
+            menus.For<BizMenu>(binding => binding
+                .ItemDataBound((item, menu) =>
+                {
+                    item.Text = menu.Caption ?? "---";
+                    item.ImageUrl = "~/Content/img/folders.png";
+
+                    item.Html = Html.Telerik().TreeView()
+                        .Name("MainMenu")
+                        .BindTo(menu.Children, subMenus =>
+                        {
+                            subMenus.For<BizMenu>(subBinding => subBinding
+                                .ItemDataBound((node, subMenu) =>
+                                {
+                                    node.Text = subMenu.Caption ?? "---";
+                                    node.ImageUrl = "~/Content/img/folders.png";
+
+                                    if (subMenu.ProcessId != null)
+                                    {
+                                        node.Url = Url.Action("RunProcess", "Home", new { id = subMenu.ProcessId, menuId = subMenu.Id });
+                                        node.ImageUrl = "~/Content/img/play_blue.png";
+                                    }
+                                    else
+                                        if (subMenu.FormId != null && subMenu.DocStateId != null)
+                                        {
+                                            node.Url = Url.Action("ShowFilterList", "Home", new { id = subMenu.FormId, docStateId = subMenu.DocStateId, menuId = subMenu.Id });
+                                            node.LinkHtmlAttributes.Add("data-ajax-success", "UpdatePlaceholder");
+
+                                            node.ImageUrl = "~/Content/img/folder--arrow.png";
+                                        }
+                                        else
+                                            if (subMenu.FormId != null)
+                                            {
+                                                node.Url = Url.Action("ShowList", "Home", new { id = subMenu.FormId, menuId = subMenu.Id });
+                                                node.ImageUrl = "~/Content/img/folder.png";
+                                            }
+                                    node.Expanded = true;
+                                    node.Selected = subMenu.Id == currentMenuId;
+                                })
+                                .Children(child => child.Children));
+                        })
+                        .ToHtmlString();
+                })); 
+        }));
+*@
+    var expandedNodes = (string[]) ViewData["ExpandedNodes"] ?? new string[] {};
+     
+    @(Html.Telerik().TreeView()
+        .Name("MainMenu")
+        .BindTo(Model, menus =>
+        {
+            menus.For<BizMenu>(binding => binding
+                    .ItemDataBound((item, menu) =>
+                    {
+                        item.Text = menu.Caption ?? "---";
+                        item.ImageUrl = "~/Content/img/folders.png";
+                        item.Value = menu.Id.ToString().ToUpper();
+
+                        if (menu.ProcessId != null)
+                        {
+                            item.Url = Url.Action("RunProcess", "Home", new { id = menu.ProcessId, menuId = menu.Id });
+                            @*item.LinkHtmlAttributes.Add("data-ajax", "true");
+                            item.LinkHtmlAttributes.Add("data-ajax-method", "GET");
+                            item.LinkHtmlAttributes.Add("data-ajax-mode", "replace");
+                            item.LinkHtmlAttributes.Add("data-ajax-update", "#content-body");
+                            item.LinkHtmlAttributes.Add("data-ajax-success", "UpdatePlaceholder");*@
+                            item.ImageUrl = "~/Content/img/play_blue.png";
+                        }
+                        else
+                            if (menu.FormId != null && menu.DocStateId != null)
+                            {
+                                item.Url = Url.Action("ShowFilterList", "Home", new { id = menu.FormId, docStateId = menu.DocStateId, menuId = menu.Id });
+                                @*item.LinkHtmlAttributes.Add("data-ajax", "true");
+                                item.LinkHtmlAttributes.Add("data-ajax-method", "GET"); 
+                                item.LinkHtmlAttributes.Add("data-ajax-mode", "replace"); 
+                                item.LinkHtmlAttributes.Add("data-ajax-update", "#content-body");*@
+                                item.LinkHtmlAttributes.Add("data-ajax-success", "UpdatePlaceholder");
+                                
+                                @*item.Text = Ajax.ActionLink(menu.Caption ?? "--", "ShowFilterList", "Home", new { id = menu.FormId, docStateId = menu.DocStateId, menuId = menu.Id },
+                                    new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "content-body", InsertionMode = InsertionMode.Replace }).ToHtmlString();*@
+                                item.ImageUrl = "~/Content/img/folder--arrow.png";
+                                @*item.Encoded = false;*@
+                            }
+                            else
+                                if (menu.FormId != null)
+                                {
+                                    item.Url = Url.Action("ShowList", "Home", new { id = menu.FormId, menuId = menu.Id });
+                                    @*item.LinkHtmlAttributes.Add("data-ajax", "true");
+                                    item.LinkHtmlAttributes.Add("data-ajax-method", "GET");
+                                    item.LinkHtmlAttributes.Add("data-ajax-mode", "replace");
+                                    item.LinkHtmlAttributes.Add("data-ajax-update", "#content-body");*@
+                                    item.ImageUrl = "~/Content/img/folder.png";
+                                }
+                        item.Expanded = expandedNodes.Contains(item.Value);
+                        item.Selected = menu.Id == currentMenuId;
+                    })
+                    .Children(child => child.Children));
+        })
+        .ClientEvents(events => events
+            .OnCollapse("updateMainMenuState")
+                .OnExpand("updateMainMenuState"))
+         )
+}

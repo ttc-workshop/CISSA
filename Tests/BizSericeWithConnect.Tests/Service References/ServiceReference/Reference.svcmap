@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="415cbe8c-ccab-4d75-9649-99bfa1dc239d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/AsistService/BizService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BizService.xsd" MetadataType="Schema" ID="931ea621-9b0c-47db-830b-00c84a624406" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd0" />
+    <MetadataFile FileName="BizService1.xsd" MetadataType="Schema" ID="e1c90ca8-d95c-4785-ab48-e840289d7afe" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd1" />
+    <MetadataFile FileName="BizService2.xsd" MetadataType="Schema" ID="3f126d80-d2b0-4536-b252-51c37589f441" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd2" />
+    <MetadataFile FileName="BizService3.xsd" MetadataType="Schema" ID="5f903a89-4b57-447b-9d80-193d2e09361a" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd3" />
+    <MetadataFile FileName="BizService4.xsd" MetadataType="Schema" ID="89757a46-215f-4aa8-a402-fe889388cdfa" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd4" />
+    <MetadataFile FileName="BizService5.xsd" MetadataType="Schema" ID="149a892d-8880-43b7-97e8-8722a122f72a" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd5" />
+    <MetadataFile FileName="BizService6.xsd" MetadataType="Schema" ID="a1e89a7c-bb88-4652-9bb4-97f12f1cd969" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd6" />
+    <MetadataFile FileName="BizService7.xsd" MetadataType="Schema" ID="e3411a3f-5612-4470-9e3d-e8a42269442e" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd7" />
+    <MetadataFile FileName="BizService8.xsd" MetadataType="Schema" ID="99dd43c4-9a2d-46b9-8cb5-4e7411c9b446" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd8" />
+    <MetadataFile FileName="BizService9.xsd" MetadataType="Schema" ID="66d63714-5a9c-420c-b1b7-b780e127b7ff" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd9" />
+    <MetadataFile FileName="BizService10.xsd" MetadataType="Schema" ID="55e35733-1e7c-4467-8ff6-d3da4ac958ec" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd14" />
+    <MetadataFile FileName="BizService11.xsd" MetadataType="Schema" ID="b122cd31-868c-49e5-8593-8e8e97b01fa0" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd15" />
+    <MetadataFile FileName="BizService12.xsd" MetadataType="Schema" ID="dc90e61a-a2da-4eb3-bbd7-31700874abcc" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd13" />
+    <MetadataFile FileName="BizService13.xsd" MetadataType="Schema" ID="413b463d-1be1-4c6d-96c0-6a38ab07cda7" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd17" />
+    <MetadataFile FileName="BizService.wsdl" MetadataType="Wsdl" ID="6b7490b4-2955-4873-9994-a1ae7a7e65ca" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?wsdl" />
+    <MetadataFile FileName="BizService14.xsd" MetadataType="Schema" ID="96e91f39-9ee2-498f-b6bd-a2ce9fdcb14f" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd12" />
+    <MetadataFile FileName="BizService15.xsd" MetadataType="Schema" ID="607ce73f-a3e6-4488-b9dd-942a540b08f0" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd16" />
+    <MetadataFile FileName="BizService16.xsd" MetadataType="Schema" ID="704c0dab-e408-441e-b2b4-1dc482dff467" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd10" />
+    <MetadataFile FileName="BizService17.xsd" MetadataType="Schema" ID="92ef6f9a-4db6-46a4-ad60-1b8872e1195b" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd18" />
+    <MetadataFile FileName="BizService18.xsd" MetadataType="Schema" ID="ee1b2d7f-fe75-4baa-b2b6-be5e9f51c719" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?xsd=xsd11" />
+    <MetadataFile FileName="BizService.disco" MetadataType="Disco" ID="87dbb5b2-caea-4222-adb6-71aae436a7ff" SourceId="1" SourceUrl="http://localhost/AsistService/BizService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

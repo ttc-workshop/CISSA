@@ -1,0 +1,35 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizEditDateTime
+@{
+    bool tableGrid = (bool?)ViewData["ParentIsGrid"] ?? false;
+    bool detailGrid = (bool?)ViewData["DetailGrid"] ?? false;
+    bool editMode = !Model.ReadOnly && ViewData["EditMode"] != null && (bool)ViewData["EditMode"];
+    int size = Model.Cols > 0 ? Model.Cols : 30;
+    string value = Model.Value != null ? ((DateTime)Model.Value).ToString(!String.IsNullOrWhiteSpace(Model.Format) ? Model.Format : "d") : "-";
+
+    if (!tableGrid && !detailGrid)
+    {
+        <span>@(Model.Caption ?? "")</span>@*@Html.LabelForModel(Model.Caption ?? "")*@
+    }
+    if (detailGrid && !tableGrid)
+    {
+        @Html.Partial("__BeginDetailCellRow", Model.Caption ?? "")
+    }
+    if (!editMode || /*tableGrid ||*/ Model.ReadOnly)
+    {
+        <span class="t-input">@value</span>
+    }
+    else
+    {
+        //@Html.TextBox(Model.Id.ToString(), value, new { validatable = "true", @class = Model.Style, title = Model.Title })
+        @(Html.Telerik().DatePicker()
+              .Name(Model.Id.ToString())
+              .HtmlAttributes(new {size})
+              .Value(value))
+        <span class="field-validation-error" name="@Model.Id.ToString()">@Html.ValidationMessage(Model.Id.ToString())</span>
+    }
+    if (detailGrid && !tableGrid)
+    {
+        @Html.Partial("__EndDetailRow")
+    }
+}

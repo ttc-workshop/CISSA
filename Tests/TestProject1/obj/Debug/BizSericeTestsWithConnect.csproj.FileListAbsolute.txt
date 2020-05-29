@@ -1,0 +1,9 @@
+C:\Users\Ruslan\Desktop\cissa-3\trunk\Project\Tests\TestProject1\obj\Debug\BizSericeTestsWithConnect.csprojResolveAssemblyReference.cache
+C:\Users\Ruslan\Desktop\cissa-3\trunk\Project\Tests\TestProject1\obj\Debug\TestProject1.dll
+C:\Users\Ruslan\Desktop\cissa-3\trunk\Project\Tests\TestProject1\obj\Debug\TestProject1.pdb
+C:\Users\RemoteAdmin\Documents\Dev\Vs-2013\Old\cissa-3\trunk\Project\Tests\TestProject1\bin\Debug\TestProject1.dll.config
+C:\Users\RemoteAdmin\Documents\Dev\Vs-2013\Old\cissa-3\trunk\Project\Tests\TestProject1\bin\Debug\TestProject1.dll
+C:\Users\RemoteAdmin\Documents\Dev\Vs-2013\Old\cissa-3\trunk\Project\Tests\TestProject1\bin\Debug\TestProject1.pdb
+C:\Users\RemoteAdmin\Documents\Dev\Vs-2013\Old\cissa-3\trunk\Project\Tests\TestProject1\obj\Debug\BizSericeTestsWithConnect.csprojResolveAssemblyReference.cache
+C:\Users\RemoteAdmin\Documents\Dev\Vs-2013\Old\cissa-3\trunk\Project\Tests\TestProject1\obj\Debug\TestProject1.dll
+C:\Users\RemoteAdmin\Documents\Dev\Vs-2013\Old\cissa-3\trunk\Project\Tests\TestProject1\obj\Debug\TestProject1.pdb

@@ -1,0 +1,39 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+
+@model List<DocState>
+@{
+    ViewBag.Title = "DocStates";
+@*    Layout = "~/Views/Shared/_Layout5.cshtml";*@
+    int i = 0;
+}
+
+<div class="detail-form frame">
+    <h1>@Resources.Form.DocStateHistory</h1>
+    <div class="frame-content">
+        <div class="t-widget t-grid">
+        <table cellpadding="2" cellspacing="0" border="1">
+            <thead class="t-grid-header">
+                <tr class="t-grid-header-wrap">
+                    <th class="t-header">@Resources.Form.NoColumn</th>
+                    <th class="t-header">@Resources.Form.StateColumn</th>
+                    <th class="t-header">@Resources.Form.SetDateColumn</th>
+                    <th class="t-header">@Resources.Form.UserNameColumn</th>
+                </tr>
+            </thead>
+            <tbody class="t-grid-content">
+            @foreach (var state in Model)
+            {
+                i++;
+                <tr class="@(i % 2 == 1 ? "t-alt" : "")">
+                <td>@(i).</td>
+                <td>@state.Type.Name</td>
+                <td>@state.Created.ToString()</td>
+                <td>@state.WorkerName</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+

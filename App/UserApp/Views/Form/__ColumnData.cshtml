@@ -1,0 +1,14 @@
+﻿@using Intersoft.CISSA.UserApp.Models;
+@model ManagedTableForm.Column
+
+@foreach (var column in Model.Children)
+{
+    if (column.Control != null && (column.Children == null || column.Children.Count == 0))
+    {
+        <td>@Html.Partial("_" + column.Control.GetType().Name, column.Control)</td>
+    }    
+    if (column.Children != null && column.Children.Count > 0)
+    {
+        @Html.Partial("__ColumnData", column);
+    }
+}

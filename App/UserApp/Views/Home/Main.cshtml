@@ -1,0 +1,38 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizForm
+
+@{    
+    ViewBag.Title = @Resources.Home.MainForm;    
+}
+<div class="art-post-inner">
+    <div class="art-postcontent">
+
+@if (Model != null)
+{
+    <ul>
+    @foreach (BizControl item in Model.Children)
+    {
+        if (item != null)
+        {
+            if (item is BizButton)
+            {
+                var btn = (BizButton) item;
+                if (btn.ActionType == BizButtonActionType.Form)
+                {
+                    <li>@Html.ActionLink(item.Caption ?? item.Name ?? "??", "ShowList", "Form", new { id = btn.ActionId }, null)</li>
+@*                    <li>@Html.ActionLink(item.Caption + " ShowDoc", "ShowDoc", "Form", new { formId = btn.ActionId }, null)</li>
+                    <li>@Html.ActionLink(item.Caption + " Table", "TableShow", "Form", new { formId = btn.ActionId }, null)</li>*@
+                }
+                else if (btn.ProcessId != null)
+                {
+                    <li>@Html.ActionLink(item.Caption ?? item.Name ?? "??", "Run", "Process", new { id = (Guid)btn.ProcessId }, null)</li>
+                }
+            }
+        }
+    }
+    </ul>
+
+}
+    </div>
+    <div class="cleared"></div>
+</div>

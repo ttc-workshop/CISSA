@@ -1,0 +1,19 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference
+@model BizImage
+@{
+    bool tableGrid = (bool?) ViewData["ParentIsGrid"] ?? false;
+    bool detailGrid = (bool?) ViewData["DetailGrid"] ?? false;
+    if (!tableGrid && !detailGrid)
+    {
+        @Html.LabelForModel(Model.Caption ?? "")
+    }
+    if (detailGrid)
+    {
+        @Html.Partial("__BeginDetailCellRow", Model.Caption ?? "")
+    }
+    <img src="@Url.Action("Image", "Form", new { id = Model.Id, height = Model.Height, width = Model.Width })" class="@Model.Style" alt="@Model.Title"/>
+    if (detailGrid)
+    {
+        @Html.Partial("__EndDetailRow")
+    }
+}

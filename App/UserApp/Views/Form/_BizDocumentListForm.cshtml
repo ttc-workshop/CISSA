@@ -1,0 +1,52 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizDocumentListForm
+@{
+    var nesting = ViewData["Nesting"];
+    bool isGrid = (bool?)ViewData["ParentIsGrid"] ?? false;
+    bool detailGrid = (bool?)ViewData["DetailGrid"] ?? false;
+    bool editing = (bool?)ViewData["Editing"] ?? false;
+    
+    ViewData["Nesting"] = (int)nesting + 1;
+    string id = "gd_" + Model.Id.ToString();
+}
+@if (!editing)
+{
+    if (!isGrid && !detailGrid)
+    {
+        @Html.Partial("__BeginFrameBox2", Model)
+    }
+    if (Model.TableForm != null)
+    {
+        if (detailGrid)
+        {
+    @*        <tr class="detail-row">
+                <td class="detail-category" colspan="2">@Model.Caption</td>
+            </tr>*@
+            <tr class="detail-row">
+                <td class="detail-row-value" colspan="2">
+                    <div class="detail-form frame @("level" + nesting)">
+                        @if (!String.IsNullOrWhiteSpace(Model.Caption))
+                        {
+                            <h1><a class="hideBtn" href="javascript://" onclick="$('#@id').slideToggle('normal');return false;">
+                                    @Model.Caption</a>
+                            </h1>
+                        }
+                        <div class="frame-content" id="@id">
+                            @*Html.Partial("_" + mengdForm.GetType().Name, mengdForm)*@
+                            @{ Html.RenderAction("DrawGrid", "Form", new {gridId = Model.Id, docId = Model.DocumentId, pageNo = Model.TableForm.PageNo, pageSize = Model.TableForm.PageSize}); }
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+        else
+        {
+            @*Html.Partial("_" + mengdForm.GetType().Name, mengdForm)*@
+            Html.RenderAction("DrawGrid", "Form", new { gridId = Model.Id, docId = Model.DocumentId, pageNo = Model.TableForm.PageNo, pageSize = Model.TableForm.PageSize });
+        }
+    }
+    if (!isGrid && !detailGrid)
+    {
+        @Html.Partial("__EndFrameBox")
+    }
+}

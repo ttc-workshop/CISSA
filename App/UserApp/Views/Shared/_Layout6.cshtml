@@ -1,0 +1,131 @@
+﻿@using Intersoft.CISSA.UserApp.Utils;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  prefix="og: http://ogp.me/ns#">
+<head>
+    <!-- <link href="@Url.Content("~/Content/newstyle.css")" rel="stylesheet" type="text/css" media="screen, projection" />-->
+    <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" type="text/css"/> 
+    @Html.Telerik().StyleSheetRegistrar().DefaultGroup(group => group.Add("telerik.common.min.css")@*.Add("telerik.web20.css").Add("telerik.rtl.css")*@)
+    <script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jscript.menu.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/script.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+	<script type="text/javascript" src="@Url.Content("~/Scripts/fix.js")"></script>  <!-- подключаем наш скрипт -->
+	<script type="text/javascript" src="@Url.Content("~/Scripts/float_fix.js")"></script>  <!-- подключаем наш скрипт -->
+
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <meta http-equiv="X-UA-Compatible" content="IE=6" />
+    <title>@ViewBag.Title</title>
+    <script type="text/javascript" >
+        history.go(1); /* undo user navigation (ex: IE Back Button) */
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="buttons">
+            @{ Html.RenderAction("ToolBar", "Home"); }
+            <span>
+                <a href="@Url.Action("SetLanguage", "Home", new { id = 0 })" class="menu-tab-spec"><span class="l"></span><span class="r"></span><span class="t">РУС</span></a>
+                <a href="@Url.Action("SetLanguage", "Home", new { id = 1 })" class="menu-tab-spec"><span class="l"></span><span class="r"></span><span class="t">КЫРГ</span></a>
+            </span>
+            <span>
+                <a href="ftp://192.168.0.1/ar9lite_eng.exe" class="menu-tab" target="_blank"><span class="l"></span><span class="r"></span><span class="t">Adobe Reader</span></a>
+                <a href="/userdata/index.html" class="menu-tab" target="_blank"><span class="l"></span><span class="r"></span><span class="t">Руководство</span></a>
+            </span>
+        </div>
+        <div id="header">
+			<div id="logoimg"></div>
+            <!-- <font size="5"><b>КИССП</b></font> -->
+            <span id="user-info">@{ Html.RenderAction("UserInfo", "Account"); }</span>
+        </div>
+
+	    <div id="middle">
+		    <div id="container">
+
+		        <div class="floating" id="sideLeft">
+                    @*<div class="menu-site">*@
+                        @{ Html.RenderAction("MainMenu", "Home"); }
+                    @*</div>*@
+                </div>
+                <div id="content">
+                    <div id="content-body">
+                        @RenderBody()
+                    </div>
+                    @*<div>
+                        <p>&nbsp;</p>
+                        <p align="center">Copyright &copy; 2011 Intersoft Ltd. All rights reserved.</p>
+                        <p>&nbsp;</p>
+                        if (ViewData["Duration"] != null)
+                        {
+                            var duration = (TimeSpan)ViewData["Duration"];
+                            <p align="center" class="footer"><span>Страница сформирована за <label>@(duration.TotalMilliseconds) мс</label></span></p>
+                        }
+                    </div>*@
+                    <div id="footer">
+		                <div align="center" style="font-size: 7.5pt; margin-top: 6px; margin-bottom: 8px;">Copyright © 2011-2013 Intersoft Ltd. All rights reserved.<br>Корпоративная Информационная Система Социальной Помощи<br>Программное обеспечение разработанно ОсОО <a href="http://intersoft.kg">"Интерсофт"</a></div> 
+	                </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div id ="overlay">
+        <div id="ajax-load"></div>
+    </div>
+</body>
+    <!-- Отключение истории -->
+    <script type="text/javascript">
+        Sys.Application.add_init(pageInit);
+        function pageInit() {
+            Sys.Application.set_enableHistory("false");
+        }
+    </script>
+    <script type="text/javascript">
+        $.ajaxSetup({ timeout: 120000 });
+
+        $(document).ajaxStart(function () {
+            $("#overlay").show();
+        });
+        $(document).ajaxComplete(function () {
+            $("#overlay").hide();
+        });
+        $(document).ajaxError(function (e, xhr, opt) {
+            alert("Произошла ошибка  " + opt.url + ": " + xhr.status + " " + xhr.statusText + " при выполнении запроса");
+        });
+        $(document).ajaxSuccess(function () {
+            //alert("Success!");
+            //var obj = $("#content-body")./*find("script").*/each(function (index, value) { 
+            //$("#content").append("<textarea cols=\"60\" rows=\"40\">" + data + "</textarea>"); /*eval($(this).text());*/ //});
+            //var len = obj.length;
+            //var s = '';
+            //$.each(obj, function () { eval($(this).text()); });
+            //alert(s);
+            //if (len > 0) alert(len);
+            /*for (var i = 0; i < len; i++) {
+            //$("#content-body").append("<code>" + obj[i].text + "</code>");
+            //eval(obj[i].text);  // execute the scripts.
+            alert(obj[i].text);
+            }*/
+        });
+    </script>
+    <script type="text/javascript">
+        function UpdatePlaceholder(context) {
+            // the HTML output of the partial view
+            //alert(context);
+            //$("#content").append("<textarea cols=\"80\" rows=\"50\">" + context + "</textarea>");
+            jQuery.globalEval($(context).find("script").text());
+            /*
+            var html = context.get_data();
+
+            // the DOM element representing the placeholder
+            var placeholder = context.get_updateTarget();
+
+            // use jQuery to update the placeholder. It will execute any JavaScript statements
+            $(placeholder).html(html);
+            */
+            // return false to prevent the automatic update of the placeholder
+            return false;
+        }
+    </script>
+    @Html.Telerik().ScriptRegistrar()
+</html>

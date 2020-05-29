@@ -1,0 +1,31 @@
+﻿using Intersoft.CISSA.UserApp.ServiceReference;
+using Intersoft.CISSA.UserApp.Utils;
+
+namespace Intersoft.CISSA.UserApp.Models.Application
+{
+    public interface IContext
+    {
+        T Find<T>() where T : ContextState;
+        T Get<T>() where T : ContextState; 
+        ContextState Get();
+        T Check<T>() where T: ContextState;
+        ContextState Check();
+
+        void Set(ContextState state);
+
+//        UserManagerClient GetUserManager();
+//        DocManagerClient GetDocumentManager();
+//        PresentationManagerClient GetPresentationManager();
+//        WorkflowManagerClient GetWorkflowManager();
+//        QueryManagerClient GetQueryManager();
+
+        ConnectionClient<UserManagerClient, IUserManager> GetUserProxy();
+        ConnectionClient<DocManagerClient, IDocManager> GetDocumentProxy();
+        ConnectionClient<PresentationManagerClient, IPresentationManager> GetPresentationProxy();
+        ConnectionClient<WorkflowManagerClient, IWorkflowManager> GetWorkflowProxy();
+        ConnectionClient<QueryManagerClient, IQueryManager> GetQueryProxy();
+        ConnectionClient<ReportManagerClient, IReportManager> GetReportProxy();
+
+        int GetLanguage();
+    }
+}

@@ -1,0 +1,17 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+
+@model BizControl
+@{
+    int nesting = (int?)ViewData["Nesting"] ?? 0;
+    var id = "hp_" + Model.Id;
+}
+<div class="detail-form frame @("level" + nesting)">
+@if (!String.IsNullOrWhiteSpace(Model.Caption))
+{
+    <h1>
+        <a class="hideBtn" href="javascript://" onclick="$('#@id').slideToggle('normal');return false;">
+            @Model.Caption
+        </a>
+    </h1>
+}
+    <div class="frame-content" id="@id">

@@ -1,0 +1,108 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference
+@model Intersoft.CISSA.UserApp.Models.Application.ContextStates.ConfigTableReport
+
+<div class="h-panel">
+    @Html.ActionLink(Resources.Report.AddExpCondition, "AddRootExpCondition", new {@class="t-button"})
+</div>
+<div class="t-widget t-grid">
+    <table cellpadding="2" cellspacing="0" border="1">
+        <thead class="t-grid-header">
+            <tr class="t-grid-header-wrap">
+                <th class="t-header">@Resources.Report.ExpressionOperationColumn</th>
+                <th class="t-header">@Resources.Report.SourceColumn</th>
+                <th class="t-header">@Resources.Report.ColumnColumn</th>
+                <th class="t-header">@Resources.Report.ConditionOperationColumn</th>
+                <th class="t-header">@Resources.Report.SourceColumn/@Resources.Report.CaptionColumn</th>
+                <th class="t-header">@Resources.Report.ColumnColumn/@Resources.Report.ValueColumn</th>
+                <th class="t-header">@Resources.Form.ActionColumn</th>
+            </tr>
+        </thead>
+        <tbody class="t-grid-content">
+        @if (Model.Context.Def != null && Model.Context.Def.Columns != null)
+        {
+            var i = 0;
+            foreach (var conditionDef in Model.Context.Def.Conditions)
+            {
+                i++;
+                <tr class="@(i%2 == 1 ? "t-alt" : "")">
+                    <td>@Html.Partial("_ExpressionOperation", conditionDef)</td>
+                    @{
+                        var exp = conditionDef as ReportExpConditionDef;
+                        if (exp != null)
+                        {
+                            <td colspan="5">Выражение</td>
+                        }
+                        else
+                        {
+                            var condition = conditionDef as ReportConditionDef; // ? ((ReportConditionDef) conditionDef) : null;
+                            var leftAttribute = condition != null ? condition.LeftAttribute : null;
+                            if (leftAttribute != null)
+                            {
+                                var sourceDef = Model.Context.Def.Sources.FirstOrDefault(sd => sd.Id == leftAttribute.SourceId);
+                                var attrDef = sourceDef != null ? sourceDef.DocDef.Attributes.FirstOrDefault(a => a.Id == leftAttribute.AttributeId) : null;
+                                if (attrDef != null)
+                                {
+                                    <td>@sourceDef.DocDef.Caption</td>
+                                    <td>@attrDef.Caption</td>
+                                }
+                                else
+                                {
+                                    <td>???</td>
+                                    <td>???</td>
+                                }
+                            }
+                            else
+                            {
+                                <td>???</td>
+                                <td>???</td>
+                            }
+                            <td>@Html.Partial("_ConditionOperation", condition)</td>
+                            var rightAttribute = condition != null && condition.RightPart is ReportConditionRightAttributeDef ? ((ReportConditionRightAttributeDef) condition.RightPart).Attribute : null;
+                            if (rightAttribute != null)
+                            {
+                                var sourceDef = Model.Context.Def.Sources.FirstOrDefault(sd => sd.Id == rightAttribute.SourceId);
+                                var attrDef = sourceDef != null ? sourceDef.DocDef.Attributes.FirstOrDefault(a => a.Id == rightAttribute.AttributeId) : null;
+                                if (attrDef != null)
+                                {
+                                    <td>@sourceDef.DocDef.Caption</td>
+                                    <td>@attrDef.Caption</td>
+                                }
+                                else
+                                {
+                                    <td>???</td>
+                                    <td>???</td>
+                                }
+                            }
+                            else
+                            {
+                                var rightParamDef = condition != null && condition.RightPart is ReportConditionRightParamDef ? (ReportConditionRightParamDef) condition.RightPart : null;
+                                if (rightParamDef != null)
+                                {
+                                    <td>@rightParamDef.Caption</td>
+                                    if (rightParamDef.Value != null)
+                                    {
+                                        <td> @rightParamDef.Value.ToString() </td>
+                                    }
+                                    else
+                                    {
+                                        <td>[Значение не задано]</td>
+                                    }
+                                }
+                                else
+                                {
+                                    <td></td>
+                                    <td></td>
+                                }
+                            }
+                        }
+                    }
+                    <td>
+                        @Html.ActionLink(@Resources.Form.Edit, "EditCondition", new {id = conditionDef.Id}, new {@class = "t-button"})
+                        @Html.ActionLink(@Resources.Form.Delete, "RemoveCondition", new {id = conditionDef.Id}, new {@class = "t-button"})
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>

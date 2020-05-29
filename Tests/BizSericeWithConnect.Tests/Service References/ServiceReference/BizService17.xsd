@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Defs" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Intersoft.Cissa.Report.Defs" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/AsistService/BizService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost/AsistService/BizService.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" />
+  <xs:import schemaLocation="http://localhost/AsistService/BizService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model" />
+  <xs:import schemaLocation="http://localhost/AsistService/BizService.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Enums" />
+  <xs:import schemaLocation="http://localhost/AsistService/BizService.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Sql" />
+  <xs:import schemaLocation="http://localhost/AsistService/BizService.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" />
+  <xs:complexType name="ReportDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Columns" nillable="true" type="tns:ArrayOfReportColumnDef" />
+      <xs:element minOccurs="0" name="Conditions" nillable="true" type="tns:ArrayOfReportConditionItemDef" />
+      <xs:element minOccurs="0" name="Joins" nillable="true" type="tns:ArrayOfReportSourceJoinDef" />
+      <xs:element minOccurs="0" name="SourceId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Sources" nillable="true" type="tns:ArrayOfReportSourceDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportDef" nillable="true" type="tns:ReportDef" />
+  <xs:complexType name="ArrayOfReportColumnDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportColumnDef" nillable="true" type="tns:ReportColumnDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReportColumnDef" nillable="true" type="tns:ArrayOfReportColumnDef" />
+  <xs:complexType name="ReportColumnDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReportItemDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Visible" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReportColumnDef" nillable="true" type="tns:ReportColumnDef" />
+  <xs:complexType name="ReportItemDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportItemDef" nillable="true" type="tns:ReportItemDef" />
+  <xs:complexType name="ReportAttributeDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReportItemDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AttributeId" type="ser:guid" />
+          <xs:element minOccurs="0" name="SourceId" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReportAttributeDef" nillable="true" type="tns:ReportAttributeDef" />
+  <xs:complexType name="ReportFieldDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReportItemDef">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReportFieldDef" nillable="true" type="tns:ReportFieldDef" />
+  <xs:complexType name="ReportConditionItemDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReportItemDef">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query" minOccurs="0" name="Operation" type="q1:ExpressionOperation" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReportConditionItemDef" nillable="true" type="tns:ReportConditionItemDef" />
+  <xs:complexType name="ReportConditionDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReportConditionItemDef">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model" minOccurs="0" name="Condition" type="q2:CompareOperation" />
+          <xs:element minOccurs="0" name="LeftAttribute" nillable="true" type="tns:ReportAttributeDef" />
+          <xs:element minOccurs="0" name="RightPart" nillable="true" type="tns:ReportConditionRightPartDef" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReportConditionDef" nillable="true" type="tns:ReportConditionDef" />
+  <xs:complexType name="ReportConditionRightPartDef">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="ReportConditionRightPartDef" nillable="true" type="tns:ReportConditionRightPartDef" />
+  <xs:complexType name="ReportConditionRightAttributeDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReportConditionRightPartDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Attribute" nillable="true" type="tns:ReportAttributeDef" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReportConditionRightAttributeDef" nillable="true" type="tns:ReportConditionRightAttributeDef" />
+  <xs:complexType name="ReportConditionRightParamDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReportConditionRightPartDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:anyType" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Enums" minOccurs="0" name="Values" nillable="true" type="q3:ArrayOfEnumValue" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReportConditionRightParamDef" nillable="true" type="tns:ReportConditionRightParamDef" />
+  <xs:complexType name="ReportConditionRightVariableDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReportConditionRightPartDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SystemValue" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReportConditionRightVariableDef" nillable="true" type="tns:ReportConditionRightVariableDef" />
+  <xs:complexType name="ReportExpConditionDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReportConditionItemDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Conditions" nillable="true" type="tns:ArrayOfReportConditionItemDef" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReportExpConditionDef" nillable="true" type="tns:ReportExpConditionDef" />
+  <xs:complexType name="ArrayOfReportConditionItemDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportConditionItemDef" nillable="true" type="tns:ReportConditionItemDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReportConditionItemDef" nillable="true" type="tns:ArrayOfReportConditionItemDef" />
+  <xs:complexType name="ReportSourceJoinDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReportItemDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="JoinAttribute" nillable="true" type="tns:ReportAttributeDef" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Sql" minOccurs="0" name="JoinType" type="q4:SqlSourceJoinType" />
+          <xs:element minOccurs="0" name="MasterId" type="ser:guid" />
+          <xs:element minOccurs="0" name="SourceId" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReportSourceJoinDef" nillable="true" type="tns:ReportSourceJoinDef" />
+  <xs:complexType name="ReportSourceSystemAttributeDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReportItemDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model" minOccurs="0" name="Ident" type="q5:SystemIdent" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReportSourceSystemAttributeDef" nillable="true" type="tns:ReportSourceSystemAttributeDef" />
+  <xs:complexType name="ReportSourceDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReportItemDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Attributes" nillable="true" type="tns:ArrayOfReportSourceSystemAttributeDef" />
+          <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="DocDef" nillable="true" type="q6:DocDef" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReportSourceDef" nillable="true" type="tns:ReportSourceDef" />
+  <xs:complexType name="ArrayOfReportSourceSystemAttributeDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportSourceSystemAttributeDef" nillable="true" type="tns:ReportSourceSystemAttributeDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReportSourceSystemAttributeDef" nillable="true" type="tns:ArrayOfReportSourceSystemAttributeDef" />
+  <xs:complexType name="ReportRowNoColumnDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReportColumnDef">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReportRowNoColumnDef" nillable="true" type="tns:ReportRowNoColumnDef" />
+  <xs:complexType name="ReportAttributeColumnDef">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReportColumnDef">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Attribute" nillable="true" type="tns:ReportAttributeDef" />
+          <xs:element minOccurs="0" name="Grouping" type="tns:ReportColumnGroupingType" />
+          <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model" minOccurs="0" name="SortType" type="q7:SortType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReportAttributeColumnDef" nillable="true" type="tns:ReportAttributeColumnDef" />
+  <xs:simpleType name="ReportColumnGroupingType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Count" />
+      <xs:enumeration value="Sum" />
+      <xs:enumeration value="Avg" />
+      <xs:enumeration value="Max" />
+      <xs:enumeration value="Min" />
+      <xs:enumeration value="Group" />
+      <xs:enumeration value="CrossGroup" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ReportColumnGroupingType" nillable="true" type="tns:ReportColumnGroupingType" />
+  <xs:complexType name="ArrayOfReportSourceJoinDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportSourceJoinDef" nillable="true" type="tns:ReportSourceJoinDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReportSourceJoinDef" nillable="true" type="tns:ArrayOfReportSourceJoinDef" />
+  <xs:complexType name="ArrayOfReportSourceDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportSourceDef" nillable="true" type="tns:ReportSourceDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReportSourceDef" nillable="true" type="tns:ArrayOfReportSourceDef" />
+  <xs:simpleType name="ReportConditionDefType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Param" />
+      <xs:enumeration value="Attribute" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ReportConditionDefType" nillable="true" type="tns:ReportConditionDefType" />
+</xs:schema>

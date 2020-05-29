@@ -1,0 +1,58 @@
+﻿@using Resources
+@model Intersoft.CISSA.UserApp.Models.Application.ContextStates.ConfigTableReport
+
+@{
+    ViewBag.Title = Report.Config;
+}
+<div class="detail-form frame">
+    <h1>@Report.Config</h1>
+    <div class="frame-content">
+        <div class="h-panel">
+            @Html.ActionLink(Report.ExecuteXls, "Execute", new {}, new {@class = "t-button"})
+            @Html.ActionLink(Report.Store, "Store", new { }, new { @class = "t-button" })
+        </div>
+        <div class="v-panel">
+            @if (Model != null && Model.Context != null)
+            {
+                <div class="detail-row">
+                    <span class="detail-cell-caption">@Report.ReportCaption</span>
+                    <span id="reportCaptionText" class="detail-cell-value">@Model.Context.Def.Caption</span>
+                    <button class="t-button" onclick=" openReportDialog() ">@Form.Edit</button>
+                </div>
+                <div class="detail-form frame">
+                    <h1>@Report.SourcePanel</h1>
+                    <div class="frame-content">
+                        @Html.Partial("_ConfigSources", Model)
+                    </div>
+                </div>
+                <div class="detail-form frame">
+                    <h1>@Report.ColumnPanel</h1>
+                    <div class="frame-content">
+                        @Html.Partial("_ConfigColumns", Model)
+                    </div>
+                </div>
+                <div class="detail-form frame">
+                    <h1>@Report.ConditionPanel</h1>
+                    <div class="frame-content">
+                        @Html.Partial("_ConfigConditions", Model)
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div id="reportDialog" title="Заголовок отчета">
+    <div class="v-panel">
+        <div class="detail-row">
+            <span class="detail-cell-caption">Заголовок отчета</span><span class="detail-cell-value"><input id="reportCaption" class="control" type="text" /></span>
+        </div>
+        <div></div>
+        <hr />
+        <button class="t-button" onclick="saveReportDialog() ">@Form.Submit</button>
+    </div>
+</div>
+<script>
+    $("#reportDialog").dialog({
+        autoOpen: false
+    });
+</script>

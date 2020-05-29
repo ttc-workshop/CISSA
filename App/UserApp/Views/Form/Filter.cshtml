@@ -1,0 +1,11 @@
+﻿@model Intersoft.CISSA.UserApp.Models.ManagedTableForm
+
+@{
+    var caption = ViewData["FormCaption"];
+    
+    ViewBag.Title = caption != null ? caption.ToString() : "";
+}
+@if (Model != null)
+{
+    @Html.Partial("_" + Model.GetType().Name, Model);
+}

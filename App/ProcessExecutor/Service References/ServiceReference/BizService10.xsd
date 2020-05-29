@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Workflow" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd16" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd7" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Misc" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Enums" />
+  <xs:complexType name="ArrayOfUserAction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserAction" nillable="true" type="tns:UserAction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserAction" nillable="true" type="tns:ArrayOfUserAction" />
+  <xs:complexType name="UserAction">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DefaultName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserAction" nillable="true" type="tns:UserAction" />
+  <xs:complexType name="WorkflowContextData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActivityId" type="ser:guid" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="BlobDatas" nillable="true" type="q1:ArrayOfBlobData" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="ControlDatas" nillable="true" type="q2:ArrayOfBizControl" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="CurrentDocument" nillable="true" type="q3:Doc" />
+      <xs:element minOccurs="0" name="CurrentDocumentDefId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="CurrentDocumentId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="CurrentFormId" nillable="true" type="ser:guid" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" minOccurs="0" name="CurrentQuery" nillable="true" type="q4:QueryDef" />
+      <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DocumentList" nillable="true" type="q5:ArrayOfguid" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="DownloadFiles" nillable="true" type="q6:ArrayOfFileData" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Misc" minOccurs="0" name="ErrorMessages" nillable="true" type="q7:ArrayOfModelMessage" />
+      <xs:element minOccurs="0" name="ExceptionName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FilterDocStateId" nillable="true" type="ser:guid" />
+      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="FilterDocument" nillable="true" type="q8:Doc" />
+      <xs:element minOccurs="0" name="FormCaption" nillable="true" type="xs:string" />
+      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" minOccurs="0" name="FormOptions" nillable="true" type="q9:ArrayOfBizFormOptions" />
+      <xs:element minOccurs="0" name="GateId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="GateProcessName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LogFileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Parent" nillable="true" type="tns:WorkflowContextData" />
+      <xs:element minOccurs="0" name="ParentProcessId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ProcessId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="ProcessName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReportId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ReturnData" nillable="true" type="tns:ExternalProcessReturnData" />
+      <xs:element minOccurs="0" name="ReturnException" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ReturnedContextData" nillable="true" type="tns:WorkflowContextData" />
+      <xs:element minOccurs="0" name="ReturnedExceptionFlag" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ReturnedSuccessFlag" type="xs:boolean" />
+      <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="SelectedDocument" nillable="true" type="q10:Doc" />
+      <xs:element minOccurs="0" name="SelectedDocumentId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="State" type="tns:WorkflowRuntimeState" />
+      <xs:element minOccurs="0" name="SuccessFlag" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TemplateFileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UploadFileData" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="UploadFileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserActionId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="UserActions" nillable="true" type="tns:ArrayOfUserAction" />
+      <xs:element minOccurs="0" name="UserId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Variables" nillable="true" type="tns:ArrayOfWorkflowVariable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkflowContextData" nillable="true" type="tns:WorkflowContextData" />
+  <xs:complexType name="ExternalProcessReturnData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Correct" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExceptionMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResultType" type="tns:ExternalProcessExecuteResultType" />
+      <xs:element minOccurs="0" name="WithException" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExternalProcessReturnData" nillable="true" type="tns:ExternalProcessReturnData" />
+  <xs:simpleType name="ExternalProcessExecuteResultType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="Failed" />
+      <xs:enumeration value="GateNotFound" />
+      <xs:enumeration value="ProcessNotFound" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ExternalProcessExecuteResultType" nillable="true" type="tns:ExternalProcessExecuteResultType" />
+  <xs:simpleType name="WorkflowRuntimeState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Run" />
+      <xs:enumeration value="Exception" />
+      <xs:enumeration value="ProcessCall" />
+      <xs:enumeration value="ProcessReturn" />
+      <xs:enumeration value="ShowForm" />
+      <xs:enumeration value="ShowSelectForm" />
+      <xs:enumeration value="ShowParamForm" />
+      <xs:enumeration value="ShowReport" />
+      <xs:enumeration value="ShowTemplateReport" />
+      <xs:enumeration value="SendFile" />
+      <xs:enumeration value="ShowMessage" />
+      <xs:enumeration value="ShowReturn" />
+      <xs:enumeration value="ShowSelectReturn" />
+      <xs:enumeration value="UploadFile" />
+      <xs:enumeration value="UploadFileReturn" />
+      <xs:enumeration value="Finish" />
+      <xs:enumeration value="GateProcessCall" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WorkflowRuntimeState" nillable="true" type="tns:WorkflowRuntimeState" />
+  <xs:complexType name="ArrayOfWorkflowVariable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkflowVariable" nillable="true" type="tns:WorkflowVariable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkflowVariable" nillable="true" type="tns:ArrayOfWorkflowVariable" />
+  <xs:complexType name="WorkflowVariable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkflowVariable" nillable="true" type="tns:WorkflowVariable" />
+  <xs:complexType name="AttributeVariable">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WorkflowVariable">
+        <xs:sequence>
+          <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="Value" nillable="true" type="q11:AttributeBase" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AttributeVariable" nillable="true" type="tns:AttributeVariable" />
+  <xs:complexType name="EnumValueVariable">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WorkflowVariable">
+        <xs:sequence>
+          <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Enums" minOccurs="0" name="Value" nillable="true" type="q12:EnumValue" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EnumValueVariable" nillable="true" type="tns:EnumValueVariable" />
+  <xs:complexType name="QueryVariable">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WorkflowVariable">
+        <xs:sequence>
+          <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.Def" minOccurs="0" name="Value" nillable="true" type="q13:QueryDef" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QueryVariable" nillable="true" type="tns:QueryVariable" />
+  <xs:complexType name="ObjectListVariable">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WorkflowVariable">
+        <xs:sequence>
+          <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Value" nillable="true" type="q14:ArrayOfanyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ObjectListVariable" nillable="true" type="tns:ObjectListVariable" />
+  <xs:complexType name="DocListVariable">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WorkflowVariable">
+        <xs:sequence>
+          <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="Value" nillable="true" type="q15:ArrayOfDoc" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocListVariable" nillable="true" type="tns:DocListVariable" />
+  <xs:complexType name="DocumentVariable">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WorkflowVariable">
+        <xs:sequence>
+          <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="Value" nillable="true" type="q16:Doc" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocumentVariable" nillable="true" type="tns:DocumentVariable" />
+  <xs:complexType name="ObjectVariable">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WorkflowVariable">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:anyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ObjectVariable" nillable="true" type="tns:ObjectVariable" />
+  <xs:complexType name="ExternalProcessExecuteResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Data" nillable="true" type="tns:WorkflowContextData" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReturnData" nillable="true" type="tns:WorkflowContextData" />
+      <xs:element minOccurs="0" name="Type" type="tns:ExternalProcessExecuteResultType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExternalProcessExecuteResult" nillable="true" type="tns:ExternalProcessExecuteResult" />
+</xs:schema>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:5096/BizService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="Doc">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttrCurrency" nillable="true" type="tns:ArrayOfCurrencyAttribute" />
+      <xs:element minOccurs="0" name="AttrDoc" nillable="true" type="tns:ArrayOfDocAttribute" />
+      <xs:element minOccurs="0" name="AttrEnum" nillable="true" type="tns:ArrayOfEnumAttribute" />
+      <xs:element minOccurs="0" name="AttrFloat" nillable="true" type="tns:ArrayOfFloatAttribute" />
+      <xs:element minOccurs="0" name="AttrInt" nillable="true" type="tns:ArrayOfIntAttribute" />
+      <xs:element minOccurs="0" name="AttrText" nillable="true" type="tns:ArrayOfTextAttribute" />
+      <xs:element minOccurs="0" name="CreationTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DocDef" nillable="true" type="tns:DocDef" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Doc" nillable="true" type="tns:Doc" />
+  <xs:complexType name="ArrayOfCurrencyAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CurrencyAttribute" nillable="true" type="tns:CurrencyAttribute" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCurrencyAttribute" nillable="true" type="tns:ArrayOfCurrencyAttribute" />
+  <xs:complexType name="CurrencyAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttrDef" nillable="true" type="tns:AttrDef" />
+      <xs:element minOccurs="0" name="Value" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CurrencyAttribute" nillable="true" type="tns:CurrencyAttribute" />
+  <xs:complexType name="AttrDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DocDefType" nillable="true" type="tns:DocDef" />
+      <xs:element minOccurs="0" name="EnumDefType" nillable="true" type="tns:EnumDef" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerDocDef" nillable="true" type="tns:DocDef" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="tns:TypeDef" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AttrDef" nillable="true" type="tns:AttrDef" />
+  <xs:complexType name="DocDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocDef" nillable="true" type="tns:DocDef" />
+  <xs:complexType name="EnumDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EnumDef" nillable="true" type="tns:EnumDef" />
+  <xs:complexType name="TypeDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:short" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TypeDef" nillable="true" type="tns:TypeDef" />
+  <xs:complexType name="ArrayOfDocAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DocAttribute" nillable="true" type="tns:DocAttribute" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDocAttribute" nillable="true" type="tns:ArrayOfDocAttribute" />
+  <xs:complexType name="DocAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttrDef" nillable="true" type="tns:AttrDef" />
+      <xs:element minOccurs="0" name="Value" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocAttribute" nillable="true" type="tns:DocAttribute" />
+  <xs:complexType name="ArrayOfEnumAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EnumAttribute" nillable="true" type="tns:EnumAttribute" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEnumAttribute" nillable="true" type="tns:ArrayOfEnumAttribute" />
+  <xs:complexType name="EnumAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttrDef" nillable="true" type="tns:AttrDef" />
+      <xs:element minOccurs="0" name="Value" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EnumAttribute" nillable="true" type="tns:EnumAttribute" />
+  <xs:complexType name="ArrayOfFloatAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FloatAttribute" nillable="true" type="tns:FloatAttribute" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFloatAttribute" nillable="true" type="tns:ArrayOfFloatAttribute" />
+  <xs:complexType name="FloatAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttrDef" nillable="true" type="tns:AttrDef" />
+      <xs:element minOccurs="0" name="Value" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FloatAttribute" nillable="true" type="tns:FloatAttribute" />
+  <xs:complexType name="ArrayOfIntAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IntAttribute" nillable="true" type="tns:IntAttribute" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfIntAttribute" nillable="true" type="tns:ArrayOfIntAttribute" />
+  <xs:complexType name="IntAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttrDef" nillable="true" type="tns:AttrDef" />
+      <xs:element minOccurs="0" name="Value" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IntAttribute" nillable="true" type="tns:IntAttribute" />
+  <xs:complexType name="ArrayOfTextAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TextAttribute" nillable="true" type="tns:TextAttribute" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTextAttribute" nillable="true" type="tns:ArrayOfTextAttribute" />
+  <xs:complexType name="TextAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttrDef" nillable="true" type="tns:AttrDef" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TextAttribute" nillable="true" type="tns:TextAttribute" />
+</xs:schema>

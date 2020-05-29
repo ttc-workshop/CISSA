@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{45E450E3-7FE6-40D0-996D-5118D81D0FDE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProcessService</RootNamespace>
+    <AssemblyName>ProcessService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Config\ParamElementCollection.cs" />
+    <Compile Include="Models\Config\ParamElement.cs" />
+    <Compile Include="Models\Config\JobsConfigurationGroup.cs" />
+    <Compile Include="Models\Config\ProcessConfigurationSection.cs" />
+    <Compile Include="Models\Config\ProcessElement.cs" />
+    <Compile Include="Models\Config\ProcessElementCollection.cs" />
+    <Compile Include="ProcessExecutionService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProcessService.Designer.cs">
+      <DependentUpon>ProcessExecutionService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\BizServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Service References\BizServiceReference\BizService.wsdl" />
+    <None Include="Service References\BizServiceReference\BizService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService13.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService14.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService15.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService16.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService17.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\BizService9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.BizControl.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.BizDetailForm.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.BizForm.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.BizMenu.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.BizResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.BizTableForm.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.BlobData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.Doc.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.DocAttrListByIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.DocAttrListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.DocDefName.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.DocState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.DocumentFilterListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.DocumentListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.DocumentStateFilterListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.EnumValue.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.ExternalProcessExecuteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.GetDocListTableFormRowsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.GetDocListWithCountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.GetRefListTableFormRowsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.GetTableFormRowsFromFilterQueryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.GetTableFormRowsFromQueryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.GetTableFormRowsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.LanguageType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.ModelMessage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.MonitorNode.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.QueryDef.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.TableReportContext.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.UserAction.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.UserInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BizServiceReference\ProcessService.BizServiceReference.WorkflowContextData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\BizServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BizServiceReference\BizService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BizServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BizServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BizServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

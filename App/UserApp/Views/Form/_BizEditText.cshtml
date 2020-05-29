@@ -1,0 +1,48 @@
+﻿@using Intersoft.CISSA.UserApp.ServiceReference;
+@model BizEditText
+@{
+    bool tableGrid = (bool?)ViewData["ParentIsGrid"] ?? false;
+    bool detailGrid = (bool?)ViewData["DetailGrid"] ?? false;
+    bool editMode = !Model.ReadOnly && ViewData["EditMode"] != null && (bool)ViewData["EditMode"];
+    int cols = Model.Cols > 0 ? Model.Cols : 30;
+    string value = Model.Value != null ? !String.IsNullOrWhiteSpace(Model.Format) ? String.Format(Model.Format, Model.Value) : Model.Value : "-";
+
+    if (!tableGrid && !detailGrid)
+    {
+        <span class="control-caption">@(Model.Caption ?? "")</span> @*@Html.LabelForModel(Model.Caption ?? "")*@
+    }
+
+    if (detailGrid && !tableGrid)
+    {
+        @Html.Partial("__BeginDetailCellRow", Model.Caption ?? "")
+    }
+    if (!editMode || /*tableGrid ||*/ Model.ReadOnly)
+    {
+        <span class="t-input">@value</span>
+    }
+    else
+    {
+        if (Model.Rows > 1)
+        {
+        @*Html.TextArea(Model.Id.ToString(), Model.Value, new { rows = Model.Rows, cols = Model.Cols, validatable = "true", @class = @Model.Style, title = Model.Title })*@
+        @*Html.Telerik().Editor()
+            .Name(Model.Id.ToString())  
+            .Tools(tools => tools.Clear())
+            .HtmlAttributes(new { rows = Model.Rows, size = cols, validatable = true })
+            .Value(Model.Value)
+            .Render();*@
+            @Html.TextArea(Model.Id.ToString(), Model.Value, new {validatable = "true", @class = "t-input " + Model.Style, cols, rows = Model.Rows})
+        }
+        else
+        {
+            @Html.TextBox(Model.Id.ToString(), Model.Value,
+                new {validatable = "true", @class = "t-input " + Model.Style, size = cols, maxlength = Model.MaxLength == 0 ? 500 : Model.MaxLength, style = "margin-left:0px;"})
+
+        }
+        <span name="@Model.Id.ToString()" class="field-validation-error">@Html.ValidationMessage(Model.Id.ToString())</span>
+    }
+    if (detailGrid && !tableGrid)
+    {
+        @Html.Partial("__EndDetailRow")
+    }
+}

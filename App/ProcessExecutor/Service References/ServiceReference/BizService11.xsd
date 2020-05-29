@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Controls" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd7" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Security" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.DefDatas" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" />
+  <xs:import schemaLocation="http://localhost/BizService/BizService.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Enums" />
+  <xs:complexType name="BizForm">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizControl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CanDelete" type="xs:boolean" />
+          <xs:element minOccurs="0" name="CanEdit" type="xs:boolean" />
+          <xs:element minOccurs="0" name="DocumentDefId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="DocumentId" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizForm" nillable="true" type="tns:BizForm" />
+  <xs:complexType name="BizControl">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Children" nillable="true" type="tns:ArrayOfBizControl" />
+      <xs:element minOccurs="0" name="DefaultCaption" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Dependents" nillable="true" type="q1:ArrayOfguid" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Invisible" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LanguageId" type="xs:int" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Masters" nillable="true" type="q2:ArrayOfguid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model" minOccurs="0" name="Operation" type="q3:CompareOperation" />
+      <xs:element minOccurs="0" name="Options" type="tns:BizControlOptionFlags" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Security" minOccurs="0" name="Permissions" nillable="true" type="q4:PermissionSet" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Query.DefDatas" minOccurs="0" name="QueryItems" nillable="true" type="q5:ArrayOfQueryItemDefData" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model" minOccurs="0" name="SortType" type="q6:SortType" />
+      <xs:element minOccurs="0" name="Style" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BizControl" nillable="true" type="tns:BizControl" />
+  <xs:complexType name="ArrayOfBizControl">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BizControl" nillable="true" type="tns:BizControl" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBizControl" nillable="true" type="tns:ArrayOfBizControl" />
+  <xs:simpleType name="BizControlOptionFlags">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Hidden" />
+          <xs:enumeration value="ReadOnly" />
+          <xs:enumeration value="Disabled" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="BizControlOptionFlags" nillable="true" type="tns:BizControlOptionFlags" />
+  <xs:complexType name="BizButton">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizControl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ActionId" type="ser:guid" />
+          <xs:element minOccurs="0" name="ActionType" type="tns:BizButtonActionType" />
+          <xs:element minOccurs="0" name="ButtonType" type="tns:BizButtonType" />
+          <xs:element minOccurs="0" name="IsDisabled" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ProcessId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="UserActionId" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizButton" nillable="true" type="tns:BizButton" />
+  <xs:simpleType name="BizButtonActionType">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Form" />
+      <xs:enumeration value="BizProcess" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BizButtonActionType" nillable="true" type="tns:BizButtonActionType" />
+  <xs:simpleType name="BizButtonType">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Button" />
+      <xs:enumeration value="Link" />
+      <xs:enumeration value="Submit" />
+      <xs:enumeration value="Reset" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BizButtonType" nillable="true" type="tns:BizButtonType" />
+  <xs:complexType name="BizDataControl">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizControl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AttributeDefId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="AttributeName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DocNotNull" type="xs:boolean" />
+          <xs:element minOccurs="0" name="FormNotNull" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Updatable" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizDataControl" nillable="true" type="tns:BizDataControl" />
+  <xs:complexType name="BizEditBool">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizEdit">
+        <xs:sequence>
+          <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="Attribute" nillable="true" type="q7:BoolAttribute" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizEditBool" nillable="true" type="tns:BizEditBool" />
+  <xs:complexType name="BizEdit">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizDataControl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Cols" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="EditMask" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Format" nillable="true" type="xs:string" />
+          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model" minOccurs="0" name="Ident" type="q8:SystemIdent" />
+          <xs:element minOccurs="0" name="MaxLength" type="xs:unsignedInt" />
+          <xs:element minOccurs="0" name="MaxValue" type="xs:int" />
+          <xs:element minOccurs="0" name="MinValue" type="xs:int" />
+          <xs:element minOccurs="0" name="NotNull" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ProcessId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="Rows" type="xs:unsignedByte" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizEdit" nillable="true" type="tns:BizEdit" />
+  <xs:complexType name="BizEditDateTime">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizEdit">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizEditDateTime" nillable="true" type="tns:BizEditDateTime" />
+  <xs:complexType name="BizEditSysIdent">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizEdit">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:anyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizEditSysIdent" nillable="true" type="tns:BizEditSysIdent" />
+  <xs:complexType name="BizEditFile">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizEdit">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DocumentId" type="ser:guid" />
+          <xs:element minOccurs="0" name="Empty" type="xs:boolean" />
+          <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizEditFile" nillable="true" type="tns:BizEditFile" />
+  <xs:complexType name="BizEditCurrency">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizEdit">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizEditCurrency" nillable="true" type="tns:BizEditCurrency" />
+  <xs:complexType name="BizEditFloat">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizEdit">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizEditFloat" nillable="true" type="tns:BizEditFloat" />
+  <xs:complexType name="BizEditInt">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizEdit">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizEditInt" nillable="true" type="tns:BizEditInt" />
+  <xs:complexType name="BizEditVar">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizEdit">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:anyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizEditVar" nillable="true" type="tns:BizEditVar" />
+  <xs:complexType name="BizEditText">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizEdit">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizEditText" nillable="true" type="tns:BizEditText" />
+  <xs:complexType name="BizComboBox">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizDataControl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DetailAttributeId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="DetailAttributeName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DetailText" nillable="true" type="xs:string" />
+          <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model" minOccurs="0" name="Ident" type="q9:SystemIdent" />
+          <xs:element minOccurs="0" name="IsRadio" type="xs:boolean" />
+          <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Enums" minOccurs="0" name="Items" nillable="true" type="q10:ArrayOfEnumValue" />
+          <xs:element minOccurs="0" name="Rows" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizComboBox" nillable="true" type="tns:BizComboBox" />
+  <xs:complexType name="BizDetailForm">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizForm">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AllowDelete" type="xs:boolean" />
+          <xs:element minOccurs="0" name="AllowEdit" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+          <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="DocumentState" nillable="true" type="q11:DocState" />
+          <xs:element minOccurs="0" name="LayoutId" type="xs:short" />
+          <xs:element minOccurs="0" name="OrganizationId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="OrganizationName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PositionId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="PositionName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserFullName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserId" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizDetailForm" nillable="true" type="tns:BizDetailForm" />
+  <xs:complexType name="BizTableForm">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizForm">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AddNewPermissionId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="AllowAddNew" type="xs:boolean" />
+          <xs:element minOccurs="0" name="AllowOpen" type="xs:boolean" />
+          <xs:element minOccurs="0" name="CanAddNew" type="xs:boolean" />
+          <xs:element minOccurs="0" name="FilterFormId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="FormId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="OpenPermissionId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="PageCount" type="xs:int" />
+          <xs:element minOccurs="0" name="PageNo" type="xs:int" />
+          <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+          <xs:element minOccurs="0" name="RowCount" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizTableForm" nillable="true" type="tns:BizTableForm" />
+  <xs:complexType name="BizGrid">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizControl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BorderWidth" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="DocumentDefId" type="ser:guid" />
+          <xs:element minOccurs="0" name="IsDetail" type="xs:boolean" />
+          <xs:element minOccurs="0" name="TableWidth" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizGrid" nillable="true" type="tns:BizGrid" />
+  <xs:complexType name="BizDocumentControl">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizDataControl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DocForm" nillable="true" type="tns:BizForm" />
+          <xs:element minOccurs="0" name="FormId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizDocumentControl" nillable="true" type="tns:BizDocumentControl" />
+  <xs:complexType name="BizText">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizControl">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizText" nillable="true" type="tns:BizText" />
+  <xs:complexType name="BizDocumentListForm">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizDataControl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DocDefId" nillable="true" type="ser:guid" />
+          <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DocList" nillable="true" type="q12:ArrayOfguid" />
+          <xs:element minOccurs="0" name="DocumentId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="FormAttributeDefId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="FormId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="TableForm" nillable="true" type="tns:BizTableForm" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizDocumentListForm" nillable="true" type="tns:BizDocumentListForm" />
+  <xs:complexType name="BizImage">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizControl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Height" type="xs:int" />
+          <xs:element minOccurs="0" name="ImageBytes" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="LocalPath" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Path" type="tns:BizImage.Location" />
+          <xs:element minOccurs="0" name="Width" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizImage" nillable="true" type="tns:BizImage" />
+  <xs:simpleType name="BizImage.Location">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Local" />
+      <xs:enumeration value="DataBase" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BizImage.Location" nillable="true" type="tns:BizImage.Location" />
+  <xs:complexType name="BizTableColumn">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizDataControl">
+        <xs:sequence>
+          <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Intersoft.CISSA.DataAccessLayer.Model.Documents" minOccurs="0" name="Document" nillable="true" type="q13:Doc" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizTableColumn" nillable="true" type="tns:BizTableColumn" />
+  <xs:complexType name="BizDataImage">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizDataControl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DocumentId" type="ser:guid" />
+          <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Height" type="xs:int" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="Width" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizDataImage" nillable="true" type="tns:BizDataImage" />
+  <xs:complexType name="BizRadioItem">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizDataControl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="EnumId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizRadioItem" nillable="true" type="tns:BizRadioItem" />
+  <xs:complexType name="BizPanel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizControl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsHorizontal" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LayoutId" type="xs:short" />
+          <xs:element minOccurs="0" name="ReadOnly" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizPanel" nillable="true" type="tns:BizPanel" />
+  <xs:complexType name="BizDynamicDocumentListForm">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizControl">
+        <xs:sequence>
+          <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DocList" nillable="true" type="q14:ArrayOfguid" />
+          <xs:element minOccurs="0" name="FormId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="ScritpId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="TableForm" nillable="true" type="tns:BizTableForm" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizDynamicDocumentListForm" nillable="true" type="tns:BizDynamicDocumentListForm" />
+  <xs:complexType name="BizMenu">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizControl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DocStateId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="Expanded" type="xs:boolean" />
+          <xs:element minOccurs="0" name="FormId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="ProcessId" nillable="true" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizMenu" nillable="true" type="tns:BizMenu" />
+  <xs:complexType name="BizTabControl">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BizControl">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BizTabControl" nillable="true" type="tns:BizTabControl" />
+  <xs:complexType name="ArrayOfBizMenu">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BizMenu" nillable="true" type="tns:BizMenu" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBizMenu" nillable="true" type="tns:ArrayOfBizMenu" />
+  <xs:complexType name="ArrayOfBizControlOption">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BizControlOption" nillable="true" type="tns:BizControlOption" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBizControlOption" nillable="true" type="tns:ArrayOfBizControlOption" />
+  <xs:complexType name="BizControlOption">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttributeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Flags" type="tns:BizControlOptionFlags" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BizControlOption" nillable="true" type="tns:BizControlOption" />
+  <xs:complexType name="ArrayOfBizFormOptions">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BizFormOptions" nillable="true" type="tns:BizFormOptions" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBizFormOptions" nillable="true" type="tns:ArrayOfBizFormOptions" />
+  <xs:complexType name="BizFormOptions">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Options" nillable="true" type="tns:ArrayOfBizControlOption" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BizFormOptions" nillable="true" type="tns:BizFormOptions" />
+</xs:schema>
